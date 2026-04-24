@@ -45,7 +45,9 @@ if (!product) {
             </div>
         </div>
         <div class="product-hero-side">
-            <figure class="product-screenshot-frame product-screenshot-frame-hero">
+            <figure
+                class="product-screenshot-frame product-screenshot-frame-hero"
+            >
                 <img
                     src="/vt100logging.png"
                     alt="vt100logging terminal screenshot"
@@ -68,8 +70,8 @@ if (!product) {
             <div>
                 <p class="eyebrow">Product snapshot</p>
                 <h2>
-                        A compact developer product that solves one repeated
-                        workflow problem cleanly and publicly.
+                    A compact developer product that solves one repeated
+                    workflow problem cleanly and publicly.
                 </h2>
             </div>
             <a href={product.href} target="_blank" rel="noreferrer"
@@ -108,11 +110,7 @@ if (!product) {
                 debugging.
             </p>
             <div class="product-categories">
-                {
-                    product.categories.map((category) => (
-                        <span>{category}</span>
-                    ))
-                }
+                {product.categories.map((category) => <span>{category}</span>)}
             </div>
         </div>
     </section>
@@ -127,41 +125,45 @@ if (!product) {
                 </h2>
             </div>
         </div>
-        <div class="project-grid">
-            <article class="project-card stack-card">
-                <p class="card-kicker">Package listing</p>
-                <h2>Published on PyPI</h2>
-                <p>
-                    Installation, usage examples, and release metadata are all
-                    available through the public package page.
-                </p>
-                <div class="product-links">
-                    <a
-                        class="button button-secondary"
-                        href={product.href}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Open PyPI package
-                    </a>
+        <div class="product-detail-list">
+            <article class="project-card product-detail-card">
+                <p class="card-kicker product-detail-label">Package listing</p>
+                <div class="product-detail-copy">
+                    <h2>Published on PyPI</h2>
+                    <p>
+                        Installation, usage examples, and release metadata are all
+                        available through the public package page.
+                    </p>
+                    <div class="product-links">
+                        <a
+                            class="button button-secondary"
+                            href={product.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open PyPI package
+                        </a>
+                    </div>
                 </div>
             </article>
-            <article class="project-card stack-card">
-                <p class="card-kicker">Source code</p>
-                <h2>Public repository</h2>
-                <p>
-                    The repository shows the intentionally small package surface,
-                    wrapper approach, and documentation around usage.
-                </p>
-                <div class="product-links">
-                    <a
-                        class="button button-secondary"
-                        href={product.repo}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Open GitHub repo
-                    </a>
+            <article class="project-card product-detail-card">
+                <p class="card-kicker product-detail-label">Source code</p>
+                <div class="product-detail-copy">
+                    <h2>Public repository</h2>
+                    <p>
+                        The repository shows the intentionally small package
+                        surface, wrapper approach, and documentation around usage.
+                    </p>
+                    <div class="product-links">
+                        <a
+                            class="button button-secondary"
+                            href={product.repo}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open GitHub repo
+                        </a>
+                    </div>
                 </div>
             </article>
         </div>
@@ -199,12 +201,14 @@ if (!product) {
                 </h2>
             </div>
         </div>
-        <div class="project-grid">
+        <div class="product-detail-list">
             {
                 product.featuredTools.map((tool) => (
-                    <article class="project-card tall-card">
-                        <p class="card-kicker">Package surface</p>
-                        <p>{tool}</p>
+                    <article class="project-card product-detail-card">
+                        <p class="card-kicker product-detail-label">Package surface</p>
+                        <div class="product-detail-copy">
+                            <p>{tool}</p>
+                        </div>
                     </article>
                 ))
             }

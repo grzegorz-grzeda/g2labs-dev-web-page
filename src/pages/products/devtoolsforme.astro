@@ -139,12 +139,14 @@ if (!product) {
                 </h2>
             </div>
         </div>
-        <div class="project-grid">
+        <div class="product-detail-list">
             {
                 product.featuredTools.map((tool) => (
-                    <article class="project-card tall-card">
-                        <p class="card-kicker">Example utility</p>
-                        <p>{tool}</p>
+                    <article class="project-card product-detail-card">
+                        <p class="card-kicker product-detail-label">Example utility</p>
+                        <div class="product-detail-copy">
+                            <p>{tool}</p>
+                        </div>
                     </article>
                 ))
             }

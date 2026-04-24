@@ -63,16 +63,23 @@ if (!product) {
             </figure>
             <article class="project-card stack-card">
                 <p class="card-kicker">Execution surface</p>
-                <h2>Built for public embedded learning without hiding the hard parts.</h2>
+                <h2>
+                    Built for public embedded learning without hiding the hard
+                    parts.
+                </h2>
                 <div class="tag-row stack-tags">
-                    {product.categories.map((category) => (
-                        <span>{category}</span>
-                    ))}
+                    {
+                        product.categories.map((category) => (
+                            <span>{category}</span>
+                        ))
+                    }
                 </div>
                 <ul class="stack-examples">
-                    {product.featuredTools.slice(0, 4).map((item) => (
-                        <li>{item}</li>
-                    ))}
+                    {
+                        product.featuredTools
+                            .slice(0, 4)
+                            .map((item) => <li>{item}</li>)
+                    }
                 </ul>
             </article>
             <div class="hero-card product-proof-summary">
@@ -93,9 +100,13 @@ if (!product) {
                     embedded architecture when clarity matters.
                 </h2>
             </div>
-            <a href={product.repo} target="_blank" rel="noreferrer">Visit the GitHub repository</a>
+            <a href={product.repo} target="_blank" rel="noreferrer"
+                >Visit the GitHub repository</a
+            >
         </div>
-        <figure class="product-screenshot-frame product-screenshot-frame-compact product-screenshot-frame-micros-compact">
+        <figure
+            class="product-screenshot-frame product-screenshot-frame-compact product-screenshot-frame-micros-compact"
+        >
             <img
                 src="/microsproject.png"
                 alt="MicrOS homepage and documentation preview"
@@ -127,25 +138,69 @@ if (!product) {
                 {product.audience.map((item) => <li>{item}</li>)}
             </ul>
         </div>
-        <div class="project-card stack-card">
-            <p class="card-kicker">Public entry points</p>
-            <h2>Project links that are worth opening</h2>
-            <p>
-                The live site, docs, and repository are all useful because they
-                expose the technical intent directly rather than abstracting it
-                away.
-            </p>
-            <div class="product-links">
-                <a class="button button-secondary" href={product.href} target="_blank" rel="noreferrer">
-                    microsproject.dev
-                </a>
-                <a class="button button-secondary" href={product.docs} target="_blank" rel="noreferrer">
-                    Getting Started
-                </a>
-                <a class="button button-secondary" href={product.repo} target="_blank" rel="noreferrer">
-                    GitHub repo
-                </a>
-            </div>
+        <div class="product-detail-list">
+            <article class="project-card product-detail-card">
+                <p class="card-kicker product-detail-label">Project site</p>
+                <div class="product-detail-copy">
+                    <h2>microsproject.dev</h2>
+                    <p>
+                        The live site explains the project scope, public intent,
+                        and overall direction without hiding the technical core.
+                    </p>
+                    <div class="product-links">
+                        <a
+                            class="button button-secondary"
+                            href={product.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open project site
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card product-detail-card">
+                <p class="card-kicker product-detail-label">Quickstart</p>
+                <div class="product-detail-copy">
+                    <h2>Getting Started</h2>
+                    <p>
+                        The docs are worth opening because they show how the
+                        project is meant to be built, run, and understood in
+                        practice.
+                    </p>
+                    <div class="product-links">
+                        <a
+                            class="button button-secondary"
+                            href={product.docs}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Read the quickstart
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="project-card product-detail-card">
+                <p class="card-kicker product-detail-label">Source code</p>
+                <div class="product-detail-copy">
+                    <h2>Public repository</h2>
+                    <p>
+                        The repository is the strongest proof surface because it
+                        exposes the architecture, build flow, and contributor-facing
+                        engineering decisions directly.
+                    </p>
+                    <div class="product-links">
+                        <a
+                            class="button button-secondary"
+                            href={product.repo}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open GitHub repo
+                        </a>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
@@ -181,12 +236,14 @@ if (!product) {
                 </h2>
             </div>
         </div>
-        <div class="project-grid">
+        <div class="product-detail-list">
             {
                 product.featuredTools.map((item) => (
-                    <article class="project-card tall-card">
-                        <p class="card-kicker">MicrOS surface</p>
-                        <p>{item}</p>
+                    <article class="project-card product-detail-card">
+                        <p class="card-kicker product-detail-label">MicrOS surface</p>
+                        <div class="product-detail-copy">
+                            <p>{item}</p>
+                        </div>
                     </article>
                 ))
             }

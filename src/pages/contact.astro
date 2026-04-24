@@ -127,31 +127,35 @@ const productStageOptions = [
                 </label>
                 <label>
                     <span>Product stage</span>
-                    <select
-                        name="product_stage"
-                    >
+                    <select name="product_stage">
                         <option value="">Select stage</option>
-                        {productStageOptions.map((option) => (
-                            <option value={option}>{option}</option>
-                        ))}
+                        {
+                            productStageOptions.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))
+                        }
                     </select>
                 </label>
                 <label>
                     <span>What kind of help do you need?</span>
                     <select name="engagement_type">
                         <option value="">Select type</option>
-                        {serviceOptions.map((option) => (
-                            <option value={option}>{option}</option>
-                        ))}
+                        {
+                            serviceOptions.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))
+                        }
                     </select>
                 </label>
                 <label>
                     <span>Primary tech stack involved</span>
                     <select name="primary_tech_stack">
                         <option value="">Select stack</option>
-                        {techStackOptions.map((option) => (
-                            <option value={option}>{option}</option>
-                        ))}
+                        {
+                            techStackOptions.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))
+                        }
                     </select>
                 </label>
                 <label class="field-full">

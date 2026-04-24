@@ -530,6 +530,39 @@ main {
     margin-top: 2px;
 }
 
+.product-detail-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.product-detail-card {
+    display: grid;
+    grid-template-columns: minmax(150px, 210px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    padding: 22px;
+}
+
+.product-detail-label {
+    margin: 2px 0 0;
+}
+
+.product-detail-copy {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+}
+
+.product-detail-copy h2,
+.product-detail-copy p {
+    margin: 0;
+}
+
+.product-detail-copy .product-links {
+    margin-top: 6px;
+}
+
 .case-study-card {
     display: grid;
     gap: 12px;
@@ -1406,6 +1439,11 @@ main {
     .product-row-card {
         grid-template-columns: 1fr;
         gap: 16px;
+    }
+
+    .product-detail-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .product-row-card-home,
