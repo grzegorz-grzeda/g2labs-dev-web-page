@@ -345,113 +345,97 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
     </section>
 
     {
-        featuredProduct && (
-            <section class="panel panel-shell split-section">
-                <div>
-                    <p class="eyebrow">Featured product</p>
-                    <h2>
-                        A browser-side utility product built around fast
-                        technical workflows.
-                    </h2>
-                    <p>
-                        <strong>{featuredProduct.name}</strong> is a live
-                        product by G2Labs focused on quick developer utilities,
-                        with especially strong embedded coverage and a
-                        privacy-conscious browser-first model.
-                    </p>
-                    <p>{featuredProduct.story}</p>
-                    <div class="hero-actions">
-                        <a
-                            class="button button-primary"
-                            href="/products/devtoolsforme"
-                        >
-                            View the product page
-                        </a>
-                        <a
-                            class="button button-secondary"
-                            href={featuredProduct.href}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Open the live product
-                        </a>
+        featuredProduct && microsProduct && (
+            <section class="panel panel-shell">
+                <div class="section-heading compact-heading">
+                    <div>
+                        <p class="eyebrow">Products</p>
+                        <h2>
+                            Two product surfaces that show both sides of the
+                            same engineering style: useful tools and clear
+                            low-level systems work.
+                        </h2>
                     </div>
+                    <a href="/products">Open the full products page</a>
                 </div>
-                <article class="project-card stack-card">
-                    <figure class="product-screenshot-frame product-screenshot-frame-compact">
-                        <img
-                            src="/devtoolsforme.png"
-                            alt="DevToolsForMe homepage screenshot"
-                            loading="lazy"
-                            width="1920"
-                            height="1459"
-                        />
-                    </figure>
-                    <p class="card-kicker">What it shows</p>
-                    <h3>{featuredProduct.tagline}</h3>
-                    <p>{featuredProduct.summary}</p>
-                    <div class="tag-row stack-tags">
-                        {featuredProduct.categories
-                            .slice(0, 5)
-                            .map((category) => (
+                <div class="stack-grid">
+                    <article class="project-card stack-card">
+                        <figure class="product-screenshot-frame product-screenshot-frame-compact">
+                            <img
+                                src="/devtoolsforme.png"
+                                alt="DevToolsForMe homepage screenshot"
+                                loading="lazy"
+                                width="1920"
+                                height="1459"
+                            />
+                        </figure>
+                        <p class="card-kicker">Browser-side product</p>
+                        <h3>{featuredProduct.name}</h3>
+                        <p>{featuredProduct.summary}</p>
+                        <div class="tag-row stack-tags">
+                            {featuredProduct.categories
+                                .slice(0, 5)
+                                .map((category) => (
+                                    <span>{category}</span>
+                                ))}
+                        </div>
+                        <ul class="stack-examples">
+                            {featuredProduct.proof.slice(0, 2).map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                        <div class="product-links">
+                            <a class="button button-primary" href="/products/devtoolsforme">
+                                View product page
+                            </a>
+                            <a
+                                class="button button-secondary"
+                                href={featuredProduct.href}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Open live product
+                            </a>
+                        </div>
+                    </article>
+                    <article class="project-card stack-card">
+                        <figure class="product-screenshot-frame product-screenshot-frame-compact product-screenshot-frame-micros-compact">
+                            <img
+                                src="/microsproject.png"
+                                alt="MicrOS website screenshot"
+                                loading="lazy"
+                                width="1920"
+                                height="1187"
+                            />
+                        </figure>
+                        <p class="card-kicker">Open-source product</p>
+                        <h3>{microsProduct.name}</h3>
+                        <p>{microsProduct.summary}</p>
+                        <div class="tag-row stack-tags">
+                            {microsProduct.categories.slice(0, 5).map((category) => (
                                 <span>{category}</span>
                             ))}
-                    </div>
-                    <ul class="stack-examples">
-                        {featuredProduct.proof.slice(0, 2).map((item) => (
-                            <li>{item}</li>
-                        ))}
-                    </ul>
-                </article>
-            </section>
-        )
-    }
-
-    {
-        microsProduct && (
-            <section class="panel panel-shell split-section">
-                <div>
-                    <p class="eyebrow">Open-source product</p>
-                    <h2>
-                        MicrOS shows the embedded side of the same engineering
-                        taste: clarity, portability, and public technical work.
-                    </h2>
-                    <p>
-                        <strong>{microsProduct.name}</strong> is a lightweight
-                        RTOS project for microcontrollers and small systems,
-                        shaped around learnable architecture, real build
-                        tooling, and board-oriented bring-up.
-                    </p>
-                    <p>{microsProduct.story}</p>
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="/products/micros">
-                            View the MicrOS page
-                        </a>
-                        <a
-                            class="button button-secondary"
-                            href={microsProduct.repo}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Open the repository
-                        </a>
-                    </div>
+                        </div>
+                        <ul class="stack-examples">
+                            {microsProduct.proof.slice(0, 2).map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                        <div class="product-links">
+                            <a class="button button-primary" href="/products/micros">
+                                View product page
+                            </a>
+                            <a
+                                class="button button-secondary"
+                                href={microsProduct.repo}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Open repository
+                            </a>
+                        </div>
+                    </article>
                 </div>
-                <article class="project-card stack-card">
-                    <p class="card-kicker">What it shows</p>
-                    <h3>{microsProduct.tagline}</h3>
-                    <p>{microsProduct.summary}</p>
-                    <div class="tag-row stack-tags">
-                        {microsProduct.categories.slice(0, 5).map((category) => (
-                            <span>{category}</span>
-                        ))}
-                    </div>
-                    <ul class="stack-examples">
-                        {microsProduct.proof.slice(0, 2).map((item) => (
-                            <li>{item}</li>
-                        ))}
-                    </ul>
-                </article>
             </section>
         )
     }

@@ -449,6 +449,14 @@ main {
     aspect-ratio: 16 / 10;
 }
 
+.product-screenshot-frame-micros-hero {
+    aspect-ratio: 16 / 9.2;
+}
+
+.product-screenshot-frame-micros-compact {
+    aspect-ratio: 16 / 8.4;
+}
+
 .product-proof-summary {
     align-self: start;
 }

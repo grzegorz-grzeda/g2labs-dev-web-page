@@ -50,6 +50,17 @@ if (!product) {
             </div>
         </div>
         <div class="product-hero-side">
+            <figure
+                class="product-screenshot-frame product-screenshot-frame-hero product-screenshot-frame-micros-hero"
+            >
+                <img
+                    src="/microsproject.png"
+                    alt="MicrOS website screenshot"
+                    loading="lazy"
+                    width="1920"
+                    height="1187"
+                />
+            </figure>
             <article class="project-card stack-card">
                 <p class="card-kicker">Execution surface</p>
                 <h2>Built for public embedded learning without hiding the hard parts.</h2>
@@ -84,6 +95,15 @@ if (!product) {
             </div>
             <a href={product.repo} target="_blank" rel="noreferrer">Visit the GitHub repository</a>
         </div>
+        <figure class="product-screenshot-frame product-screenshot-frame-compact product-screenshot-frame-micros-compact">
+            <img
+                src="/microsproject.png"
+                alt="MicrOS homepage and documentation preview"
+                loading="lazy"
+                width="1920"
+                height="1187"
+            />
+        </figure>
         <div class="product-stat-grid">
             {
                 product.stats.map((stat) => (

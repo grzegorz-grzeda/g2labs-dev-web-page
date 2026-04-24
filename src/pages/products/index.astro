@@ -1,6 +1,23 @@
 ---
 import { products } from "../../data/company";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const productScreenshotMap = {
+    devtoolsforme: {
+        src: "/devtoolsforme.png",
+        alt: "DevToolsForMe homepage screenshot",
+        width: 1920,
+        height: 1459,
+        frameClass: "product-screenshot-frame-compact",
+    },
+    micros: {
+        src: "/microsproject.png",
+        alt: "MicrOS website screenshot",
+        width: 1920,
+        height: 1187,
+        frameClass: "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
+    },
+} as const;
 ---
 
 <BaseLayout
@@ -21,32 +38,49 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
     <section class="project-grid work-grid">
         {
-            products.map((product) => (
-                <article class="project-card tall-card">
-                    <p class="card-kicker">{product.label}</p>
-                    <h2>{product.name}</h2>
-                    <p>{product.summary}</p>
-                    <p class="service-outcome">{product.story}</p>
-                    <div class="tag-row stack-tags">
-                        {product.categories.slice(0, 5).map((category) => (
-                            <span>{category}</span>
-                        ))}
-                    </div>
-                    <div class="product-links">
-                        <a class="button button-primary" href={`/products/${product.slug}`}>
-                            View product page
-                        </a>
-                        <a
-                            class="button button-secondary"
-                            href={product.href}
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Open live project
-                        </a>
-                    </div>
-                </article>
-            ))
+            products.map((product) => {
+                const screenshot = productScreenshotMap[product.slug as keyof typeof productScreenshotMap];
+
+                return (
+                    <article class="project-card tall-card">
+                        {
+                            screenshot && (
+                                <figure class={`product-screenshot-frame ${screenshot.frameClass}`}>
+                                    <img
+                                        src={screenshot.src}
+                                        alt={screenshot.alt}
+                                        loading="lazy"
+                                        width={screenshot.width}
+                                        height={screenshot.height}
+                                    />
+                                </figure>
+                            )
+                        }
+                        <p class="card-kicker">{product.label}</p>
+                        <h2>{product.name}</h2>
+                        <p>{product.summary}</p>
+                        <p class="service-outcome">{product.story}</p>
+                        <div class="tag-row stack-tags">
+                            {product.categories.slice(0, 5).map((category) => (
+                                <span>{category}</span>
+                            ))}
+                        </div>
+                        <div class="product-links">
+                            <a class="button button-primary" href={`/products/${product.slug}`}>
+                                View product page
+                            </a>
+                            <a
+                                class="button button-secondary"
+                                href={product.href}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Open live project
+                            </a>
+                        </div>
+                    </article>
+                );
+            })
         }
     </section>
 </BaseLayout>
