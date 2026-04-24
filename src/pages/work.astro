@@ -1,64 +1,197 @@
 ---
+import {
+    caseStudies,
+    clients,
+    experience,
+    services,
+    techStack,
+} from "../data/company";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const offerings = [
-    {
-        name: "Portfolio systems",
-        detail: "Homepages, work pages, and editorial structure that present expertise clearly.",
-    },
-    {
-        name: "Launch sites",
-        detail: "Fast-to-publish sites for products, experiments, and early traction campaigns.",
-    },
-    {
-        name: "Blog architecture",
-        detail: "Markdown-backed content collections with clean URLs and low hosting overhead.",
-    },
-];
 ---
 
 <BaseLayout
     title="Work | G2Labs"
-    description="Selected service areas and engagement model for G2Labs."
+    description="Selected service areas, client profile, and engineering engagement model for G2Labs."
 >
     <section class="page-intro panel narrow">
         <p class="eyebrow">Work</p>
         <h1>
-            Direct collaboration for sites that need to look distinct and stay
-            easy to run.
+            Case studies and offers for teams that need one technical thread
+            across firmware, integration, and delivery.
         </h1>
         <p class="lead">
-            G2Labs works best where speed matters, scope is clear, and the
-            output needs both design intent and technical discipline.
+            G2Labs is most useful where the hard part is not a single module,
+            but the boundary between the device, the software around it, and the
+            need to actually ship.
         </p>
     </section>
 
     <section class="project-grid work-grid">
         {
-            offerings.map((offering) => (
+            services.map((offering) => (
                 <article class="project-card tall-card">
-                    <p class="card-kicker">Capability</p>
-                    <h2>{offering.name}</h2>
-                    <p>{offering.detail}</p>
+                    <p class="card-kicker">{offering.format}</p>
+                    <h2>{offering.title}</h2>
+                    <p>{offering.description}</p>
+                    <p class="service-outcome">{offering.outcome}</p>
+                    <ul class="service-deliverables">
+                        {offering.deliverables.map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
                 </article>
             ))
         }
     </section>
 
+    <section class="panel panel-shell market-fit-strip">
+        <div>
+            <p class="eyebrow">Engagement profile</p>
+            <h2>
+                Most useful where delivery risk lives between device logic,
+                connectivity, and the software stack around the product.
+            </h2>
+        </div>
+        <div class="fit-points">
+            <p>
+                Established companies: embedded execution, technical leadership
+                on implementation slices, and integration-heavy product work.
+            </p>
+            <p>
+                Startups and MVPs: early architecture and practical delivery
+                when a connected product cannot wait for separate specialist
+                tracks.
+            </p>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Experience timeline</p>
+                <h2>
+                    A direct overview of the companies, periods, and delivery
+                    areas behind the work.
+                </h2>
+            </div>
+        </div>
+        <div class="experience-list detailed-experience-list">
+            {
+                experience.map((entry) => (
+                    <article class="experience-item detailed-experience-item">
+                        <div class="experience-period">{entry.period}</div>
+                        <div class="experience-content">
+                            <p class="card-kicker">{entry.company}</p>
+                            <h3>{entry.role}</h3>
+                            <p>{entry.summary}</p>
+                            <ul class="experience-highlights">
+                                {entry.highlights.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Case studies</p>
+                <h2>
+                    These are the kinds of situations where G2Labs is most
+                    useful: product boundaries, embedded delivery pressure, and
+                    software around the device that still has to make sense.
+                </h2>
+            </div>
+        </div>
+        <div class="case-study-list">
+            {
+                caseStudies.map((study) => (
+                    <article class="panel blog-list-item case-study-detail">
+                        <p>
+                            {study.client} / {study.period}
+                        </p>
+                        <h2>{study.title}</h2>
+                        <p>{study.challenge}</p>
+                        <ul class="case-study-points">
+                            {study.work.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                        <p class="service-outcome">
+                            Tech surface: {study.stack.join(" · ")}
+                        </p>
+                        <p>{study.outcome}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Tech stack used in delivery</p>
+                <h2>
+                    Tools and platforms used in actual product work, grouped by
+                    the kind of problem they helped solve.
+                </h2>
+            </div>
+            <a href="/tech-stack">Open the full stack page</a>
+        </div>
+        <div class="stack-grid">
+            {
+                techStack.map((group) => (
+                    <article class="project-card stack-card">
+                        <h3>{group.area}</h3>
+                        <p>{group.summary}</p>
+                        <div class="tag-row stack-tags">
+                            {group.items.map((item) => <span>{item}</span>)}
+                        </div>
+                        <ul class="stack-examples">
+                            {group.examples.map((example) => <li>{example}</li>)}
+                        </ul>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Client fit</p>
+                <h2>
+                    Mostly aimed at established product teams, with enough range
+                    to help a startup MVP when the scope is sharp and the
+                    bottleneck is real.
+                </h2>
+            </div>
+        </div>
+        <div class="tag-row client-row">
+            {clients.map((client) => <span>{client}</span>)}
+        </div>
+    </section>
+
     <section class="split-section">
         <div>
             <p class="eyebrow">Engagement model</p>
-            <h2>One builder, one thread, fewer delays.</h2>
+            <h2>One builder, one technical thread, less translation loss.</h2>
         </div>
-        <div class="panel">
+        <div class="panel panel-shell">
             <p>
-                Discovery is lightweight, implementation is direct, and
-                deployment lands on static hosting that does not become a
-                maintenance project of its own.
+                Discovery stays light, implementation is direct, and the work is
+                sliced around the biggest technical risk instead of presentation
+                overhead.
             </p>
             <p>
-                The default target is a polished Astro site deployed to Netlify
-                with room for future content expansion.
+                AI is used where it shortens loops without hiding decisions:
+                research support, scaffolding, documentation, and internal
+                tooling. The final engineering choices still stay explicit,
+                reviewable, and tied to the product context.
             </p>
         </div>
     </section>

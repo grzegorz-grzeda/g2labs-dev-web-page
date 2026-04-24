@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { company, projects, services } from '../src/data/company';
+import { company, links, projects, services } from '../src/data/company';
 
 describe('company data scaffold', () => {
     it('exposes the core brand details', () => {
         expect(company.name).toBe('G2Labs');
-        expect(company.email).toContain('@');
         expect(company.location).toContain('Poland');
+        expect(links.some((link) => link.label === 'LinkedIn')).toBe(true);
     });
 
     it('keeps at least one service and one project entry', () => {

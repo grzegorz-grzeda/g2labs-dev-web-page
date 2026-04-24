@@ -1,4 +1,6 @@
 ---
+import { company, links } from "../data/company";
+
 interface Props {
     title: string;
     description: string;
@@ -6,6 +8,9 @@ interface Props {
 
 const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const linkedInLink = links.find((link) => link.label === "LinkedIn")?.href;
+const gitHubLink = links.find((link) => link.label === "GitHub")?.href;
+const facebookLink = links.find((link) => link.label === "Facebook")?.href;
 ---
 
 <!doctype html>
@@ -18,7 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Space+Grotesk:wght@400;500;700&display=swap"
             rel="stylesheet"
         />
         <title>{title}</title>
@@ -26,28 +31,107 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <body>
         <div class="page-shell">
             <header class="site-header">
-                <a class="brand" href="/">
-                    <span class="brand-mark">G2</span>
-                    <span class="brand-copy">
-                        <strong>G2Labs</strong>
-                        <span>Solo digital studio from Poland</span>
-                    </span>
-                </a>
-                <nav class="site-nav" aria-label="Primary">
-                    <a href="/work">Work</a>
-                    <a href="/blog">Blog</a>
-                    <a href="mailto:hello@g2labs.dev">Contact</a>
-                </nav>
+                <div class="site-header-meta">
+                    <span>{company.location}</span>
+                    <span>Embedded systems, IoT, software</span>
+                    <span>AI-assisted workflow</span>
+                </div>
+                <div class="site-header-shell panel">
+                    <a class="brand" href="/">
+                        <img
+                            class="brand-logo"
+                            src="/logo.png"
+                            alt="G2Labs logo"
+                            width="68"
+                            height="68"
+                        />
+                        <span class="brand-copy">
+                            <strong>G2Labs Grzegorz Grzęda</strong>
+                            <span>Embedded-first engineering from Poland</span>
+                        </span>
+                    </a>
+                    <nav class="site-nav" aria-label="Primary">
+                        <a href="/work">Work</a>
+                        <a href="/tech-stack">Tech Stack</a>
+                        <a href="/blog">Blog</a>
+                        <a href="/contact">Contact</a>
+                    </nav>
+                </div>
             </header>
             <main>
                 <slot />
             </main>
             <footer class="site-footer">
-                <p>
-                    G2Labs builds lean web products, content systems, and
-                    technical experiments for founders who want fast iteration.
-                </p>
-                <p>Based in Poland. Working remotely across Europe.</p>
+                <a class="footer-brand" href="/">
+                    <img
+                        class="footer-logo"
+                        src="/logo.png"
+                        alt="G2Labs logo"
+                        width="150"
+                        height="58"
+                    />
+                </a>
+                <div>
+                    <p>
+                        G2Labs delivers firmware, IoT integrations, utility
+                        software, and technical execution for connected
+                        products.
+                    </p>
+                    <div class="footer-socials" aria-label="Social links">
+                        {
+                            linkedInLink && (
+                                <a
+                                    href={linkedInLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="LinkedIn"
+                                >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M6.94 8.5A1.56 1.56 0 1 1 6.94 5.38a1.56 1.56 0 0 1 0 3.12ZM5.6 9.7h2.67V18H5.6V9.7Zm4.34 0h2.56v1.13h.04c.36-.68 1.23-1.4 2.53-1.4 2.7 0 3.2 1.77 3.2 4.07V18H15.6v-3.99c0-.95-.02-2.17-1.32-2.17-1.32 0-1.52 1.03-1.52 2.1V18H9.94V9.7Z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </a>
+                            )
+                        }
+                        {
+                            gitHubLink && (
+                                <a
+                                    href={gitHubLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="GitHub"
+                                >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.6 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.91-2.78.62-3.37-1.21-3.37-1.21-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.36 1.11 2.94.85.09-.67.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.31 9.31 0 0 1 12 6.93c.85 0 1.71.12 2.52.36 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.58 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.27 10.27 0 0 0 22 12.26C22 6.6 17.52 2 12 2Z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </a>
+                            )
+                        }
+                        {
+                            facebookLink && (
+                                <a
+                                    href={facebookLink}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Facebook"
+                                >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V4.96c-.37-.05-1.16-.16-2.2-.16-2.18 0-3.67 1.33-3.67 3.77V11H8.5v3h2.63v8h2.37Z"
+                                            fill="currentColor"
+                                        />
+                                    </svg>
+                                </a>
+                            )
+                        }
+                    </div>
+                    <p>{company.location}</p>
+                </div>
             </footer>
         </div>
     </body>

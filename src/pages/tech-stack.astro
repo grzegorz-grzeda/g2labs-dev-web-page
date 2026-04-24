@@ -1,0 +1,53 @@
+---
+import { techStack } from "../data/company";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="Tech Stack | G2Labs"
+    description="Technologies, platforms, tools, and workflow surfaces used by G2Labs in embedded and connected-product delivery."
+>
+    <section class="page-intro panel narrow">
+        <p class="eyebrow">Tech stack</p>
+        <h1>
+            Technologies used in delivery across firmware, integration, and
+            the software around the product.
+        </h1>
+        <p class="lead">
+            This is not meant as a keyword wall. It is a practical view of the
+            languages, targets, tooling, and workflow surfaces used in real
+            client and product work.
+        </p>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Grouped by delivery area</p>
+                <h2>
+                    The useful distinction is not frontend versus backend, but
+                    what part of product delivery each tool actually supported.
+                </h2>
+            </div>
+        </div>
+        <div class="stack-grid">
+            {
+                techStack.map((group) => (
+                    <article class="project-card stack-card">
+                        <h2>{group.area}</h2>
+                        <p>{group.summary}</p>
+                        <div class="tag-row stack-tags">
+                            {group.items.map((item) => <span>{item}</span>)}
+                        </div>
+                        <div>
+                            <p class="card-kicker">Where this showed up</p>
+                            <ul class="stack-examples">
+                                {group.examples.map((example) => <li>{example}</li>)}
+                            </ul>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>

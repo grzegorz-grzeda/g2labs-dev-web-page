@@ -1,0 +1,215 @@
+---
+import { business, company, links } from "../data/company";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
+const isFormConfigured = Boolean(herotofuEndpoint);
+---
+
+<BaseLayout
+    title="Contact | G2Labs"
+    description="Contact G2Labs to discuss embedded systems, connected software, and product delivery support."
+>
+    <section class="page-intro panel narrow">
+        <p class="eyebrow">Contact</p>
+        <h1>
+            Let’s discuss firmware, connected products, or the software around
+            them.
+        </h1>
+        <p class="lead">{company.contactIntro}</p>
+    </section>
+
+    <section class="contact-grid">
+        <div class="panel panel-shell">
+            <p class="eyebrow">How G2Labs works</p>
+            <h2>
+                Best fit for teams that need technical clarity more than agency
+                choreography.
+            </h2>
+            <p>
+                Most engagements start with a concrete problem: firmware
+                delivery, wireless integration, MVP scope for a connected
+                product, or utility software that sits around the device and
+                makes the whole system usable.
+            </p>
+            <p>
+                The form below is wired to work with Herotofu as soon as a
+                public endpoint is configured for this deployment.
+            </p>
+            <p>
+                If you prefer verification-first contact, the public CEIDG
+                registry entry is linked alongside LinkedIn and GitHub.
+            </p>
+        </div>
+
+        <div class="contact-links">
+            {
+                links.map((link) => (
+                    <a href={link.href} target="_blank" rel="noreferrer">
+                        <span>{link.label}</span>
+                        <span>
+                            {link.label === "CEIDG registry"
+                                ? "Open registry entry"
+                                : "Open profile"}
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Inquiry form</p>
+                <h2>Enough structure to start with a useful first message.</h2>
+            </div>
+        </div>
+
+        <form
+            class="contact-form"
+            method="POST"
+            action={isFormConfigured ? herotofuEndpoint : undefined}
+        >
+            <input
+                type="hidden"
+                name="_subject"
+                value="New inquiry from g2labs.dev"
+            />
+            <input
+                type="text"
+                name="_gotcha"
+                class="form-honeypot"
+                tabindex="-1"
+                autocomplete="off"
+            />
+
+            <div class="form-grid">
+                <label>
+                    <span>Name</span>
+                    <input
+                        type="text"
+                        name="name"
+                        autocomplete="name"
+                        required
+                    />
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        required
+                    />
+                </label>
+                <label>
+                    <span>Company</span>
+                    <input
+                        type="text"
+                        name="company"
+                        autocomplete="organization"
+                    />
+                </label>
+                <label>
+                    <span>Product stage</span>
+                    <input
+                        type="text"
+                        name="product_stage"
+                        placeholder="Prototype, pilot, production, rescue, MVP"
+                    />
+                </label>
+                <label class="field-full">
+                    <span>Where is the bottleneck?</span>
+                    <textarea
+                        name="problem"
+                        rows="5"
+                        placeholder="Firmware delivery, wireless integration, device-to-cloud boundary, MVP scope, tooling around the product, or something else specific."
+                        required></textarea>
+                </label>
+                <label class="field-full">
+                    <span>Relevant technical context</span>
+                    <textarea
+                        name="technical_context"
+                        rows="4"
+                        placeholder="Hardware platform, protocols, software stack around the device, compliance or reliability constraints, timeline pressure."
+                    ></textarea>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button
+                    class="button button-primary"
+                    type="submit"
+                    disabled={!isFormConfigured}
+                >
+                    Send inquiry
+                </button>
+                <p class="form-note">
+                    {
+                        isFormConfigured
+                            ? "Submissions are active for this deployment and will post directly to Herotofu."
+                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions. The form structure is already in place."
+                    }
+                </p>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel panel-shell trust-section">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Business details</p>
+                <h2>
+                    Verification, registry, and practical engagement details in
+                    one place.
+                </h2>
+            </div>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <span>Company</span>
+                <strong>{business.companyName}</strong>
+            </div>
+            <div class="trust-item">
+                <span>NIP</span>
+                <strong>{business.nip}</strong>
+            </div>
+            <div class="trust-item">
+                <span>REGON</span>
+                <strong>{business.regon}</strong>
+            </div>
+            <div class="trust-item">
+                <span>Active since</span>
+                <strong>{business.started}</strong>
+            </div>
+            <div class="trust-item">
+                <span>Country</span>
+                <strong>{business.country}</strong>
+            </div>
+            <div class="trust-item">
+                <span>Response window</span>
+                <strong>{business.responseWindow}</strong>
+            </div>
+        </div>
+        <div class="tag-row trust-tag-row">
+            {business.engagementModes.map((item) => <span>{item}</span>)}
+        </div>
+        <p class="trust-registry-link">
+            Official public entry: <a
+                href={business.registryUrl}
+                target="_blank"
+                rel="noreferrer">{business.registryLabel}</a
+            >
+        </p>
+    </section>
+
+    <section class="panel panel-shell contact-note">
+        <p class="eyebrow">What helps</p>
+        <h2>
+            When you reach out, include the product stage, hardware platform,
+            software surface around it, and the delivery problem that currently
+            hurts most.
+        </h2>
+    </section>
+</BaseLayout>

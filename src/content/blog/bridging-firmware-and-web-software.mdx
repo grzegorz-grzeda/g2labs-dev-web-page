@@ -1,0 +1,27 @@
+---
+title: Bridging Firmware And Web Software Without Creating Two Separate Products
+excerpt: Connected products break down when firmware and software delivery are treated as unrelated tracks.
+publishDate: 2026-04-20
+tags:
+  - iot
+  - firmware
+  - software
+draft: false
+---
+
+One of the recurring failures in connected-product work is not a missing library or a weak protocol choice. It is the team structure around the boundary.
+
+Firmware gets planned in one thread. Backend, app, or web work gets planned in another. Everyone says they are building the same product, but the interfaces between those parts stay vague until late enough to hurt.
+
+That is where deadlines start slipping. The device publishes data the software side did not expect. The UI assumes states the firmware never exposes. Retry logic, update flows, and field behavior get invented too late.
+
+In practice, the real engineering work sits in the boundary:
+
+- what data exists on the device,
+- how it is transported,
+- how the backend or UI expects to consume it,
+- and what happens when the real device behavior does not match the original assumptions.
+
+Good delivery comes from designing that boundary early, testing it with real constraints, and revisiting it when reality inevitably pushes back.
+
+That is one of the main reasons I keep G2Labs spanning firmware, utility software, backend integrations, and web-facing tooling instead of pretending they are unrelated disciplines. On connected products, that split usually looks tidy on a slide deck and expensive in the actual schedule.

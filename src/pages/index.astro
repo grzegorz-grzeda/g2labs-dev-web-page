@@ -1,6 +1,23 @@
 ---
 import { getCollection } from "astro:content";
+import {
+    business,
+    caseStudies,
+    clients,
+    company,
+    experience,
+    links,
+    projects,
+    services,
+    techStack,
+} from "../data/company";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
+const isFormConfigured = Boolean(herotofuEndpoint);
+const homeContactLinks = links.filter((link) =>
+    ["LinkedIn", "GitHub", "Facebook", "CEIDG registry"].includes(link.label),
+);
 
 const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
     .sort(
@@ -9,49 +26,33 @@ const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
     )
     .slice(0, 2);
 
+const distilledTechStack = techStack.map((group) => ({
+    ...group,
+    items: group.items.slice(0, 4),
+}));
+
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
-
-const services = [
-    "Portfolio and marketing sites with a strong point of view",
-    "MVP frontends and product landing pages shipped without agency overhead",
-    "Technical writing, dev blogs, and content systems that stay easy to maintain",
-];
-
-const projects = [
-    {
-        title: "Founder-facing web presence",
-        blurb: "A clean, credible online home for solo operators and small product teams that need trust fast.",
-    },
-    {
-        title: "Content-led product narrative",
-        blurb: "Editorial pages and blog systems that explain what you build without sounding like recycled startup copy.",
-    },
-    {
-        title: "Lean delivery workflow",
-        blurb: "Short cycles, direct communication, and lightweight tooling tuned for a single accountable builder.",
-    },
-];
 ---
 
 <BaseLayout
-    title="G2Labs | Solo web studio from Poland"
-    description="G2Labs is a solo web studio from Poland creating portfolio sites, product pages, and thoughtful technical content."
+    title="G2Labs | Embedded systems and connected software from Poland"
+    description="G2Labs is an embedded-first engineering practice from Poland, delivering firmware, IoT integrations, software tooling, and AI-assisted product delivery."
 >
     <section class="hero panel">
         <div>
-            <p class="eyebrow">Independent digital craftsmanship</p>
+            <p class="eyebrow">Connected-product delivery from Poland</p>
             <h1>
-                G2Labs builds sharp web experiences for small brands with real
-                technical depth.
+                Ship connected products without splitting firmware, integration,
+                and product software into separate delivery tracks.
             </h1>
             <p class="lead">
-                I run G2Labs as a solo company from Poland. The focus is
-                straightforward: useful websites, maintainable content systems,
-                and product storytelling that feels precise rather than
-                inflated.
+                {company.description} The strongest fit is delivery-critical work:
+                firmware rescue, device-to-software integration, and MVP or product
+                work where one engineer needs to keep the technical thread intact
+                end to end.
             </p>
             <div class="hero-actions">
-                <a class="button button-primary" href="mailto:hello@g2labs.dev"
+                <a class="button button-primary" href="/contact"
                     >Start a conversation</a
                 >
                 <a class="button button-secondary" href="/work"
@@ -60,11 +61,16 @@ const projects = [
             </div>
         </div>
         <div class="hero-card">
-            <p>Current mode</p>
+            <p>Why teams bring in G2Labs</p>
             <ul>
-                <li>Solo execution from concept to deployment</li>
-                <li>Astro and static-first websites for speed</li>
-                <li>Netlify-friendly workflows and custom domains</li>
+                <li>
+                    One engineering thread from firmware through integration
+                </li>
+                <li>
+                    Useful in rescue, delivery, and integration-heavy product
+                    work
+                </li>
+                <li>Hands-on execution without agency-style layers</li>
             </ul>
         </div>
     </section>
@@ -72,90 +78,330 @@ const projects = [
     <section class="signal-grid">
         <article class="panel signal">
             <span>01</span>
-            <h2>Built for speed</h2>
+            <h2>Embedded depth</h2>
             <p>
-                Static delivery, minimal moving parts, and an editing model that
-                stays friendly long after launch.
+                Firmware, RTOS work, wireless systems, and hardware-adjacent
+                engineering grounded in actual product delivery.
             </p>
         </article>
         <article class="panel signal">
             <span>02</span>
-            <h2>Opinionated design</h2>
+            <h2>Software range</h2>
             <p>
-                Visual systems with contrast, restraint, and a clear voice
-                instead of template-flat sameness.
+                Desktop, backend, web integrations, and utility tooling that
+                connect devices to the rest of the product stack.
             </p>
         </article>
         <article class="panel signal">
             <span>03</span>
-            <h2>Founder proximity</h2>
+            <h2>Pragmatic AI workflow</h2>
             <p>
-                One person, direct contact, and fewer handoffs when decisions
-                need to happen quickly.
+                AI helps accelerate research, prototyping, and documentation,
+                but the engineering decisions still stay explicit and
+                reviewable.
             </p>
         </article>
     </section>
 
-    <section class="split-section">
-        <div>
-            <p class="eyebrow">What G2Labs does</p>
-            <h2>Small-company web presence without the usual drag.</h2>
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Selected companies</p>
+                <h2>
+                    Experience shaped in product teams that ship beyond
+                    prototype stage.
+                </h2>
+            </div>
         </div>
-        <div class="service-list panel">
-            {services.map((service) => <p>{service}</p>)}
+        <div class="tag-row client-row">
+            {clients.map((client) => <span>{client}</span>)}
         </div>
     </section>
 
-    <section class="panel">
-        <div class="section-heading">
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
             <div>
-                <p class="eyebrow">Selected directions</p>
+                <p class="eyebrow">Experience timeline</p>
                 <h2>
-                    Work shaped around credibility, clarity, and low
-                    maintenance.
+                    A concise view of where the work happened and what kind of
+                    engineering sat behind it.
                 </h2>
             </div>
-            <a href="/work">Open the work page</a>
+            <a href="/work">See the full work page</a>
         </div>
-        <div class="project-grid">
+        <div class="experience-list">
             {
-                projects.map((project) => (
-                    <article class="project-card">
-                        <h3>{project.title}</h3>
-                        <p>{project.blurb}</p>
+                experience.map((entry) => (
+                    <article class="experience-item">
+                        <div class="experience-period">{entry.period}</div>
+                        <div class="experience-content">
+                            <p class="card-kicker">{entry.company}</p>
+                            <h3>{entry.role}</h3>
+                            <p>{entry.summary}</p>
+                        </div>
                     </article>
                 ))
             }
         </div>
     </section>
 
-    <section class="split-section about-strip">
+    <section class="panel panel-shell market-fit-strip">
         <div>
-            <p class="eyebrow">About the studio</p>
+            <p class="eyebrow">Best fit</p>
             <h2>
-                Operating from Poland, built for clients who value clarity over
-                layers.
+                Built for established teams, still useful when a startup MVP
+                needs to cross hardware and software boundaries fast.
             </h2>
         </div>
-        <div class="panel">
+        <div class="fit-points">
             <p>
-                G2Labs is intentionally compact. That keeps delivery fast,
-                technical choices coherent, and the final site easier to host,
-                update, and evolve.
+                Medium and large companies needing firmware ownership,
+                integration clarity, or delivery support.
             </p>
             <p>
-                This site is set up as both a portfolio and a publishing
-                surface, so it can hold case studies, essays, and product notes
-                in one place under g2labs.dev.
+                Startup teams building an MVP where embedded, backend, and
+                interface layers cannot be split into separate tracks.
             </p>
         </div>
     </section>
 
-    <section class="panel">
+    <section class="split-section">
+        <div>
+            <p class="eyebrow">Offers</p>
+            <h2>
+                Hire G2Labs when product risk sits at the boundary between the
+                device and everything around it.
+            </h2>
+        </div>
+        <div class="service-list panel">
+            {
+                services.map((service) => (
+                    <div class="service-offer">
+                        <p class="card-kicker">{service.format}</p>
+                        <h3>{service.title}</h3>
+                        <p>{service.description}</p>
+                        <p class="service-outcome">{service.outcome}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Case studies</p>
+                <h2>
+                    Representative examples of where firmware ownership, product
+                    integration, and delivery pressure had to stay in the same
+                    conversation.
+                </h2>
+            </div>
+            <a href="/work">Open the work page</a>
+        </div>
+        <div class="case-study-grid">
+            {
+                caseStudies.map((study) => (
+                    <article class="project-card case-study-card">
+                        <p class="card-kicker">
+                            {study.client} / {study.period}
+                        </p>
+                        <h3>{study.title}</h3>
+                        <p>{study.challenge}</p>
+                        <p class="service-outcome">{study.outcome}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Distilled tech stack</p>
+                <h2>
+                    Core tools and platforms used across firmware delivery,
+                    product integration, and the software around the device.
+                </h2>
+            </div>
+            <a href="/tech-stack">Open the full stack page</a>
+        </div>
+        <div class="stack-grid">
+            {
+                distilledTechStack.map((group) => (
+                    <article class="project-card stack-card">
+                        <h3>{group.area}</h3>
+                        <p>{group.summary}</p>
+                        <div class="tag-row stack-tags">
+                            {group.items.map((item) => <span>{item}</span>)}
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell about-strip">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">About the studio</p>
+                <h2>
+                    Operating from Poland, built for clients who need one
+                    engineer to understand the device, the software around it,
+                    and the path to delivery.
+                </h2>
+            </div>
+        </div>
+        <div class="about-studio-grid">
+            <figure class="about-portrait">
+                <img
+                    src="/me-2.jpeg"
+                    alt="Grzegorz Grzęda"
+                    loading="lazy"
+                    width="896"
+                    height="1152"
+                />
+            </figure>
+            <div class="about-copy">
+                <p>
+                    {company.longBio}
+                </p>
+                <p>
+                    Public work includes MicrOS, power electronics experiments,
+                    embedded tooling, and developer-facing software projects.
+                    The same practical approach carries into client delivery.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell casual-note-strip">
+        <div class="casual-note-copy">
+            <p class="eyebrow">Behind the work</p>
+            <h2>
+                Independent, hands-on, and usually working close to the real
+                product constraints rather than far above them.
+            </h2>
+            <p>
+                G2Labs stays intentionally small. That keeps communication
+                direct, engineering decisions explicit, and the work close to
+                the actual device and software behavior that teams have to ship.
+            </p>
+        </div>
+        <figure class="panel casual-portrait">
+            <img
+                src="/me-1.jpeg"
+                alt="Grzegorz Grzęda in a casual portrait"
+                loading="lazy"
+                width="896"
+                height="1152"
+            />
+        </figure>
+    </section>
+
+    <section class="panel panel-shell home-contact-strip">
+        <div class="home-contact-copy">
+            <p class="eyebrow">Contact</p>
+            <h2>
+                Reach out through LinkedIn, GitHub, the public CEIDG entry, or
+                send a short inquiry directly from the homepage.
+            </h2>
+            <div class="home-contact-links">
+                {
+                    homeContactLinks.map((link) => (
+                        <a href={link.href} target="_blank" rel="noreferrer">
+                            <span>{link.label}</span>
+                            <span>
+                                {link.label === "CEIDG registry"
+                                    ? "Registry"
+                                    : "Profile"}
+                            </span>
+                        </a>
+                    ))
+                }
+            </div>
+            <div class="trust-mini-block">
+                <p><strong>{business.companyName}</strong></p>
+                <p>NIP {business.nip} · REGON {business.regon}</p>
+                <p>
+                    Active since {business.started} · {business.responseWindow}
+                </p>
+            </div>
+        </div>
+        <form
+            class="contact-form compact-contact-form"
+            method="POST"
+            action={isFormConfigured ? herotofuEndpoint : undefined}
+        >
+            <input
+                type="hidden"
+                name="_subject"
+                value="Homepage inquiry from g2labs.dev"
+            />
+            <input
+                type="text"
+                name="_gotcha"
+                class="form-honeypot"
+                tabindex="-1"
+                autocomplete="off"
+            />
+
+            <div class="form-grid compact-form-grid">
+                <label>
+                    <span>Name</span>
+                    <input
+                        type="text"
+                        name="name"
+                        autocomplete="name"
+                        required
+                    />
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        required
+                    />
+                </label>
+                <label class="field-full">
+                    <span>What do you need help with?</span>
+                    <textarea
+                        name="problem"
+                        rows="4"
+                        placeholder="Firmware delivery, device integration, MVP planning, or another concrete product bottleneck."
+                        required></textarea>
+                </label>
+            </div>
+
+            <div class="form-actions compact-form-actions">
+                <button
+                    class="button button-primary"
+                    type="submit"
+                    disabled={!isFormConfigured}
+                >
+                    Send inquiry
+                </button>
+                <p class="form-note">
+                    {
+                        isFormConfigured
+                            ? "The homepage form is active for this deployment."
+                            : "Set PUBLIC_HEROTOFU_ENDPOINT to activate direct submissions."
+                    }
+                </p>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel panel-shell">
         <div class="section-heading">
             <div>
                 <p class="eyebrow">Latest writing</p>
-                <h2>Notes on shipping small, fast, and clean.</h2>
+                <h2>
+                    Notes on firmware, connected systems, and engineering
+                    workflows that stay understandable.
+                </h2>
             </div>
             <a href="/blog">Read the archive</a>
         </div>
