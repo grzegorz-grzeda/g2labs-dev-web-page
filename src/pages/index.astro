@@ -118,6 +118,40 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         </div>
     </section>
 
+    <section class="panel panel-shell about-strip">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">About the studio</p>
+                <h2>
+                    Operating from Poland, built for clients who need one
+                    engineer to understand the device, the software around it,
+                    and the path to delivery.
+                </h2>
+            </div>
+        </div>
+        <div class="about-studio-grid">
+            <figure class="about-portrait">
+                <img
+                    src="/me-2.jpeg"
+                    alt="Grzegorz Grzęda"
+                    loading="lazy"
+                    width="896"
+                    height="1152"
+                />
+            </figure>
+            <div class="about-copy">
+                <p>
+                    {company.longBio}
+                </p>
+                <p>
+                    Public work includes MicrOS, power electronics experiments,
+                    embedded tooling, and developer-facing software projects.
+                    The same practical approach carries into client delivery.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section class="panel panel-shell">
         <div class="section-heading compact-heading">
             <div>
@@ -165,23 +199,26 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         </div>
     </section>
 
-    <section class="split-section">
-        <div>
-            <p class="eyebrow">Offers</p>
-            <h2>
-                Hire G2Labs when product risk sits at the boundary between the
-                device and everything around it.
-            </h2>
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Offers</p>
+                <h2>
+                    Hire G2Labs when product risk sits at the boundary between
+                    the device and everything around it.
+                </h2>
+            </div>
+            <a href="/work">See the full work page</a>
         </div>
-        <div class="service-list panel">
+        <div class="project-grid work-grid">
             {
                 services.map((service) => (
-                    <div class="service-offer">
+                    <article class="project-card tall-card">
                         <p class="card-kicker">{service.format}</p>
                         <h3>{service.title}</h3>
                         <p>{service.description}</p>
                         <p class="service-outcome">{service.outcome}</p>
-                    </div>
+                    </article>
                 ))
             }
         </div>
@@ -238,40 +275,6 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     </article>
                 ))
             }
-        </div>
-    </section>
-
-    <section class="panel panel-shell about-strip">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">About the studio</p>
-                <h2>
-                    Operating from Poland, built for clients who need one
-                    engineer to understand the device, the software around it,
-                    and the path to delivery.
-                </h2>
-            </div>
-        </div>
-        <div class="about-studio-grid">
-            <figure class="about-portrait">
-                <img
-                    src="/me-2.jpeg"
-                    alt="Grzegorz Grzęda"
-                    loading="lazy"
-                    width="896"
-                    height="1152"
-                />
-            </figure>
-            <div class="about-copy">
-                <p>
-                    {company.longBio}
-                </p>
-                <p>
-                    Public work includes MicrOS, power electronics experiments,
-                    embedded tooling, and developer-facing software projects.
-                    The same practical approach carries into client delivery.
-                </p>
-            </div>
         </div>
     </section>
 
