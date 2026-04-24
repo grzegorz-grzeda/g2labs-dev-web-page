@@ -244,8 +244,9 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                             {study.client} / {study.period}
                         </p>
                         <h3>{study.title}</h3>
-                        <p>{study.challenge}</p>
-                        <p class="service-outcome">{study.outcome}</p>
+                        <p class="case-study-teaser">{study.context}</p>
+                        <p>{study.ownership}</p>
+                        <p class="service-outcome">{study.proofPoints[0]}</p>
                     </article>
                 ))
             }

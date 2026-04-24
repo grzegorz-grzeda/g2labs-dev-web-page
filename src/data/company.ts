@@ -182,12 +182,21 @@ export const caseStudies = [
         title: 'Embedded delivery under real program constraints',
         client: 'Sigma Software Group',
         period: '2023-present',
+        context:
+            'Client-facing embedded product delivery where implementation risk and planning risk affected each other directly.',
         challenge:
             'The work needed embedded execution and delivery planning to stay aligned instead of drifting into separate tracks.',
+        ownership:
+            'Owned embedded-software delivery on implementation slices where technical decisions directly shaped planning and delivery confidence.',
         work: [
             'Owned embedded software delivery on client product work',
             'Worked on the slices where implementation risk directly affected delivery planning',
             'Kept technical decisions grounded in what the product team actually had to ship'
+        ],
+        proofPoints: [
+            'Useful when teams need an engineer who can implement and still speak clearly about delivery risk',
+            'Closer to rescue and execution work than to broad discovery or presentation-heavy consulting',
+            'Best fit where software and hardware realities have to stay visible in the same conversation'
         ],
         stack: ['embedded software', 'product integration', 'delivery planning'],
         outcome:
@@ -197,12 +206,21 @@ export const caseStudies = [
         title: 'Connected weighing product with ESP32, Wi-Fi, and FOTA',
         client: 'Baracoda',
         period: '2022-2023',
+        context:
+            'A connected product where device behavior, network behavior, and safe field updates all had to hold together in one shipped system.',
         challenge:
             'The product surface extended beyond the device itself, so wireless architecture and field-ready update behavior had to be dependable from the start.',
+        ownership:
+            'Built firmware around ESP32 and Wi-Fi connectivity, with direct responsibility for update behavior and product-side reliability at the device boundary.',
         work: [
             'Built firmware for an intelligent weight scale around ESP32 and Wi-Fi connectivity',
             'Implemented FOTA update paths tied to real device behavior',
             'Worked through the boundary between low-level firmware decisions and product-level reliability'
+        ],
+        proofPoints: [
+            'Shows practical ownership of Wi-Fi connected embedded behavior, not just isolated firmware features',
+            'Relevant for products that need dependable FOTA paths and predictable field behavior',
+            'Useful when the hard part is integration quality, not only low-level code correctness'
         ],
         stack: ['ESP32', 'Wi-Fi', 'FOTA updates', 'embedded firmware'],
         outcome:
@@ -212,12 +230,21 @@ export const caseStudies = [
         title: 'Consumer-facing client delivery for large LATAM media platforms',
         client: 'SeaChange',
         period: '2020-2022',
+        context:
+            'A production subscriber platform where client software quality was visible immediately and scale made regressions expensive.',
         challenge:
             'Client software had to stay dependable in production while integrating with existing systems and serving a large subscriber base.',
+        ownership:
+            'Delivered Roku client software and adjacent integration work in a live product environment where client constraints and platform behavior both mattered.',
         work: [
             'Delivered Roku client software and related legacy embedded integrations',
             'Worked on product-facing behavior where scale and client constraints both mattered',
             'Connected implementation details to the realities of a live subscriber platform'
+        ],
+        proofPoints: [
+            'Relevant for teams that care about stable product-facing behavior under production pressure',
+            'Shows experience with legacy constraints and live-platform integration, not only greenfield work',
+            'Useful where consumer-visible regressions carry immediate product cost'
         ],
         stack: ['Roku client software', 'HLS streaming', 'backend connectivity'],
         outcome:

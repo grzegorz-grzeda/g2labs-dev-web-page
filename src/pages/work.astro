@@ -115,7 +115,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                             {study.client} / {study.period}
                         </p>
                         <h2>{study.title}</h2>
+                        <p class="case-study-meta">
+                            <strong>Context:</strong> {study.context}
+                        </p>
                         <p>{study.challenge}</p>
+                        <p class="case-study-meta">
+                            <strong>What I owned:</strong> {study.ownership}
+                        </p>
                         <ul class="case-study-points">
                             {study.work.map((item) => (
                                 <li>{item}</li>
@@ -125,6 +131,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                             Tech surface: {study.stack.join(" · ")}
                         </p>
                         <p>{study.outcome}</p>
+                        <ul class="stack-examples case-study-proof-points">
+                            {study.proofPoints.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
                     </article>
                 ))
             }

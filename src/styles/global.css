@@ -746,10 +746,26 @@ main {
     gap: 12px;
 }
 
+.case-study-teaser {
+    color: var(--muted);
+}
+
+.case-study-meta {
+    margin: 0;
+}
+
+.case-study-meta strong {
+    color: var(--text);
+}
+
 .case-study-points {
     margin: 0;
     padding-left: 18px;
     line-height: 1.65;
+}
+
+.case-study-proof-points {
+    margin-top: 4px;
 }
 
 .contact-form {
