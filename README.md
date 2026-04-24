@@ -1,3 +1,13 @@
+# Environment variables
+
+This site uses the following environment variables:
+
+```
+PUBLIC_HEROTOFU_ENDPOINT=your-herotofu-endpoint
+PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX  # Your Google Analytics tag (optional)
+```
+
+If `PUBLIC_GOOGLE_ANALYTICS_ID` is set, Google Analytics will be enabled on all pages. Leave it blank to disable analytics.
 # G2Labs website
 
 This repository contains the G2Labs marketing site and blog, built with Astro for static deployment on Netlify.
