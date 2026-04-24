@@ -461,6 +461,75 @@ main {
     align-self: start;
 }
 
+.product-row-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.product-row-card {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.product-row-card .product-screenshot-frame-compact {
+    margin-bottom: 0;
+}
+
+.product-row-content {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+}
+
+.product-row-content .product-links {
+    margin-top: 12px;
+}
+
+.product-row-list-home {
+    gap: 14px;
+}
+
+.product-row-card-home {
+    grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+    gap: 16px;
+    padding: 22px;
+}
+
+.product-row-content-home {
+    gap: 8px;
+}
+
+.product-row-content-home .stack-examples {
+    margin: 2px 0 0;
+}
+
+.product-row-content-home .product-links {
+    margin-top: 8px;
+}
+
+.product-row-list-catalog {
+    gap: 16px;
+}
+
+.product-row-card-catalog {
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 100%),
+        var(--surface-strong);
+}
+
+.product-row-content-catalog {
+    gap: 10px;
+}
+
+.product-row-content-catalog .service-outcome {
+    margin-top: 2px;
+}
+
 .case-study-card {
     display: grid;
     gap: 12px;
@@ -489,7 +558,7 @@ main {
     color: var(--muted);
 }
 
-.credential-list li + li {
+.credential-list li+li {
     margin-top: 10px;
 }
 
@@ -1332,6 +1401,16 @@ main {
 
     .page-shell {
         width: min(100% - 20px, 1120px);
+    }
+
+    .product-row-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .product-row-card-home,
+    .product-row-card-catalog {
+        padding: 22px;
     }
 
     .form-grid {

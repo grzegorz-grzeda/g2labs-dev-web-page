@@ -309,7 +309,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     </div>
                     <a href="/products">Open the full products page</a>
                 </div>
-                <div class="project-grid work-grid">
+                <div class="project-grid work-grid product-row-list product-row-list-home">
                     {homeProducts.map((product) => {
                         const screenshot =
                             productPreviewMap[
@@ -325,7 +325,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                                 : "Open live project";
 
                         return (
-                            <article class="project-card stack-card tall-card">
+                            <article class="project-card stack-card tall-card product-row-card product-row-card-home">
                                 {screenshot && (
                                     <figure
                                         class={`product-screenshot-frame ${screenshot.frameClass}`}
@@ -339,36 +339,38 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                                         />
                                     </figure>
                                 )}
-                                <p class="card-kicker">{product.label}</p>
-                                <h3>{product.name}</h3>
-                                <p>{product.summary}</p>
-                                <div class="tag-row stack-tags">
-                                    {product.categories
-                                        .slice(0, 5)
-                                        .map((category) => (
-                                            <span>{category}</span>
+                                <div class="product-row-content product-row-content-home">
+                                    <p class="card-kicker">{product.label}</p>
+                                    <h3>{product.name}</h3>
+                                    <p>{product.summary}</p>
+                                    <div class="tag-row stack-tags">
+                                        {product.categories
+                                            .slice(0, 5)
+                                            .map((category) => (
+                                                <span>{category}</span>
+                                            ))}
+                                    </div>
+                                    <ul class="stack-examples">
+                                        {product.proof.slice(0, 2).map((item) => (
+                                            <li>{item}</li>
                                         ))}
-                                </div>
-                                <ul class="stack-examples">
-                                    {product.proof.slice(0, 2).map((item) => (
-                                        <li>{item}</li>
-                                    ))}
-                                </ul>
-                                <div class="product-links">
-                                    <a
-                                        class="button button-primary"
-                                        href={`/products/${product.slug}`}
-                                    >
-                                        View product page
-                                    </a>
-                                    <a
-                                        class="button button-secondary"
-                                        href={secondaryHref}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        {secondaryLabel}
-                                    </a>
+                                    </ul>
+                                    <div class="product-links">
+                                        <a
+                                            class="button button-primary"
+                                            href={`/products/${product.slug}`}
+                                        >
+                                            View product page
+                                        </a>
+                                        <a
+                                            class="button button-secondary"
+                                            href={secondaryHref}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            {secondaryLabel}
+                                        </a>
+                                    </div>
                                 </div>
                             </article>
                         );

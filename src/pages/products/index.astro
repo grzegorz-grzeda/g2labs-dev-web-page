@@ -42,7 +42,7 @@ const productScreenshotMap = {
         </p>
     </section>
 
-    <section class="project-grid work-grid">
+    <section class="project-grid work-grid product-row-list product-row-list-catalog">
         {
             products.map((product) => {
                 const screenshot =
@@ -50,14 +50,16 @@ const productScreenshotMap = {
                         product.slug as keyof typeof productScreenshotMap
                     ];
                 const secondaryHref =
-                    "repo" in product && product.repo ? product.repo : product.href;
+                    "repo" in product && product.repo
+                        ? product.repo
+                        : product.href;
                 const secondaryLabel =
                     product.slug === "vt100logging"
                         ? "Open package"
                         : "Open live project";
 
                 return (
-                    <article class="project-card tall-card">
+                    <article class="project-card tall-card product-row-card product-row-card-catalog">
                         {screenshot && (
                             <figure
                                 class={`product-screenshot-frame ${screenshot.frameClass}`}
@@ -71,30 +73,32 @@ const productScreenshotMap = {
                                 />
                             </figure>
                         )}
-                        <p class="card-kicker">{product.label}</p>
-                        <h2>{product.name}</h2>
-                        <p>{product.summary}</p>
-                        <p class="service-outcome">{product.story}</p>
-                        <div class="tag-row stack-tags">
-                            {product.categories.slice(0, 5).map((category) => (
-                                <span>{category}</span>
-                            ))}
-                        </div>
-                        <div class="product-links">
-                            <a
-                                class="button button-primary"
-                                href={`/products/${product.slug}`}
-                            >
-                                View product page
-                            </a>
-                            <a
-                                class="button button-secondary"
-                                href={secondaryHref}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                {secondaryLabel}
-                            </a>
+                        <div class="product-row-content product-row-content-catalog">
+                            <p class="card-kicker">{product.label}</p>
+                            <h2>{product.name}</h2>
+                            <p>{product.summary}</p>
+                            <p class="service-outcome">{product.story}</p>
+                            <div class="tag-row stack-tags">
+                                {product.categories.slice(0, 5).map((category) => (
+                                    <span>{category}</span>
+                                ))}
+                            </div>
+                            <div class="product-links">
+                                <a
+                                    class="button button-primary"
+                                    href={`/products/${product.slug}`}
+                                >
+                                    View product page
+                                </a>
+                                <a
+                                    class="button button-secondary"
+                                    href={secondaryHref}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    {secondaryLabel}
+                                </a>
+                            </div>
                         </div>
                     </article>
                 );
