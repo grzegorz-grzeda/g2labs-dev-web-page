@@ -13,7 +13,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     title="Work | G2Labs"
     description="Selected service areas, client profile, and engineering engagement model for G2Labs."
 >
-    <section class="page-intro panel narrow">
+    <section class="page-intro panel">
         <p class="eyebrow">Work</p>
         <h1>
             Case studies and offers for teams that need one technical thread
@@ -160,10 +160,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <h3>{group.area}</h3>
                         <p>{group.summary}</p>
                         <div class="tag-row stack-tags">
-                            {group.items.map((item) => <span>{item}</span>)}
+                            {group.items.map((item) => (
+                                <span>{item}</span>
+                            ))}
                         </div>
                         <ul class="stack-examples">
-                            {group.examples.map((example) => <li>{example}</li>)}
+                            {group.examples.map((example) => (
+                                <li>{example}</li>
+                            ))}
                         </ul>
                     </article>
                 ))

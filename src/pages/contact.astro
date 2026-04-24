@@ -1,16 +1,30 @@
 ---
-import { business, company, links } from "../data/company";
+import { business, company, links, services, techStack } from "../data/company";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
 const isFormConfigured = Boolean(herotofuEndpoint);
+const serviceOptions = [...services.map((service) => service.title), "Other"];
+const techStackOptions = [
+    ...new Set(techStack.flatMap((group) => group.items)),
+    "Other",
+];
+const productStageOptions = [
+    "Discovery",
+    "Prototype",
+    "Pilot",
+    "Production",
+    "Stabilization",
+    "Rescue",
+    "Other",
+];
 ---
 
 <BaseLayout
     title="Contact | G2Labs"
     description="Contact G2Labs to discuss embedded systems, connected software, and product delivery support."
 >
-    <section class="page-intro panel narrow">
+    <section class="page-intro panel">
         <p class="eyebrow">Contact</p>
         <h1>
             Let’s discuss firmware, connected products, or the software around
@@ -113,11 +127,32 @@ const isFormConfigured = Boolean(herotofuEndpoint);
                 </label>
                 <label>
                     <span>Product stage</span>
-                    <input
-                        type="text"
+                    <select
                         name="product_stage"
-                        placeholder="Prototype, pilot, production, rescue, MVP"
-                    />
+                    >
+                        <option value="">Select stage</option>
+                        {productStageOptions.map((option) => (
+                            <option value={option}>{option}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    <span>What kind of help do you need?</span>
+                    <select name="engagement_type">
+                        <option value="">Select type</option>
+                        {serviceOptions.map((option) => (
+                            <option value={option}>{option}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    <span>Primary tech stack involved</span>
+                    <select name="primary_tech_stack">
+                        <option value="">Select stack</option>
+                        {techStackOptions.map((option) => (
+                            <option value={option}>{option}</option>
+                        ))}
+                    </select>
                 </label>
                 <label class="field-full">
                     <span>Where is the bottleneck?</span>

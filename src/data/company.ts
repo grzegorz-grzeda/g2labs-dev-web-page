@@ -160,6 +160,18 @@ export const products = [
             'JSON Diff for fast structural comparison',
             'Certificate Inspector for readable PEM and SAN inspection'
         ],
+        miniature: {
+            helperLabel: 'Browser-first developer utilities',
+            nav: ['All tools', 'My tools', 'About'],
+            searchLabel: 'Search tools',
+            summaryStats: ['53 tools', '25 embedded', 'client-side only'],
+            categoryPreview: ['All', 'Embedded', 'Data', 'Security', 'Text'],
+            toolPreview: [
+                { category: 'Embedded', name: 'Bitmask Calculator' },
+                { category: 'Data', name: 'JSON Formatter' },
+                { category: 'Security', name: 'Certificate Inspector' }
+            ]
+        },
         proof: [
             'Shows product thinking around information architecture, tool discovery, and low-friction task completion',
             'Demonstrates practical browser-side implementation for technical utilities, not only brochure-style frontend work',

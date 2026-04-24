@@ -170,6 +170,7 @@ main {
 .section-heading,
 .signal-grid,
 .project-grid,
+.case-study-grid,
 .blog-grid,
 .blog-list {
     display: grid;
@@ -350,6 +351,17 @@ main {
 
 .product-proof-summary {
     align-self: start;
+}
+
+.case-study-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+
+.case-study-card h3,
+.case-study-card p {
+    margin: 0;
 }
 
 .product-links {
@@ -596,6 +608,7 @@ main {
 }
 
 .compact-contact-form input,
+.compact-contact-form select,
 .compact-contact-form textarea {
     padding: 12px 14px;
 }
@@ -892,6 +905,7 @@ main {
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
     width: 100%;
     border: 1px solid var(--border);
@@ -908,6 +922,7 @@ main {
 }
 
 .contact-form input:focus,
+.contact-form select:focus,
 .contact-form textarea:focus {
     outline: 2px solid rgba(191, 90, 54, 0.25);
     outline-offset: 1px;

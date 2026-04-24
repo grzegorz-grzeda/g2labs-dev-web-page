@@ -18,11 +18,17 @@ if (!product) {
             <p class="eyebrow">{product.label}</p>
             <h1>{product.name}</h1>
             <p class="lead">
-                {product.tagline} {product.summary}
+                {product.tagline}
+                {product.summary}
             </p>
             <p>{product.story}</p>
             <div class="product-links">
-                <a class="button button-primary" href={product.href} target="_blank" rel="noreferrer">
+                <a
+                    class="button button-primary"
+                    href={product.href}
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     Open the live product
                 </a>
                 <a class="button button-secondary" href="/contact">
@@ -31,7 +37,9 @@ if (!product) {
             </div>
         </div>
         <div class="product-hero-side">
-            <figure class="product-screenshot-frame product-screenshot-frame-hero">
+            <figure
+                class="product-screenshot-frame product-screenshot-frame-hero"
+            >
                 <img
                     src="/devtoolsforme.png"
                     alt="DevToolsForMe homepage screenshot"
@@ -54,10 +62,13 @@ if (!product) {
             <div>
                 <p class="eyebrow">Product snapshot</p>
                 <h2>
-                    Built for the small tasks that slow down bigger engineering work.
+                    Built for the small tasks that slow down bigger engineering
+                    work.
                 </h2>
             </div>
-            <a href={product.href} target="_blank" rel="noreferrer">Visit devtoolsforme.com</a>
+            <a href={product.href} target="_blank" rel="noreferrer"
+                >Visit devtoolsforme.com</a
+            >
         </div>
         <div class="product-stat-grid">
             {
@@ -75,7 +86,8 @@ if (!product) {
         <div>
             <p class="eyebrow">Who it is for</p>
             <h2>
-                A practical utility product for developers who want speed without unnecessary setup.
+                A practical utility product for developers who want speed
+                without unnecessary setup.
             </h2>
             <ul class="stack-examples">
                 {product.audience.map((item) => <li>{item}</li>)}
@@ -85,7 +97,9 @@ if (!product) {
             <p class="card-kicker">Coverage</p>
             <h2>Tool categories in the live product</h2>
             <p>
-                The catalog spans broad developer utility work, but keeps a strong embedded bias where quick binary, protocol, and firmware-adjacent helpers are genuinely valuable.
+                The catalog spans broad developer utility work, but keeps a
+                strong embedded bias where quick binary, protocol, and
+                firmware-adjacent helpers are genuinely valuable.
             </p>
             <div class="product-categories">
                 {product.categories.map((category) => <span>{category}</span>)}
@@ -98,7 +112,8 @@ if (!product) {
             <div>
                 <p class="eyebrow">Product qualities</p>
                 <h2>
-                    The product is useful because the experience stays lightweight, local, and task-oriented.
+                    The product is useful because the experience stays
+                    lightweight, local, and task-oriented.
                 </h2>
             </div>
         </div>
@@ -119,7 +134,8 @@ if (!product) {
             <div>
                 <p class="eyebrow">Representative tools</p>
                 <h2>
-                    A few examples that show the mix of embedded depth and general developer utility work.
+                    A few examples that show the mix of embedded depth and
+                    general developer utility work.
                 </h2>
             </div>
         </div>
@@ -140,7 +156,9 @@ if (!product) {
             <div>
                 <p class="eyebrow">Why it matters for clients</p>
                 <h2>
-                    DevToolsForMe is also a proof surface for the kind of internal tools, utility software, and browser-side technical products G2Labs can deliver.
+                    DevToolsForMe is also a proof surface for the kind of
+                    internal tools, utility software, and browser-side technical
+                    products G2Labs can deliver.
                 </h2>
             </div>
         </div>
