@@ -4,13 +4,9 @@ import {
     caseStudies,
     clients,
     company,
-    education,
     experience,
     links,
-    publications,
     products,
-    projects,
-    awards,
     services,
     techStack,
 } from "../data/company";
@@ -38,9 +34,6 @@ const compactTechStackOptions = [
     "Other",
 ];
 
-const featuredProduct = products.find(
-    (product) => product.slug === "devtoolsforme",
-);
 const productPreviewMap = {
     vt100logging: {
         src: "/vt100logging.png",
@@ -251,44 +244,23 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             </div>
             <a href="/work">Open the work page</a>
         </div>
-        <div class="case-study-grid">
+        <div class="case-study-grid case-study-row-list">
             {
                 caseStudies.map((study) => (
-                    <article class="project-card case-study-card">
-                        <p class="card-kicker">
+                    <article class="project-card case-study-card case-study-row-card">
+                        <p class="card-kicker case-study-row-label">
                             {study.client} / {study.period}
                         </p>
-                        <h3>{study.title}</h3>
-                        <p class="case-study-teaser">{study.context}</p>
-                        <p>{study.ownership}</p>
-                        <p class="service-outcome">{study.proofPoints[0]}</p>
-                    </article>
-                ))
-            }
-        </div>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Distilled tech stack</p>
-                <h2>
-                    Core tools and platforms used across firmware delivery,
-                    product integration, and the software around the device.
-                </h2>
-            </div>
-            <a href="/tech-stack">Open the full stack page</a>
-        </div>
-        <div class="stack-grid">
-            {
-                distilledTechStack.map((group) => (
-                    <article class="project-card stack-card">
-                        <h3>{group.area}</h3>
-                        <p>{group.summary}</p>
-                        <div class="tag-row stack-tags">
-                            {group.items.map((item) => (
-                                <span>{item}</span>
-                            ))}
+                        <div class="case-study-row-content">
+                            <h3>{study.title}</h3>
+                            <p class="case-study-teaser">{study.context}</p>
+                            <div class="tag-row stack-tags case-study-stack-tags">
+                                {study.stack.map((item) => (
+                                    <span>{item}</span>
+                                ))}
+                            </div>
+                            <p>{study.ownership}</p>
+                            <p class="service-outcome">{study.proofPoints[0]}</p>
                         </div>
                     </article>
                 ))
@@ -301,13 +273,13 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <section class="panel panel-shell">
                 <div class="section-heading compact-heading">
                     <div>
-                        <p class="eyebrow">Products</p>
+                        <p class="eyebrow">Public proof</p>
                         <h2>
-                            Product work spanning browser tools, embedded
-                            systems, and small developer-facing utilities.
+                            Public products that make the engineering taste
+                            visible before a client call ever happens.
                         </h2>
                     </div>
-                    <a href="/products">Open the full products page</a>
+                    <a href="/products">See the public product work</a>
                 </div>
                 <div class="project-grid work-grid product-row-list product-row-list-home">
                     {homeProducts.map((product) => {
@@ -379,102 +351,6 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             </section>
         )
     }
-
-    <section class="panel panel-shell casual-note-strip">
-        <div class="casual-note-copy">
-            <p class="eyebrow">Behind the work</p>
-            <h2>
-                Independent, hands-on, and usually working close to the real
-                product constraints rather than far above them.
-            </h2>
-            <p>
-                G2Labs stays intentionally small. That keeps communication
-                direct, engineering decisions explicit, and the work close to
-                the actual device and software behavior that teams have to ship.
-            </p>
-        </div>
-        <figure class="panel casual-portrait">
-            <img
-                src="/me-1.jpeg"
-                alt="Grzegorz Grzęda in a casual portrait"
-                loading="lazy"
-                width="896"
-                height="1152"
-            />
-        </figure>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Credentials</p>
-                <h2>
-                    Formal training, recognition, and published technical work
-                    behind the delivery experience.
-                </h2>
-            </div>
-            <a href="/work">See the full work page</a>
-        </div>
-        <div class="credentials-grid">
-            <article class="project-card credential-card">
-                <p class="card-kicker">Education</p>
-                <h3>Academic background</h3>
-                <ul class="credential-list">
-                    {
-                        education.map((item) => (
-                            <li>
-                                <strong>{item.degree}</strong>
-                                <span>
-                                    {item.institution} · {item.period}
-                                </span>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </article>
-            <article class="project-card credential-card">
-                <p class="card-kicker">Awards</p>
-                <h3>Recognition</h3>
-                <ul class="credential-list">
-                    {awards.map((item) => <li>{item}</li>)}
-                </ul>
-            </article>
-            <article class="project-card credential-card">
-                <p class="card-kicker">Publications</p>
-                <h3>Research and technical writing</h3>
-                <ul class="credential-list">
-                    {publications.map((item) => <li>{item}</li>)}
-                </ul>
-            </article>
-        </div>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Experience timeline</p>
-                <h2>
-                    A concise view of where the work happened and what kind of
-                    engineering sat behind it.
-                </h2>
-            </div>
-            <a href="/work">See the full work page</a>
-        </div>
-        <div class="experience-list">
-            {
-                experience.map((entry) => (
-                    <article class="experience-item">
-                        <div class="experience-period">{entry.period}</div>
-                        <div class="experience-content">
-                            <p class="card-kicker">{entry.company}</p>
-                            <h3>{entry.role}</h3>
-                            <p>{entry.summary}</p>
-                        </div>
-                    </article>
-                ))
-            }
-        </div>
-    </section>
 
     <section class="panel panel-shell home-contact-strip">
         <div class="home-contact-copy">
@@ -563,43 +439,96 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 <p class="form-note">
                     {
                         isFormConfigured
-                            ? "The homepage form is active for this deployment."
-                            : "Set PUBLIC_HEROTOFU_ENDPOINT to activate direct submissions."
+                            ? "Submissions are active for this deployment and will post directly to Herotofu."
+                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions."
                     }
                 </p>
             </div>
         </form>
     </section>
 
+    <section class="panel panel-shell casual-note-strip">
+        <div class="casual-note-copy">
+            <p class="eyebrow">Behind the work</p>
+            <h2>
+                Independent, hands-on, and usually working close to the real
+                product constraints rather than far above them.
+            </h2>
+            <p>
+                G2Labs stays intentionally small. That keeps communication
+                direct, engineering decisions explicit, and the work close to
+                the actual device and software behavior that teams have to ship.
+            </p>
+        </div>
+        <figure class="panel casual-portrait">
+            <img
+                src="/me-1.jpeg"
+                alt="Grzegorz Grzęda in a casual portrait"
+                loading="lazy"
+                width="896"
+                height="1152"
+            />
+        </figure>
+    </section>
+
     <section class="panel panel-shell">
-        <div class="section-heading">
+        <div class="section-heading compact-heading">
             <div>
-                <p class="eyebrow">Latest writing</p>
+                <p class="eyebrow">Experience timeline</p>
                 <h2>
-                    Notes on firmware, connected systems, and engineering
-                    workflows that stay understandable.
+                    A concise view of where the work happened and what kind of
+                    engineering sat behind it.
                 </h2>
             </div>
-            <a href="/blog">Read the archive</a>
+            <a href="/work">See the full work page</a>
         </div>
-        <div class="blog-grid">
+        <div class="experience-list">
             {
-                blogPosts.map((post) => (
-                    <article class="post-card">
-                        <p>
-                            {post.data.publishDate.toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                            })}
-                        </p>
-                        <h3>
-                            <a href={getPostHref(post.id)}>{post.data.title}</a>
-                        </h3>
-                        <p>{post.data.excerpt}</p>
+                experience.map((entry) => (
+                    <article class="experience-item">
+                        <div class="experience-period">{entry.period}</div>
+                        <div class="experience-content">
+                            <p class="card-kicker">{entry.company}</p>
+                            <h3>{entry.role}</h3>
+                            <p>{entry.summary}</p>
+                        </div>
                     </article>
                 ))
             }
         </div>
     </section>
+
+    {
+        blogPosts.length > 0 && (
+            <section class="panel panel-shell">
+                <div class="section-heading compact-heading">
+                    <div>
+                        <p class="eyebrow">Latest writing</p>
+                        <h2>
+                            Notes on embedded systems, tooling, and practical
+                            engineering workflow.
+                        </h2>
+                    </div>
+                    <a href="/blog">Open the blog</a>
+                </div>
+                <div class="blog-grid">
+                    {blogPosts.map((post) => (
+                        <article class="post-card panel">
+                            <p>
+                                {post.data.publishDate.toLocaleDateString("en-US", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                })}
+                            </p>
+                            <h3>
+                                <a href={getPostHref(post.id)}>{post.data.title}</a>
+                            </h3>
+                            <p>{post.data.excerpt}</p>
+                        </article>
+                    ))}
+                </div>
+            </section>
+        )
+    }
 </BaseLayout>

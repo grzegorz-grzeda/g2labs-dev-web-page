@@ -179,7 +179,17 @@ a {
 
 .site-nav {
     display: flex;
+    align-items: center;
+    gap: 14px 20px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.site-nav-primary,
+.site-nav-secondary {
+    display: flex;
     gap: 18px;
+    align-items: center;
 }
 
 .site-nav a,
@@ -194,7 +204,22 @@ a {
     min-height: 38px;
     padding: 0 12px;
     border-radius: 6px;
-    transition: background-color 180ms ease, transform 180ms ease;
+    transition: background-color 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.site-nav-secondary a {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.site-nav-cta {
+    background: linear-gradient(135deg, #8c855a 0%, #746c45 100%);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(111, 104, 68, 0.18);
+}
+
+.site-nav-cta:hover {
+    background: linear-gradient(135deg, #938b5f 0%, #7a724a 100%);
 }
 
 .site-nav a:hover {
@@ -561,6 +586,86 @@ main {
 
 .product-detail-copy .product-links {
     margin-top: 6px;
+}
+
+.case-study-row-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.case-study-row-card {
+    display: grid;
+    grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid rgba(32, 26, 20, 0.1);
+    background:
+        radial-gradient(circle at top right, rgba(191, 90, 54, 0.09), transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 100%),
+        var(--surface-strong);
+}
+
+.case-study-row-card:nth-child(even) {
+    background:
+        radial-gradient(circle at left center, rgba(129, 121, 81, 0.1), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 100%),
+        var(--surface-strong);
+}
+
+.case-study-row-card::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 16px;
+    bottom: 16px;
+    width: 3px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(191, 90, 54, 0.92), rgba(129, 121, 81, 0.56));
+}
+
+.case-study-row-label {
+    margin: 2px 0 0;
+    padding: 12px 14px 12px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.54);
+    border: 1px solid rgba(32, 26, 20, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.case-study-row-content {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+
+.case-study-row-content h2,
+.case-study-row-content h3,
+.case-study-row-content p {
+    margin: 0;
+}
+
+.case-study-row-list-detailed {
+    gap: 16px;
+}
+
+.case-study-row-card-detailed {
+    grid-template-columns: minmax(180px, 230px) minmax(0, 1fr);
+}
+
+.case-study-row-content-detailed {
+    gap: 12px;
+}
+
+.case-study-stack-tags {
+    margin-top: 2px;
+}
+
+.case-study-stack-tags span {
+    background: rgba(191, 90, 54, 0.08);
+    border-color: rgba(191, 90, 54, 0.14);
 }
 
 .case-study-card {
@@ -1432,6 +1537,10 @@ main {
         align-items: flex-start;
     }
 
+    .site-nav {
+        justify-content: flex-start;
+    }
+
     .page-shell {
         width: min(100% - 20px, 1120px);
     }
@@ -1439,6 +1548,12 @@ main {
     .product-row-card {
         grid-template-columns: 1fr;
         gap: 16px;
+    }
+
+    .case-study-row-card,
+    .case-study-row-card-detailed {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .product-detail-card {
@@ -1488,6 +1603,12 @@ main {
 
 @media (max-width: 640px) {
     .site-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-nav-primary,
+    .site-nav-secondary {
         flex-wrap: wrap;
     }
 
