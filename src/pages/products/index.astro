@@ -42,7 +42,9 @@ const productScreenshotMap = {
         </p>
     </section>
 
-    <section class="project-grid work-grid product-row-list product-row-list-catalog">
+    <section
+        class="project-grid work-grid product-row-list product-row-list-catalog"
+    >
         {
             products.map((product) => {
                 const screenshot =
@@ -79,9 +81,11 @@ const productScreenshotMap = {
                             <p>{product.summary}</p>
                             <p class="service-outcome">{product.story}</p>
                             <div class="tag-row stack-tags">
-                                {product.categories.slice(0, 5).map((category) => (
-                                    <span>{category}</span>
-                                ))}
+                                {product.categories
+                                    .slice(0, 5)
+                                    .map((category) => (
+                                        <span>{category}</span>
+                                    ))}
                             </div>
                             <div class="product-links">
                                 <a

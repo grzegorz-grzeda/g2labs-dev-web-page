@@ -260,7 +260,9 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                                 ))}
                             </div>
                             <p>{study.ownership}</p>
-                            <p class="service-outcome">{study.proofPoints[0]}</p>
+                            <p class="service-outcome">
+                                {study.proofPoints[0]}
+                            </p>
                         </div>
                     </article>
                 ))
@@ -323,9 +325,11 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                                             ))}
                                     </div>
                                     <ul class="stack-examples">
-                                        {product.proof.slice(0, 2).map((item) => (
-                                            <li>{item}</li>
-                                        ))}
+                                        {product.proof
+                                            .slice(0, 2)
+                                            .map((item) => (
+                                                <li>{item}</li>
+                                            ))}
                                     </ul>
                                     <div class="product-links">
                                         <a
@@ -515,14 +519,19 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     {blogPosts.map((post) => (
                         <article class="post-card panel">
                             <p>
-                                {post.data.publishDate.toLocaleDateString("en-US", {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric",
-                                })}
+                                {post.data.publishDate.toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        month: "short",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    },
+                                )}
                             </p>
                             <h3>
-                                <a href={getPostHref(post.id)}>{post.data.title}</a>
+                                <a href={getPostHref(post.id)}>
+                                    {post.data.title}
+                                </a>
                             </h3>
                             <p>{post.data.excerpt}</p>
                         </article>
