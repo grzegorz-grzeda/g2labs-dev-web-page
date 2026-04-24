@@ -1,9 +1,12 @@
 ---
 import { business, company, links, services, techStack } from "../data/company";
+import {
+    herotofuEndpoint,
+    isFormConfigured,
+    thankYouPath,
+} from "../lib/forms";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
-const isFormConfigured = Boolean(herotofuEndpoint);
 const serviceOptions = [...services.map((service) => service.title), "Other"];
 const techStackOptions = [
     ...new Set(techStack.flatMap((group) => group.items)),
@@ -47,8 +50,8 @@ const productStageOptions = [
                 makes the whole system usable.
             </p>
             <p>
-                The form below is wired to work with Herotofu as soon as a
-                public endpoint is configured for this deployment.
+                The form below posts through Herotofu using a shared site
+                configuration, so the endpoint can stay managed in one place.
             </p>
             <p>
                 If you prefer verification-first contact, the public CEIDG
@@ -90,6 +93,7 @@ const productStageOptions = [
                 name="_subject"
                 value="New inquiry from g2labs.dev"
             />
+            <input type="hidden" name="_redirect" value={thankYouPath} />
             <input
                 type="text"
                 name="_gotcha"
@@ -188,7 +192,7 @@ const productStageOptions = [
                     {
                         isFormConfigured
                             ? "Submissions are active for this deployment and will post directly to Herotofu."
-                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions. The form structure is already in place."
+                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions."
                     }
                 </p>
             </div>

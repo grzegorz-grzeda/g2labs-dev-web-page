@@ -10,10 +10,13 @@ import {
     services,
     techStack,
 } from "../data/company";
+import {
+    herotofuEndpoint,
+    isFormConfigured,
+    thankYouPath,
+} from "../lib/forms";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
-const isFormConfigured = Boolean(herotofuEndpoint);
 const homeContactLinks = links.filter((link) =>
     ["LinkedIn", "GitHub", "Facebook"].includes(link.label),
 );
@@ -384,6 +387,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 name="_subject"
                 value="Homepage inquiry from g2labs.dev"
             />
+            <input type="hidden" name="_redirect" value={thankYouPath} />
             <input
                 type="text"
                 name="_gotcha"
