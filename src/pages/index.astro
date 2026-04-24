@@ -7,6 +7,7 @@ import {
     company,
     experience,
     links,
+    products,
     projects,
     services,
     techStack,
@@ -30,6 +31,10 @@ const distilledTechStack = techStack.map((group) => ({
     ...group,
     items: group.items.slice(0, 4),
 }));
+
+const featuredProduct = products.find((product) =>
+    product.slug === "devtoolsforme",
+);
 
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
@@ -278,6 +283,49 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             }
         </div>
     </section>
+
+    {
+        featuredProduct && (
+            <section class="panel panel-shell split-section">
+                <div>
+                    <p class="eyebrow">Featured product</p>
+                    <h2>
+                        A browser-side utility product built around fast technical workflows.
+                    </h2>
+                    <p>
+                        <strong>{featuredProduct.name}</strong> is a live product by G2Labs focused on quick developer utilities, with especially strong embedded coverage and a privacy-conscious browser-first model.
+                    </p>
+                    <p>{featuredProduct.story}</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="/products/devtoolsforme">
+                            View the product page
+                        </a>
+                        <a
+                            class="button button-secondary"
+                            href={featuredProduct.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open the live product
+                        </a>
+                    </div>
+                </div>
+                <article class="project-card stack-card">
+                    <p class="card-kicker">What it shows</p>
+                    <h3>{featuredProduct.tagline}</h3>
+                    <p>{featuredProduct.summary}</p>
+                    <div class="tag-row stack-tags">
+                        {featuredProduct.categories.slice(0, 5).map((category) => (
+                            <span>{category}</span>
+                        ))}
+                    </div>
+                    <ul class="stack-examples">
+                        {featuredProduct.proof.slice(0, 2).map((item) => <li>{item}</li>)}
+                    </ul>
+                </article>
+            </section>
+        )
+    }
 
     <section class="panel panel-shell casual-note-strip">
         <div class="casual-note-copy">

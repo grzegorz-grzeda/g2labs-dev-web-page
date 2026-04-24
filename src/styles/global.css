@@ -277,6 +277,72 @@ main {
     gap: 16px;
 }
 
+.product-stat-grid,
+.product-pillars,
+.product-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.product-stat {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+}
+
+.product-stat strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.product-pillar,
+.product-proof-card {
+    display: grid;
+    gap: 10px;
+}
+
+.product-pillar h2,
+.product-proof-card h2 {
+    margin: 0;
+}
+
+.product-highlights {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.product-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.product-links a {
+    text-decoration: none;
+}
+
+.product-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-categories span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 26, 20, 0.06);
+    border: 1px solid rgba(32, 26, 20, 0.1);
+}
+
 .signal,
 .project-card,
 .post-card,
@@ -970,7 +1036,11 @@ main {
     .project-grid,
     .blog-grid,
     .stack-grid,
+    .product-stat-grid,
+    .product-pillars,
+    .product-proof-grid,
     .about-studio-grid,
+    .product-highlights,
     .home-contact-strip,
     .casual-note-strip,
     .market-fit-strip,

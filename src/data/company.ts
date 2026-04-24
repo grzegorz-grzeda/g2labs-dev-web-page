@@ -103,6 +103,71 @@ export const projects = [
     }
 ];
 
+export const products = [
+    {
+        slug: 'devtoolsforme',
+        name: 'DevToolsForMe',
+        label: 'Product showcase',
+        href: 'https://devtoolsforme.com/',
+        tagline: 'Quick browser tools for developer workflows.',
+        summary:
+            'A browser-first collection of practical developer utilities built to remove the small repetitive tasks that slow down bigger engineering work.',
+        story:
+            'The product is shaped around a simple rule: many useful developer tools should open instantly, run locally in the browser, and avoid pushing users toward heavyweight apps or backend services for small daily tasks.',
+        audience: [
+            'Developers who need quick utility tools without leaving the tab',
+            'Embedded engineers who regularly move between bytes, registers, protocols, and timing calculations',
+            'Product and platform teams who want private-by-default helpers for common technical workflows'
+        ],
+        stats: [
+            { value: '53', label: 'browser tools live' },
+            { value: '25', label: 'embedded-focused utilities' },
+            { value: '100%', label: 'client-side for most tools' },
+            { value: 'opt-in', label: 'analytics model' }
+        ],
+        pillars: [
+            {
+                title: 'Browser-first delivery',
+                description:
+                    'Search, open, and use a tool immediately without installs, extensions, or account-heavy setup.'
+            },
+            {
+                title: 'Privacy-conscious by design',
+                description:
+                    'Most tools run entirely on the user device, with analytics enabled only when explicitly accepted.'
+            },
+            {
+                title: 'Strong embedded coverage',
+                description:
+                    'A large share of the catalog is built around embedded workflows such as CRCs, register math, timing, binary data, and firmware file inspection.'
+            }
+        ],
+        categories: [
+            'Embedded',
+            'Encoding',
+            'Data',
+            'Network',
+            'Security',
+            'Text',
+            'Reference',
+            'Design'
+        ],
+        featuredTools: [
+            'Bitmask Calculator for register inspection and manipulation',
+            'CRC Calculator for payload checks and embedded debugging',
+            'Struct Padding Visualizer for C layout and alignment checks',
+            'MQTT Client for browser-based topic inspection over WebSockets',
+            'JSON Diff for fast structural comparison',
+            'Certificate Inspector for readable PEM and SAN inspection'
+        ],
+        proof: [
+            'Shows product thinking around information architecture, tool discovery, and low-friction task completion',
+            'Demonstrates practical browser-side implementation for technical utilities, not only brochure-style frontend work',
+            'Reflects G2Labs strengths in embedded workflows, utility software, and delivery of small but genuinely useful engineering surfaces'
+        ]
+    }
+];
+
 export const clients = [
     'Sigma Software Group',
     'Baracoda',

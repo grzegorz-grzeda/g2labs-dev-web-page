@@ -1,0 +1,147 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const product = products.find((entry) => entry.slug === "devtoolsforme");
+
+if (!product) {
+    throw new Error("Product showcase data for DevToolsForMe is missing.");
+}
+---
+
+<BaseLayout
+    title="DevToolsForMe | Product Showcase | G2Labs"
+    description="DevToolsForMe is a browser-first utility product by G2Labs, built around fast developer workflows, embedded tools, and privacy-conscious delivery."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">{product.label}</p>
+            <h1>{product.name}</h1>
+            <p class="lead">
+                {product.tagline} {product.summary}
+            </p>
+            <p>{product.story}</p>
+            <div class="product-links">
+                <a class="button button-primary" href={product.href} target="_blank" rel="noreferrer">
+                    Open the live product
+                </a>
+                <a class="button button-secondary" href="/contact">
+                    Ask about similar tooling
+                </a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <p>What the product signals</p>
+            <ul>
+                {product.proof.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product snapshot</p>
+                <h2>
+                    Built for the small tasks that slow down bigger engineering work.
+                </h2>
+            </div>
+            <a href={product.href} target="_blank" rel="noreferrer">Visit devtoolsforme.com</a>
+        </div>
+        <div class="product-stat-grid">
+            {
+                product.stats.map((stat) => (
+                    <article class="project-card product-stat">
+                        <strong>{stat.value}</strong>
+                        <p>{stat.label}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell product-highlights">
+        <div>
+            <p class="eyebrow">Who it is for</p>
+            <h2>
+                A practical utility product for developers who want speed without unnecessary setup.
+            </h2>
+            <ul class="stack-examples">
+                {product.audience.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+        <div class="project-card stack-card">
+            <p class="card-kicker">Coverage</p>
+            <h2>Tool categories in the live product</h2>
+            <p>
+                The catalog spans broad developer utility work, but keeps a strong embedded bias where quick binary, protocol, and firmware-adjacent helpers are genuinely valuable.
+            </p>
+            <div class="product-categories">
+                {product.categories.map((category) => <span>{category}</span>)}
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product qualities</p>
+                <h2>
+                    The product is useful because the experience stays lightweight, local, and task-oriented.
+                </h2>
+            </div>
+        </div>
+        <div class="product-pillars">
+            {
+                product.pillars.map((pillar) => (
+                    <article class="project-card product-pillar">
+                        <h2>{pillar.title}</h2>
+                        <p>{pillar.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Representative tools</p>
+                <h2>
+                    A few examples that show the mix of embedded depth and general developer utility work.
+                </h2>
+            </div>
+        </div>
+        <div class="project-grid">
+            {
+                product.featuredTools.map((tool) => (
+                    <article class="project-card tall-card">
+                        <p class="card-kicker">Example utility</p>
+                        <p>{tool}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Why it matters for clients</p>
+                <h2>
+                    DevToolsForMe is also a proof surface for the kind of internal tools, utility software, and browser-side technical products G2Labs can deliver.
+                </h2>
+            </div>
+        </div>
+        <div class="product-proof-grid">
+            {
+                product.proof.map((item) => (
+                    <article class="project-card product-proof-card">
+                        <h2>Execution signal</h2>
+                        <p>{item}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>
