@@ -1,0 +1,58 @@
+---
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <title>{title}</title>
+    </head>
+    <body>
+        <div class="page-shell">
+            <header class="site-header">
+                <a class="brand" href="/">
+                    <span class="brand-mark">G2</span>
+                    <span class="brand-copy">
+                        <strong>G2Labs</strong>
+                        <span>Solo digital studio from Poland</span>
+                    </span>
+                </a>
+                <nav class="site-nav" aria-label="Primary">
+                    <a href="/work">Work</a>
+                    <a href="/blog">Blog</a>
+                    <a href="mailto:hello@g2labs.dev">Contact</a>
+                </nav>
+            </header>
+            <main>
+                <slot />
+            </main>
+            <footer class="site-footer">
+                <p>
+                    G2Labs builds lean web products, content systems, and
+                    technical experiments for founders who want fast iteration.
+                </p>
+                <p>Based in Poland. Working remotely across Europe.</p>
+            </footer>
+        </div>
+    </body>
+</html>
+
+<style is:global>
+    @import "../styles/global.css";
+</style>

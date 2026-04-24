@@ -1,0 +1,26 @@
+{
+    "name": "g2labs-dev-web-page",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "check": "astro check",
+        "test": "vitest run",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@astrojs/mdx": "^4.3.1",
+        "@astrojs/netlify": "^6.5.1",
+        "astro": "^5.7.0",
+        "sharp": "^0.34.1",
+        "typescript": "^5.8.3"
+    },
+    "devDependencies": {
+        "vitest": "^3.2.4"
+    }
+}

@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const offerings = [
+    {
+        name: "Portfolio systems",
+        detail: "Homepages, work pages, and editorial structure that present expertise clearly.",
+    },
+    {
+        name: "Launch sites",
+        detail: "Fast-to-publish sites for products, experiments, and early traction campaigns.",
+    },
+    {
+        name: "Blog architecture",
+        detail: "Markdown-backed content collections with clean URLs and low hosting overhead.",
+    },
+];
+---
+
+<BaseLayout
+    title="Work | G2Labs"
+    description="Selected service areas and engagement model for G2Labs."
+>
+    <section class="page-intro panel narrow">
+        <p class="eyebrow">Work</p>
+        <h1>
+            Direct collaboration for sites that need to look distinct and stay
+            easy to run.
+        </h1>
+        <p class="lead">
+            G2Labs works best where speed matters, scope is clear, and the
+            output needs both design intent and technical discipline.
+        </p>
+    </section>
+
+    <section class="project-grid work-grid">
+        {
+            offerings.map((offering) => (
+                <article class="project-card tall-card">
+                    <p class="card-kicker">Capability</p>
+                    <h2>{offering.name}</h2>
+                    <p>{offering.detail}</p>
+                </article>
+            ))
+        }
+    </section>
+
+    <section class="split-section">
+        <div>
+            <p class="eyebrow">Engagement model</p>
+            <h2>One builder, one thread, fewer delays.</h2>
+        </div>
+        <div class="panel">
+            <p>
+                Discovery is lightweight, implementation is direct, and
+                deployment lands on static hosting that does not become a
+                maintenance project of its own.
+            </p>
+            <p>
+                The default target is a polished Astro site deployed to Netlify
+                with room for future content expansion.
+            </p>
+        </div>
+    </section>
+</BaseLayout>

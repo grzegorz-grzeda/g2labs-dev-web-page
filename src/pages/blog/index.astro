@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+    (left, right) =>
+        right.data.publishDate.getTime() - left.data.publishDate.getTime(),
+);
+
+const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
+---
+
+<BaseLayout
+    title="Blog | G2Labs"
+    description="Writing from G2Labs about shipping websites, product storytelling, and working as a solo studio."
+>
+    <section class="page-intro panel narrow">
+        <p class="eyebrow">Blog</p>
+        <h1>
+            Writing about web craft, small-company delivery, and independent
+            technical work.
+        </h1>
+    </section>
+
+    <section class="blog-list">
+        {
+            posts.map((post) => (
+                <article class="panel blog-list-item">
+                    <p>
+                        {post.data.publishDate.toLocaleDateString("en-US", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                        })}
+                    </p>
+                    <h2>
+                        <a href={getPostHref(post.id)}>{post.data.title}</a>
+                    </h2>
+                    <p>{post.data.excerpt}</p>
+                    <div class="tag-row">
+                        {post.data.tags.map((tag) => (
+                            <span>{tag}</span>
+                        ))}
+                    </div>
+                </article>
+            ))
+        }
+    </section>
+</BaseLayout>

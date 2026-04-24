@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+    return posts.map((post) => ({
+        params: { slug: post.id.replace(/\.(md|mdx)$/, "") },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+    title={`${post.data.title} | G2Labs`}
+    description={post.data.excerpt}
+>
+    <article class="post-shell panel narrow prose-shell">
+        <p class="eyebrow">
+            {
+                post.data.publishDate.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                })
+            }
+        </p>
+        <h1>{post.data.title}</h1>
+        <p class="lead">{post.data.excerpt}</p>
+        <div class="tag-row">
+            {post.data.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>

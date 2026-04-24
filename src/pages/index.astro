@@ -1,0 +1,182 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
+    .sort(
+        (left, right) =>
+            right.data.publishDate.getTime() - left.data.publishDate.getTime(),
+    )
+    .slice(0, 2);
+
+const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
+
+const services = [
+    "Portfolio and marketing sites with a strong point of view",
+    "MVP frontends and product landing pages shipped without agency overhead",
+    "Technical writing, dev blogs, and content systems that stay easy to maintain",
+];
+
+const projects = [
+    {
+        title: "Founder-facing web presence",
+        blurb: "A clean, credible online home for solo operators and small product teams that need trust fast.",
+    },
+    {
+        title: "Content-led product narrative",
+        blurb: "Editorial pages and blog systems that explain what you build without sounding like recycled startup copy.",
+    },
+    {
+        title: "Lean delivery workflow",
+        blurb: "Short cycles, direct communication, and lightweight tooling tuned for a single accountable builder.",
+    },
+];
+---
+
+<BaseLayout
+    title="G2Labs | Solo web studio from Poland"
+    description="G2Labs is a solo web studio from Poland creating portfolio sites, product pages, and thoughtful technical content."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">Independent digital craftsmanship</p>
+            <h1>
+                G2Labs builds sharp web experiences for small brands with real
+                technical depth.
+            </h1>
+            <p class="lead">
+                I run G2Labs as a solo company from Poland. The focus is
+                straightforward: useful websites, maintainable content systems,
+                and product storytelling that feels precise rather than
+                inflated.
+            </p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="mailto:hello@g2labs.dev"
+                    >Start a conversation</a
+                >
+                <a class="button button-secondary" href="/work"
+                    >See selected work</a
+                >
+            </div>
+        </div>
+        <div class="hero-card">
+            <p>Current mode</p>
+            <ul>
+                <li>Solo execution from concept to deployment</li>
+                <li>Astro and static-first websites for speed</li>
+                <li>Netlify-friendly workflows and custom domains</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="signal-grid">
+        <article class="panel signal">
+            <span>01</span>
+            <h2>Built for speed</h2>
+            <p>
+                Static delivery, minimal moving parts, and an editing model that
+                stays friendly long after launch.
+            </p>
+        </article>
+        <article class="panel signal">
+            <span>02</span>
+            <h2>Opinionated design</h2>
+            <p>
+                Visual systems with contrast, restraint, and a clear voice
+                instead of template-flat sameness.
+            </p>
+        </article>
+        <article class="panel signal">
+            <span>03</span>
+            <h2>Founder proximity</h2>
+            <p>
+                One person, direct contact, and fewer handoffs when decisions
+                need to happen quickly.
+            </p>
+        </article>
+    </section>
+
+    <section class="split-section">
+        <div>
+            <p class="eyebrow">What G2Labs does</p>
+            <h2>Small-company web presence without the usual drag.</h2>
+        </div>
+        <div class="service-list panel">
+            {services.map((service) => <p>{service}</p>)}
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Selected directions</p>
+                <h2>
+                    Work shaped around credibility, clarity, and low
+                    maintenance.
+                </h2>
+            </div>
+            <a href="/work">Open the work page</a>
+        </div>
+        <div class="project-grid">
+            {
+                projects.map((project) => (
+                    <article class="project-card">
+                        <h3>{project.title}</h3>
+                        <p>{project.blurb}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="split-section about-strip">
+        <div>
+            <p class="eyebrow">About the studio</p>
+            <h2>
+                Operating from Poland, built for clients who value clarity over
+                layers.
+            </h2>
+        </div>
+        <div class="panel">
+            <p>
+                G2Labs is intentionally compact. That keeps delivery fast,
+                technical choices coherent, and the final site easier to host,
+                update, and evolve.
+            </p>
+            <p>
+                This site is set up as both a portfolio and a publishing
+                surface, so it can hold case studies, essays, and product notes
+                in one place under g2labs.dev.
+            </p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Latest writing</p>
+                <h2>Notes on shipping small, fast, and clean.</h2>
+            </div>
+            <a href="/blog">Read the archive</a>
+        </div>
+        <div class="blog-grid">
+            {
+                blogPosts.map((post) => (
+                    <article class="post-card">
+                        <p>
+                            {post.data.publishDate.toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                            })}
+                        </p>
+                        <h3>
+                            <a href={getPostHref(post.id)}>{post.data.title}</a>
+                        </h3>
+                        <p>{post.data.excerpt}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>
