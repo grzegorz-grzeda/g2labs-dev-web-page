@@ -30,11 +30,22 @@ if (!product) {
                 </a>
             </div>
         </div>
-        <div class="hero-card">
-            <p>What the product signals</p>
-            <ul>
-                {product.proof.map((item) => <li>{item}</li>)}
-            </ul>
+        <div class="product-hero-side">
+            <figure class="product-screenshot-frame product-screenshot-frame-hero">
+                <img
+                    src="/devtoolsforme.png"
+                    alt="DevToolsForMe homepage screenshot"
+                    loading="lazy"
+                    width="1920"
+                    height="1459"
+                />
+            </figure>
+            <div class="hero-card product-proof-summary">
+                <p>What the product signals</p>
+                <ul>
+                    {product.proof.map((item) => <li>{item}</li>)}
+                </ul>
+            </div>
         </div>
     </section>
 
