@@ -1,14 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import {
-    business,
     caseStudies,
     clients,
     company,
+    education,
     experience,
     links,
+    publications,
     products,
     projects,
+    awards,
     services,
     techStack,
 } from "../data/company";
@@ -17,7 +19,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const herotofuEndpoint = import.meta.env.PUBLIC_HEROTOFU_ENDPOINT;
 const isFormConfigured = Boolean(herotofuEndpoint);
 const homeContactLinks = links.filter((link) =>
-    ["LinkedIn", "GitHub", "Facebook", "CEIDG registry"].includes(link.label),
+    ["LinkedIn", "GitHub", "Facebook"].includes(link.label),
 );
 
 const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
@@ -39,6 +41,7 @@ const compactTechStackOptions = [
 const featuredProduct = products.find(
     (product) => product.slug === "devtoolsforme",
 );
+const microsProduct = products.find((product) => product.slug === "micros");
 
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
@@ -153,9 +156,16 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     {company.longBio}
                 </p>
                 <p>
-                    Public work includes MicrOS, power electronics experiments,
-                    embedded tooling, and developer-facing software projects.
-                    The same practical approach carries into client delivery.
+                    Public work includes <a href="/products/micros">MicrOS</a>,
+                    a minimal MIT-licensed embedded OS with CMake, Ninja, and
+                    QEMU-based workflows. The live project site and <a
+                        href="https://github.com/microsproject/micros"
+                        target="_blank"
+                        rel="noreferrer"
+                    >public repository</a> sit alongside power electronics
+                    experiments, embedded tooling, and developer-facing
+                    software projects. The same practical approach carries into
+                    client delivery.
                 </p>
             </div>
         </div>
@@ -205,6 +215,50 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 Startup teams building an MVP where embedded, backend, and
                 interface layers cannot be split into separate tracks.
             </p>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Credentials</p>
+                <h2>
+                    Formal training, recognition, and published technical work behind the delivery experience.
+                </h2>
+            </div>
+            <a href="/work">See the full work page</a>
+        </div>
+        <div class="credentials-grid">
+            <article class="project-card credential-card">
+                <p class="card-kicker">Education</p>
+                <h3>Academic background</h3>
+                <ul class="credential-list">
+                    {education.map((item) => (
+                        <li>
+                            <strong>{item.degree}</strong>
+                            <span>{item.institution} · {item.period}</span>
+                        </li>
+                    ))}
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Awards</p>
+                <h3>Recognition</h3>
+                <ul class="credential-list">
+                    {awards.map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Publications</p>
+                <h3>Research and technical writing</h3>
+                <ul class="credential-list">
+                    {publications.map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </article>
         </div>
     </section>
 
@@ -353,6 +407,55 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         )
     }
 
+    {
+        microsProduct && (
+            <section class="panel panel-shell split-section">
+                <div>
+                    <p class="eyebrow">Open-source product</p>
+                    <h2>
+                        MicrOS shows the embedded side of the same engineering
+                        taste: clarity, portability, and public technical work.
+                    </h2>
+                    <p>
+                        <strong>{microsProduct.name}</strong> is a lightweight
+                        RTOS project for microcontrollers and small systems,
+                        shaped around learnable architecture, real build
+                        tooling, and board-oriented bring-up.
+                    </p>
+                    <p>{microsProduct.story}</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="/products/micros">
+                            View the MicrOS page
+                        </a>
+                        <a
+                            class="button button-secondary"
+                            href={microsProduct.repo}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open the repository
+                        </a>
+                    </div>
+                </div>
+                <article class="project-card stack-card">
+                    <p class="card-kicker">What it shows</p>
+                    <h3>{microsProduct.tagline}</h3>
+                    <p>{microsProduct.summary}</p>
+                    <div class="tag-row stack-tags">
+                        {microsProduct.categories.slice(0, 5).map((category) => (
+                            <span>{category}</span>
+                        ))}
+                    </div>
+                    <ul class="stack-examples">
+                        {microsProduct.proof.slice(0, 2).map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                </article>
+            </section>
+        )
+    }
+
     <section class="panel panel-shell casual-note-strip">
         <div class="casual-note-copy">
             <p class="eyebrow">Behind the work</p>
@@ -381,29 +484,18 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         <div class="home-contact-copy">
             <p class="eyebrow">Contact</p>
             <h2>
-                Reach out through LinkedIn, GitHub, the public CEIDG entry, or
-                send a short inquiry directly from the homepage.
+                Reach out through LinkedIn, GitHub, or Facebook, or send a
+                short inquiry directly from the homepage.
             </h2>
             <div class="home-contact-links">
                 {
                     homeContactLinks.map((link) => (
                         <a href={link.href} target="_blank" rel="noreferrer">
                             <span>{link.label}</span>
-                            <span>
-                                {link.label === "CEIDG registry"
-                                    ? "Registry"
-                                    : "Profile"}
-                            </span>
+                            <span>Profile</span>
                         </a>
                     ))
                 }
-            </div>
-            <div class="trust-mini-block">
-                <p><strong>{business.companyName}</strong></p>
-                <p>NIP {business.nip} · REGON {business.regon}</p>
-                <p>
-                    Active since {business.started} · {business.responseWindow}
-                </p>
             </div>
         </div>
         <form

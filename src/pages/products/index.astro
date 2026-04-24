@@ -1,0 +1,52 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="Products | G2Labs"
+    description="Selected products by G2Labs, including browser-side developer tooling and the MicrOS open-source embedded operating system."
+>
+    <section class="page-intro panel">
+        <p class="eyebrow">Products</p>
+        <h1>
+            Product work that makes the engineering taste visible.
+        </h1>
+        <p class="lead">
+            These products show two sides of the same delivery style: fast,
+            useful software surfaces for engineers and clear, low-level
+            embedded systems work in public.
+        </p>
+    </section>
+
+    <section class="project-grid work-grid">
+        {
+            products.map((product) => (
+                <article class="project-card tall-card">
+                    <p class="card-kicker">{product.label}</p>
+                    <h2>{product.name}</h2>
+                    <p>{product.summary}</p>
+                    <p class="service-outcome">{product.story}</p>
+                    <div class="tag-row stack-tags">
+                        {product.categories.slice(0, 5).map((category) => (
+                            <span>{category}</span>
+                        ))}
+                    </div>
+                    <div class="product-links">
+                        <a class="button button-primary" href={`/products/${product.slug}`}>
+                            View product page
+                        </a>
+                        <a
+                            class="button button-secondary"
+                            href={product.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            Open live project
+                        </a>
+                    </div>
+                </article>
+            ))
+        }
+    </section>
+</BaseLayout>

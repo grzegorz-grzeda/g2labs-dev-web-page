@@ -5,7 +5,7 @@ export const company = {
     description:
         'G2Labs is the independent engineering practice of Grzegorz Grzeda, helping teams ship connected products when firmware, device integration, and product software need to stay in one engineering thread.',
     longBio:
-        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, GUI applications, and backend integrations. The work usually starts where teams feel delivery pain: unstable firmware, fuzzy device-to-cloud boundaries, or an MVP that spans hardware and software before anyone has the luxury of splitting it into separate tracks.',
+        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, GUI applications, backend integrations, and education-oriented open-source work. The delivery range now spans ESP32, STM32, nRF52, custom low-level targets, IoT protocols such as MQTT, CoAP, and OpenThread, and the software around the device including Node.js, cloud-connected integrations, and utility tooling.',
     contactIntro:
         'Use the inquiry form below if it is enabled in this deployment, or reach out through LinkedIn or GitHub if you prefer a direct first contact.',
     site: 'https://g2labs.dev'
@@ -98,12 +98,86 @@ export const projects = [
     {
         name: 'MicrOS open embedded OS',
         category: 'Open source and technical education',
-        summary: 'Built MicrOS as a small open embedded operating system to make low-level concepts easier to inspect, explain, and experiment with in public.',
-        impact: 'It reflects the same preference G2Labs brings to client work: understandable systems over unnecessary complexity.'
+        summary: 'Started MicrOS in 2025 as a minimal MIT-licensed embedded operating system built to stay simple, open, and educational while still running on real hardware and QEMU.',
+        impact: 'It reflects the same preference G2Labs brings to client work: understandable systems, lean architecture, and embedded software that is easier to learn from, debug, port, and extend.'
     }
 ];
 
 export const products = [
+    {
+        slug: 'micros',
+        name: 'MicrOS',
+        label: 'Open-source product',
+        href: 'https://microsproject.dev/',
+        repo: 'https://github.com/microsproject/micros',
+        docs: 'https://microsproject.dev/index.php/getting-started/',
+        tagline: 'Simple, open, embedded.',
+        summary:
+            'A lightweight open-source real-time operating system for microcontrollers and small systems, designed to stay tiny, transparent, and hackable.',
+        story:
+            'MicrOS is a public embedded-systems project built to make low-level operating-system concepts easier to inspect, explain, port, and extend without hiding them behind unnecessary weight.',
+        audience: [
+            'Engineers learning RTOS building blocks such as startup flow, scheduling, and drivers',
+            'Embedded developers who want a small public codebase they can actually read end to end',
+            'Teams interested in the engineering taste behind G2Labs delivery work: clarity, portability, and lean build systems'
+        ],
+        stats: [
+            { value: 'MIT', label: 'licensed' },
+            { value: 'QEMU + HW', label: 'execution path' },
+            { value: 'CMake + Ninja', label: 'build flow' },
+            { value: 'ARM / POSIX / RISC-V', label: 'portability direction' }
+        ],
+        pillars: [
+            {
+                title: 'Clarity-first architecture',
+                description:
+                    'The project is intentionally shaped to keep startup code, linker flow, kernel surfaces, and board support understandable rather than hidden behind layers of framework machinery.'
+            },
+            {
+                title: 'Educational in public',
+                description:
+                    'MicrOS is meant to be learnable in the open, with documentation, samples, and governance visible to contributors and readers instead of buried in private notes.'
+            },
+            {
+                title: 'Real embedded constraints',
+                description:
+                    'It is not a toy detached from practice: the project is built around real toolchains, board configuration, linker scripts, QEMU execution, and hardware-oriented bring-up.'
+            }
+        ],
+        categories: [
+            'RTOS',
+            'ARM Cortex-M',
+            'QEMU',
+            'CMake',
+            'Ninja',
+            'Open source',
+            'Education'
+        ],
+        featuredTools: [
+            'Minimal kernel surfaces including startup and initialization flow',
+            'Board-oriented build configuration with CMake toolchain routing',
+            'QEMU-backed sample execution for fast iteration',
+            'Driver-model and concurrency documentation for contributors',
+            'Public roadmap, contribution guidelines, and security process'
+        ],
+        miniature: {
+            helperLabel: 'Embedded OS in public',
+            nav: ['Docs', 'Boards', 'Samples'],
+            searchLabel: 'Explore MicrOS',
+            summaryStats: ['MIT licensed', 'QEMU + hardware', 'CMake + Ninja'],
+            categoryPreview: ['Kernel', 'Drivers', 'Boards', 'Docs', 'Samples'],
+            toolPreview: [
+                { category: 'Kernel', name: 'Context switching' },
+                { category: 'Boards', name: 'LM3S6965 EVB' },
+                { category: 'Docs', name: 'Getting Started' }
+            ]
+        },
+        proof: [
+            'Shows practical low-level engineering taste: understandable startup flow, linker configuration, and kernel boundaries',
+            'Demonstrates public technical communication, not only implementation, through docs, roadmap, and contributor-facing material',
+            'Acts as a strong signal for embedded clients who value portability, transparency, and direct engineering judgment'
+        ]
+    },
     {
         slug: 'devtoolsforme',
         name: 'DevToolsForMe',
@@ -192,64 +266,195 @@ export const clients = [
 
 export const experience = [
     {
-        period: '2023-present',
-        company: 'G2Labs',
-        role: 'Independent embedded and software consultant',
+        period: '2025-present',
+        company: 'MicrOS Project',
+        role: 'Creator & Maintainer',
         summary:
-            'Focused on embedded-first client delivery from Poland, combining firmware work with connected software, technical planning, and integration support.',
+            'Designed and launched MicrOS as a lightweight open-source real-time operating system for microcontrollers and small systems, built around clarity, public learning, and practical experimentation.',
         highlights: [
-            'Firmware and integration work for connected products',
-            'Support across embedded, desktop, backend, and web-adjacent tooling',
-            'Selective AI-assisted workflow for faster iteration and delivery support'
+            'MIT-licensed project with public docs, contribution flow, and governance pages',
+            'Build flow centered on CMake, Ninja, QEMU, and board-oriented configuration',
+            'Growing toward scheduler, drivers, multitasking demos, and broader ARM Cortex-M, POSIX, and RISC-V support'
         ]
     },
     {
         period: '2023-present',
         company: 'Sigma Software Group',
-        role: 'Senior embedded engineer / consultant',
+        role: 'Senior Software Developer',
         summary:
-            'Worked on embedded delivery in client product programs, tying implementation work to execution planning and product reality.',
+            'Worked in client-facing embedded product delivery where implementation work and execution planning had to stay closely aligned.',
         highlights: [
-            'Embedded software ownership in delivery-critical product work',
-            'Delivery planning aligned with technical risk',
-            'Cross-team collaboration where software and hardware moved together'
+            'Embedded product-program delivery in a consulting environment',
+            'Implementation work on delivery-critical product slices',
+            'Technical risk kept visible in planning and cross-team execution'
         ]
     },
     {
-        period: '2022-2023',
-        company: 'Baracoda',
-        role: 'Embedded systems engineer',
+        period: '2018-present',
+        company: 'G2Labs Grzegorz Grzęda',
+        role: 'Independent Business Owner',
         summary:
-            'Worked on an intelligent weight scale built around ESP32, Wi-Fi connectivity, and field update behavior that had to be dependable.',
+            'Runs G2Labs as an independent engineering practice delivering embedded systems, IoT solutions, utility software, and software planning for client work.',
         highlights: [
-            'ESP32-based connected product implementation',
-            'Wi-Fi connectivity and FOTA update flows',
-            'Low-level architecture shaped around real product constraints'
+            'Complete embedded software solutions for client products including medical robotics work',
+            'Software project management, planning, and practical delivery support',
+            'Embedded, desktop, and utility software in C, C++, Qt, and adjacent tooling'
         ]
     },
     {
-        period: '2020-2022',
-        company: 'SeaChange',
-        role: 'Software engineer',
+        period: '2021-2023',
+        company: 'Baracoda Group',
+        role: 'Senior Embedded Software Engineer',
         summary:
-            'Delivered Roku client software and related embedded integrations for a media platform serving a large subscriber base in LATAM.',
+            'Worked on connected embedded product delivery in the Baracoda environment, focused on dependable device behavior and product-side integration.',
         highlights: [
-            'Roku client application delivery',
-            'Legacy integration work in production systems',
-            'Reliability in consumer-facing software at scale'
+            'Senior embedded ownership in a connected-product setting',
+            'Device-side implementation under real product constraints',
+            'Embedded delivery tied to broader product behavior and field reliability'
         ]
     },
     {
-        period: '2018-2020',
-        company: 'SiDLY / JM-Tronik / M2MTeam',
-        role: 'Embedded and electronics engineer',
+        period: '2021-2023',
+        company: 'Alsoft, a Baracoda company',
+        role: 'Senior Embedded Software Engineer',
         summary:
-            'Worked across embedded devices, telemetry, electronics, and connected system delivery before the current consulting setup.',
+            'Parallel role context listed in the profile for the same Baracoda delivery period, reflecting the company structure around the work.',
         highlights: [
-            'Firmware and electronics work across multiple product teams',
-            'Medical robotics work at M2MTeam',
-            'Wireless and telemetry-oriented engineering',
-            'Experience spanning both startup and established-company environments'
+            'Senior embedded role in the same delivery window as Baracoda',
+            'Connected-device implementation and product integration context',
+            'Part of the product environment behind the Baracoda work period'
+        ]
+    },
+    {
+        period: '2021-2021',
+        company: 'Softwarely',
+        role: 'Team Leader',
+        summary:
+            'Led the embedded team while delivering BLE Mesh sensoring solutions in a short but management-heavy delivery period.',
+        highlights: [
+            'Embedded team leadership',
+            'Delivery ownership for BLE Mesh sensoring work',
+            'Hands-on technical leadership rather than coordination-only management'
+        ]
+    },
+    {
+        period: '2020-2021',
+        company: 'Softwarely',
+        role: 'Senior Embedded Software Engineer',
+        summary:
+            'Worked as a senior embedded engineer in the same Softwarely period, contributing directly to delivery while moving into team leadership.',
+        highlights: [
+            'Senior embedded implementation role',
+            'Overlap between direct engineering and team leadership responsibilities',
+            'Delivery in wireless and sensor-oriented embedded work'
+        ]
+    },
+    {
+        period: '2021-2021',
+        company: 'SeaChange Poland',
+        role: 'Client Roku Developer',
+        summary:
+            'Developed client application software for the Roku platform in a production media environment serving large subscriber bases.',
+        highlights: [
+            'Roku client software in BrightScript',
+            'Consumer-facing client behavior in production platforms',
+            'Work shaped by platform constraints and live product expectations'
+        ]
+    },
+    {
+        period: '2020-2021',
+        company: 'SeaChange Poland',
+        role: 'Client Legacy Embedded Engineer',
+        summary:
+            'Developed software for legacy Motorola set-top-box platforms together with supporting utility software.',
+        highlights: [
+            'Client application development in C for legacy embedded platforms',
+            'Python utility software around product delivery',
+            'Production maintenance and evolution under legacy constraints'
+        ]
+    },
+    {
+        period: '2019-2020',
+        company: 'DisplayLink',
+        role: 'Senior Embedded Development Engineer',
+        summary:
+            'Short senior embedded engineering period at DisplayLink in late 2019 and early 2020.',
+        highlights: [
+            'Senior embedded development role',
+            'Experience inside an established embedded engineering organization',
+            'Worked in a specialist product-development environment'
+        ]
+    },
+    {
+        period: '2018-2019',
+        company: 'M2MTeam Sp. z o.o.',
+        role: 'Senior Software Developer',
+        summary:
+            'Led teams and delivered software solutions for the medical field, including medical robotics and sensing-related systems.',
+        highlights: [
+            'Custom embedded solutions for medical robotics',
+            'Environment sensing and data collection through a web application',
+            'Human and equipment indoor localization work'
+        ]
+    },
+    {
+        period: '2017-2018',
+        company: 'JM-TRONIK',
+        role: 'Software Developer',
+        summary:
+            'Developed embedded software and related support systems for smart-grid solutions.',
+        highlights: [
+            'Low-level embedded drivers in an RT environment',
+            'Backend server work for user web accessibility',
+            'Qt-based utility software around the embedded product'
+        ]
+    },
+    {
+        period: '2017-2017',
+        company: 'M2MTeam Sp. z o.o.',
+        role: 'Embedded Software Developer',
+        summary:
+            'Worked on embedded environmental measurement solutions with BLE and LoRa connectivity.',
+        highlights: [
+            'Architectural work for BLE temperature and humidity sensors',
+            'Custom communication protocol for low-throughput links',
+            'Custom bootloader and OTAU solutions'
+        ]
+    },
+    {
+        period: '2015-2017',
+        company: 'Military University of Technology',
+        role: 'Scientific Researcher',
+        summary:
+            'Conducted lab classes and research around picosecond-precision time measurements, FPGA systems, and measurement-device software.',
+        highlights: [
+            'Teaching materials for integrated-circuit lab classes',
+            'GUI software for dedicated time-measurement devices',
+            'Precise time-measurement sensors implemented in Xilinx FPGAs'
+        ]
+    },
+    {
+        period: '2015-2015',
+        company: 'SiDLY sp. z o.o.',
+        role: 'Embedded Software Developer',
+        summary:
+            'Worked on an embedded BLE platform with communication, RTOS-oriented refactoring, and production programming support.',
+        highlights: [
+            'BLE communication link between host and onboard MCU',
+            'Software architecture refactoring for RTOS adoption',
+            'Custom bootloader and production-bench software support'
+        ]
+    },
+    {
+        period: '2011-2011',
+        company: 'E3 Technology sp. z o. o.',
+        role: 'Embedded Measurement Systems Designer',
+        summary:
+            'Designed and updated software and PCB designs for embedded measurement systems using analog and mixed-signal acquisition paths.',
+        highlights: [
+            'Embedded measurement-system design',
+            'Software and PCB updates in the same engineering scope',
+            'Analog and mixed-signal measurement channels with basic DSP'
         ]
     }
 ];
@@ -333,47 +538,86 @@ export const techStack = [
     {
         area: 'Embedded targets and firmware',
         summary:
-            'Used in embedded delivery, device bring-up, firmware implementation, and hardware-adjacent product work.',
-        items: ['C', 'C++', 'ESP32', 'AVR', 'MSP430', 'bootloaders', 'FOTA'],
+            'Used in embedded delivery, device bring-up, firmware implementation, RTOS-oriented work, and hardware-adjacent product development.',
+        items: ['C', 'C++', 'ESP32', 'STM32', 'nRF52', 'AVR', 'MSP430', 'ZephyrOS', 'RTOS kernels', 'bootloaders', 'FOTA'],
         examples: [
             'Baracoda: ESP32 firmware and field update behavior for an intelligent weight scale',
             'M2MTeam: embedded software in medical robotics work',
-            'MicrOS and electronics experiments: low-level embedded exploration in public work'
+            'MicrOS: lightweight RTOS work across startup code, linker flow, kernel surfaces, and board bring-up',
+            'Profile-backed experience across bare-metal and OS-driven embedded implementation'
         ]
     },
     {
         area: 'Connectivity and product integration',
         summary:
             'Used where device behavior has to connect reliably to the rest of the product and survive real deployment conditions.',
-        items: ['Wi-Fi', 'BLE', 'UART', 'SPI', 'I2C', 'REST APIs', 'device-to-cloud integration'],
+        items: ['Wi-Fi', 'BLE', 'MQTT', 'CoAP', 'OpenThread', 'UART', 'SPI', 'I2C', 'REST APIs', 'device-to-cloud integration'],
         examples: [
             'Baracoda: Wi-Fi connectivity and update flows around the product boundary',
             'Connected-product consulting: firmware, payloads, tooling, and backend touchpoints kept in one thread',
-            'Earlier telemetry-oriented work: hardware interfaces and connected-system integration'
+            'Earlier telemetry-oriented work: hardware interfaces and connected-system integration',
+            'Profile-based experience explicitly covering MQTT, CoAP, OpenThread, and custom APIs'
         ]
     },
     {
         area: 'Software, tooling, and data',
         summary:
-            'Used for backend integrations, internal tools, delivery support software, and product-facing utilities around the device.',
-        items: ['Python', 'Node.js', 'MongoDB', 'desktop tooling', 'web tooling', 'automation scripts'],
+            'Used for backend integrations, internal tools, delivery support software, web integrations, and product-facing utilities around the device.',
+        items: ['Python', 'Node.js', 'MongoDB', 'desktop tooling', 'web tooling', 'automation scripts', 'WordPress', 'cloud services', 'Qt', 'QEMU'],
         examples: [
             'G2Labs delivery work: utility software and web-adjacent tooling around embedded products',
             'SeaChange: software around a production media platform with integration constraints',
-            'Internal and client tooling: Python and Node.js where they shortened delivery loops'
+            'Internal and client tooling: Python and Node.js where they shortened delivery loops',
+            'Profile-backed range including WordPress and cloud-connected integrations for modern hardware platforms',
+            'MicrOS: simulator-backed iteration and sample execution through QEMU'
         ]
     },
     {
         area: 'Workflow and engineering environment',
         summary:
-            'Used in daily delivery, debugging, collaboration, and implementation flow across client and internal work.',
-        items: ['GitHub', 'GitLab', 'VS Code', 'Eclipse', 'Linux (Ubuntu)', 'CI workflows'],
+            'Used in daily delivery, debugging, collaboration, and implementation flow across client, product, and open-source work.',
+        items: ['GitHub', 'GitLab', 'VS Code', 'Eclipse', 'CMake', 'Ninja', 'Linux (Ubuntu)', 'CI workflows'],
         examples: [
             'Client delivery across established teams: GitHub and GitLab workflows',
             'Embedded development: VS Code, Eclipse, and Linux (Ubuntu) in day-to-day implementation',
-            'Consulting and product work: CI-backed iteration and handover support'
+            'Consulting and product work: CI-backed iteration and handover support',
+            'MicrOS: public build flow and contributor-facing tooling around CMake and Ninja',
+            'Profile-listed workflow depth including CMake and open-source developer tooling'
         ]
     }
+];
+
+export const education = [
+    {
+        institution: 'Military University of Technology in Warsaw',
+        degree: 'Doctor of Philosophy [paused], Electronics',
+        period: '2015-2017'
+    },
+    {
+        institution: 'Military University of Technology in Warsaw',
+        degree: 'Master of Science in Electronics, Telecommunication Systems',
+        period: '2014-2015'
+    },
+    {
+        institution: 'Military University of Technology in Warsaw',
+        degree: 'Electronics Engineer, Electronics and Telecommunication',
+        period: '2010-2014'
+    }
+];
+
+export const awards = [
+    'Rector’s Award of the Military University of Technology for the ZTC WEL team',
+    'Diploma for the best thesis',
+    'Recognition diploma for distinction in the Dean’s competition for the best thesis',
+    'Recognition diploma for academic achievement'
+];
+
+export const publications = [
+    'Diagnostic and control software for an interpolating time counter in a programmable device',
+    'Interpolating time counter with multi-edge coding',
+    'Time interval measurement module implemented in SoC FPGA device',
+    'Microcontroller based impedance meter with host computer control',
+    'Direct time-to-digital converter with multi-edge coding'
 ];
 
 export const business = {

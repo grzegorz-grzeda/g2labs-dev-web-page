@@ -1,0 +1,197 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const product = products.find((entry) => entry.slug === "micros");
+
+if (!product) {
+    throw new Error("Product showcase data for MicrOS is missing.");
+}
+---
+
+<BaseLayout
+    title="MicrOS | Product Showcase | G2Labs"
+    description="MicrOS is an open-source embedded operating system by G2Labs, built around clarity, education, and practical low-level engineering."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">{product.label}</p>
+            <h1>{product.name}</h1>
+            <p class="lead">
+                {product.tagline}
+                {product.summary}
+            </p>
+            <p>{product.story}</p>
+            <div class="product-links">
+                <a
+                    class="button button-primary"
+                    href={product.href}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open the project site
+                </a>
+                <a
+                    class="button button-secondary"
+                    href={product.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open the repository
+                </a>
+                <a
+                    class="button button-secondary"
+                    href={product.docs}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Read the quickstart
+                </a>
+            </div>
+        </div>
+        <div class="product-hero-side">
+            <article class="project-card stack-card">
+                <p class="card-kicker">Execution surface</p>
+                <h2>Built for public embedded learning without hiding the hard parts.</h2>
+                <div class="tag-row stack-tags">
+                    {product.categories.map((category) => (
+                        <span>{category}</span>
+                    ))}
+                </div>
+                <ul class="stack-examples">
+                    {product.featuredTools.slice(0, 4).map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </article>
+            <div class="hero-card product-proof-summary">
+                <p>Why it matters</p>
+                <ul>
+                    {product.proof.map((item) => <li>{item}</li>)}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Project snapshot</p>
+                <h2>
+                    A public RTOS project that shows how G2Labs approaches
+                    embedded architecture when clarity matters.
+                </h2>
+            </div>
+            <a href={product.repo} target="_blank" rel="noreferrer">Visit the GitHub repository</a>
+        </div>
+        <div class="product-stat-grid">
+            {
+                product.stats.map((stat) => (
+                    <article class="project-card product-stat">
+                        <strong>{stat.value}</strong>
+                        <p>{stat.label}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell product-highlights">
+        <div>
+            <p class="eyebrow">Who it is for</p>
+            <h2>
+                Useful for engineers who want to understand the moving parts,
+                not just consume them through a black box.
+            </h2>
+            <ul class="stack-examples">
+                {product.audience.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+        <div class="project-card stack-card">
+            <p class="card-kicker">Public entry points</p>
+            <h2>Project links that are worth opening</h2>
+            <p>
+                The live site, docs, and repository are all useful because they
+                expose the technical intent directly rather than abstracting it
+                away.
+            </p>
+            <div class="product-links">
+                <a class="button button-secondary" href={product.href} target="_blank" rel="noreferrer">
+                    microsproject.dev
+                </a>
+                <a class="button button-secondary" href={product.docs} target="_blank" rel="noreferrer">
+                    Getting Started
+                </a>
+                <a class="button button-secondary" href={product.repo} target="_blank" rel="noreferrer">
+                    GitHub repo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Project qualities</p>
+                <h2>
+                    MicrOS is strongest when judged as a transparent engineering
+                    surface, not as a marketing-only open-source announcement.
+                </h2>
+            </div>
+        </div>
+        <div class="product-pillars">
+            {
+                product.pillars.map((pillar) => (
+                    <article class="project-card product-pillar">
+                        <h2>{pillar.title}</h2>
+                        <p>{pillar.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Representative surfaces</p>
+                <h2>
+                    A few concrete areas that make the project useful as proof,
+                    not only as a concept.
+                </h2>
+            </div>
+        </div>
+        <div class="project-grid">
+            {
+                product.featuredTools.map((item) => (
+                    <article class="project-card tall-card">
+                        <p class="card-kicker">MicrOS surface</p>
+                        <p>{item}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Why it matters for clients</p>
+                <h2>
+                    MicrOS is also a public proof surface for the embedded
+                    architecture and communication style behind G2Labs.
+                </h2>
+            </div>
+        </div>
+        <div class="product-proof-grid">
+            {
+                product.proof.map((item) => (
+                    <article class="project-card product-proof-card">
+                        <h2>Execution signal</h2>
+                        <p>{item}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>

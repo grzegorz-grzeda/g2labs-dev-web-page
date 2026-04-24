@@ -1,8 +1,11 @@
 ---
 import {
+    awards,
     caseStudies,
     clients,
+    education,
     experience,
+    publications,
     services,
     techStack,
 } from "../data/company";
@@ -139,6 +142,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     </article>
                 ))
             }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Credentials</p>
+                <h2>
+                    Education, awards, and publications that support the engineering background behind the delivery work.
+                </h2>
+            </div>
+        </div>
+        <div class="credentials-grid">
+            <article class="project-card credential-card">
+                <p class="card-kicker">Education</p>
+                <h3>Academic training</h3>
+                <ul class="credential-list">
+                    {education.map((item) => (
+                        <li>
+                            <strong>{item.degree}</strong>
+                            <span>{item.institution} · {item.period}</span>
+                        </li>
+                    ))}
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Awards</p>
+                <h3>Recognition</h3>
+                <ul class="credential-list">
+                    {awards.map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Publications</p>
+                <h3>Publications</h3>
+                <ul class="credential-list">
+                    {publications.map((item) => (
+                        <li>{item}</li>
+                    ))}
+                </ul>
+            </article>
         </div>
     </section>
 

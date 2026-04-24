@@ -1,0 +1,82 @@
+---
+import { business, company } from "../data/company";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+    title="Privacy Notice | G2Labs"
+    description="Privacy notice for g2labs.dev covering contact-form submissions, external links, and basic site operation."
+>
+    <section class="page-intro panel">
+        <p class="eyebrow">Privacy notice</p>
+        <h1>
+            How G2Labs handles information shared through this site.
+        </h1>
+        <p class="lead">
+            This notice applies to {company.site} and to inquiry submissions sent
+            through the contact forms available on this site.
+        </p>
+    </section>
+
+    <section class="panel panel-shell prose">
+        <h2>Controller</h2>
+        <p>
+            The site is operated by <strong>{business.companyName}</strong>, an
+            independent business based in {business.country}. Public business
+            details are available through the CEIDG registry linked on the
+            contact page.
+        </p>
+
+        <h2>What information may be collected</h2>
+        <p>
+            If you send an inquiry, G2Labs may receive the information you
+            provide in the form, such as your name, email address, company,
+            product stage, engagement type, technical stack, and the project or
+            delivery details you choose to include.
+        </p>
+        <p>
+            The site may also rely on standard hosting or service logs needed to
+            deliver the website reliably.
+        </p>
+
+        <h2>Why this information is used</h2>
+        <p>
+            Inquiry data is used only to review your request, respond to you,
+            and discuss potential cooperation or follow-up technical questions.
+        </p>
+
+        <h2>Third-party services</h2>
+        <p>
+            When the contact form is active, submissions are sent through the
+            configured Herotofu endpoint for form handling. The site may also be
+            served through hosting infrastructure that processes technical
+            request data required to operate the service.
+        </p>
+        <p>
+            External links on this site may lead to third-party services such as
+            LinkedIn, GitHub, Facebook, or the CEIDG public registry. Their own
+            privacy policies apply when you use those services.
+        </p>
+
+        <h2>Retention</h2>
+        <p>
+            Inquiry information is retained only for as long as needed to answer
+            the request, continue the conversation, or maintain basic business
+            records connected to the inquiry.
+        </p>
+
+        <h2>Your choices</h2>
+        <p>
+            Do not send sensitive information through the general contact form
+            unless it is genuinely necessary for the inquiry. If you want to ask
+            about data handling related to a past inquiry, use the contact page
+            to reach G2Labs directly.
+        </p>
+
+        <h2>Updates</h2>
+        <p>
+            This notice may be updated when the site, form handling, or legal
+            requirements change.
+        </p>
+    </section>
+</BaseLayout>

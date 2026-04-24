@@ -27,7 +27,9 @@ body {
     min-width: 320px;
     color: var(--text);
     background:
-        linear-gradient(180deg, #f8f7f4 0%, #e3e0d2 100%);
+        radial-gradient(circle at top left, rgba(191, 90, 54, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(129, 121, 81, 0.14), transparent 22%),
+        linear-gradient(180deg, #f8f7f4 0%, #e3e0d2 52%, #d7d3c2 100%);
     font-family: 'Space Grotesk', sans-serif;
     line-height: 1.6;
 }
@@ -36,10 +38,62 @@ a {
     color: inherit;
 }
 
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes driftGlow {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
 .page-shell {
+    position: relative;
     width: min(980px, calc(100% - 32px));
     margin: 0 auto;
     padding: 24px 0 56px;
+}
+
+.page-shell::before,
+.page-shell::after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(8px);
+}
+
+.page-shell::before {
+    top: 120px;
+    left: 24px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(191, 90, 54, 0.12), transparent 68%);
+    animation: driftGlow 8s ease-in-out infinite alternate;
+}
+
+.page-shell::after {
+    right: 18px;
+    bottom: 120px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(129, 121, 81, 0.14), transparent 66%);
+    animation: driftGlow 10s ease-in-out infinite alternate;
 }
 
 .site-header,
@@ -78,6 +132,10 @@ a {
     justify-content: space-between;
     gap: 24px;
     padding: 16px 18px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent 100%),
+        var(--surface);
+    backdrop-filter: blur(8px);
 }
 
 .brand {
@@ -136,10 +194,12 @@ a {
     min-height: 38px;
     padding: 0 12px;
     border-radius: 6px;
+    transition: background-color 180ms ease, transform 180ms ease;
 }
 
 .site-nav a:hover {
     background: rgba(227, 224, 210, 0.7);
+    transform: translateY(-1px);
 }
 
 .site-nav a:hover,
@@ -155,10 +215,27 @@ main {
 }
 
 .panel {
+    position: relative;
+    overflow: hidden;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 28%),
+        var(--surface);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow);
+    box-shadow: 0 14px 32px rgba(71, 48, 25, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    animation: riseIn 520ms ease both;
+}
+
+.panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(135deg, rgba(129, 121, 81, 0.06), transparent 24%),
+        linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.22));
+    opacity: 0.8;
 }
 
 .panel-shell {
@@ -179,7 +256,18 @@ main {
 .hero {
     grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
     gap: 24px;
+    align-items: start;
     padding: 28px;
+    background:
+        radial-gradient(circle at top left, rgba(191, 90, 54, 0.14), transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.48), transparent 44%),
+        var(--surface);
+}
+
+.panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 38px rgba(71, 48, 25, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.52);
+    border-color: rgba(129, 121, 81, 0.3);
 }
 
 .hero h1,
@@ -197,6 +285,7 @@ main {
 .hero h1 {
     font-size: clamp(2.15rem, 4.4vw, 3.35rem);
     max-width: 16ch;
+    text-wrap: balance;
 }
 
 .lead {
@@ -220,16 +309,23 @@ main {
     padding: 0 20px;
     border-radius: 999px;
     text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 .button-primary {
-    background: var(--accent);
+    background: linear-gradient(135deg, #8c855a 0%, #746c45 100%);
     color: #fff;
+    box-shadow: 0 10px 24px rgba(111, 104, 68, 0.22);
 }
 
 .button-secondary {
     border: 1px solid var(--border);
-    background: rgba(248, 247, 244, 0.94);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(6px);
+}
+
+.button:hover {
+    transform: translateY(-2px);
 }
 
 .hero-card,
@@ -243,11 +339,14 @@ main {
 }
 
 .hero-card {
-    align-self: end;
+    align-self: start;
     border-radius: var(--radius-md);
-    background: #bbb593;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 100%),
+        linear-gradient(145deg, #c3bd99 0%, #b4ac83 100%);
     color: #1f1b16;
     border: 1px solid rgba(129, 121, 81, 0.25);
+    box-shadow: 0 18px 28px rgba(91, 76, 36, 0.12);
 }
 
 .hero-card p:first-child {
@@ -280,7 +379,8 @@ main {
 
 .product-stat-grid,
 .product-pillars,
-.product-proof-grid {
+.product-proof-grid,
+.credentials-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
@@ -364,6 +464,37 @@ main {
     margin: 0;
 }
 
+.credential-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+
+.credential-card h3 {
+    margin: 0;
+}
+
+.credential-list {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.credential-list li + li {
+    margin-top: 10px;
+}
+
+.credential-list strong,
+.credential-list span {
+    display: block;
+}
+
+.credential-list strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
 .product-links {
     display: flex;
     flex-wrap: wrap;
@@ -402,6 +533,9 @@ main {
 
 .signal {
     padding: 20px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 100%),
+        var(--surface-strong);
 }
 
 .signal span,
@@ -417,6 +551,69 @@ main {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     gap: 20px;
     align-items: start;
+}
+
+.page-intro {
+    background:
+        radial-gradient(circle at top right, rgba(129, 121, 81, 0.1), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.52), transparent 42%),
+        var(--surface);
+}
+
+.page-intro::after,
+.hero::after {
+    content: '';
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    width: 92px;
+    height: 92px;
+    border-top: 1px solid rgba(129, 121, 81, 0.22);
+    border-right: 1px solid rgba(129, 121, 81, 0.22);
+    border-top-right-radius: 18px;
+    pointer-events: none;
+}
+
+.page-intro::before,
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(129, 121, 81, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129, 121, 81, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.22), transparent 58%);
+}
+
+.section-heading {
+    position: relative;
+}
+
+.section-heading::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -8px;
+    width: 56px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(191, 90, 54, 0.92), rgba(129, 121, 81, 0.56));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .page-shell::before,
+    .page-shell::after,
+    .panel,
+    .button,
+    .site-nav a {
+        animation: none;
+        transition: none;
+    }
 }
 
 .split-section h2,
@@ -1078,6 +1275,23 @@ main {
     height: 18px;
 }
 
+.footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 8px 0 6px;
+}
+
+.footer-legal-links a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.footer-legal-links a:hover {
+    border-color: currentColor;
+}
+
 @media (max-width: 900px) {
 
     .hero,
@@ -1090,6 +1304,7 @@ main {
     .product-stat-grid,
     .product-pillars,
     .product-proof-grid,
+    .credentials-grid,
     .about-studio-grid,
     .product-highlights,
     .home-contact-strip,
