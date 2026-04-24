@@ -41,7 +41,31 @@ const compactTechStackOptions = [
 const featuredProduct = products.find(
     (product) => product.slug === "devtoolsforme",
 );
-const microsProduct = products.find((product) => product.slug === "micros");
+const productPreviewMap = {
+    vt100logging: {
+        src: "/vt100logging.png",
+        alt: "vt100logging terminal screenshot",
+        width: 1000,
+        height: 700,
+        frameClass: "product-screenshot-frame-compact",
+    },
+    devtoolsforme: {
+        src: "/devtoolsforme.png",
+        alt: "DevToolsForMe homepage screenshot",
+        width: 1920,
+        height: 1459,
+        frameClass: "product-screenshot-frame-compact",
+    },
+    micros: {
+        src: "/microsproject.png",
+        alt: "MicrOS website screenshot",
+        width: 1920,
+        height: 1187,
+        frameClass:
+            "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
+    },
+} as const;
+const homeProducts = products.slice(0, 3);
 
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
@@ -161,40 +185,12 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     QEMU-based workflows. The live project site and <a
                         href="https://github.com/microsproject/micros"
                         target="_blank"
-                        rel="noreferrer"
-                    >public repository</a> sit alongside power electronics
-                    experiments, embedded tooling, and developer-facing
-                    software projects. The same practical approach carries into
-                    client delivery.
+                        rel="noreferrer">public repository</a
+                    > sit alongside power electronics experiments, embedded tooling,
+                    and developer-facing software projects. The same practical approach
+                    carries into client delivery.
                 </p>
             </div>
-        </div>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Experience timeline</p>
-                <h2>
-                    A concise view of where the work happened and what kind of
-                    engineering sat behind it.
-                </h2>
-            </div>
-            <a href="/work">See the full work page</a>
-        </div>
-        <div class="experience-list">
-            {
-                experience.map((entry) => (
-                    <article class="experience-item">
-                        <div class="experience-period">{entry.period}</div>
-                        <div class="experience-content">
-                            <p class="card-kicker">{entry.company}</p>
-                            <h3>{entry.role}</h3>
-                            <p>{entry.summary}</p>
-                        </div>
-                    </article>
-                ))
-            }
         </div>
     </section>
 
@@ -215,50 +211,6 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 Startup teams building an MVP where embedded, backend, and
                 interface layers cannot be split into separate tracks.
             </p>
-        </div>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Credentials</p>
-                <h2>
-                    Formal training, recognition, and published technical work behind the delivery experience.
-                </h2>
-            </div>
-            <a href="/work">See the full work page</a>
-        </div>
-        <div class="credentials-grid">
-            <article class="project-card credential-card">
-                <p class="card-kicker">Education</p>
-                <h3>Academic background</h3>
-                <ul class="credential-list">
-                    {education.map((item) => (
-                        <li>
-                            <strong>{item.degree}</strong>
-                            <span>{item.institution} · {item.period}</span>
-                        </li>
-                    ))}
-                </ul>
-            </article>
-            <article class="project-card credential-card">
-                <p class="card-kicker">Awards</p>
-                <h3>Recognition</h3>
-                <ul class="credential-list">
-                    {awards.map((item) => (
-                        <li>{item}</li>
-                    ))}
-                </ul>
-            </article>
-            <article class="project-card credential-card">
-                <p class="card-kicker">Publications</p>
-                <h3>Research and technical writing</h3>
-                <ul class="credential-list">
-                    {publications.map((item) => (
-                        <li>{item}</li>
-                    ))}
-                </ul>
-            </article>
         </div>
     </section>
 
@@ -345,96 +297,82 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
     </section>
 
     {
-        featuredProduct && microsProduct && (
+        homeProducts.length > 0 && (
             <section class="panel panel-shell">
                 <div class="section-heading compact-heading">
                     <div>
                         <p class="eyebrow">Products</p>
                         <h2>
-                            Two product surfaces that show both sides of the
-                            same engineering style: useful tools and clear
-                            low-level systems work.
+                            Product work spanning browser tools, embedded
+                            systems, and small developer-facing utilities.
                         </h2>
                     </div>
                     <a href="/products">Open the full products page</a>
                 </div>
-                <div class="stack-grid">
-                    <article class="project-card stack-card">
-                        <figure class="product-screenshot-frame product-screenshot-frame-compact">
-                            <img
-                                src="/devtoolsforme.png"
-                                alt="DevToolsForMe homepage screenshot"
-                                loading="lazy"
-                                width="1920"
-                                height="1459"
-                            />
-                        </figure>
-                        <p class="card-kicker">Browser-side product</p>
-                        <h3>{featuredProduct.name}</h3>
-                        <p>{featuredProduct.summary}</p>
-                        <div class="tag-row stack-tags">
-                            {featuredProduct.categories
-                                .slice(0, 5)
-                                .map((category) => (
-                                    <span>{category}</span>
-                                ))}
-                        </div>
-                        <ul class="stack-examples">
-                            {featuredProduct.proof.slice(0, 2).map((item) => (
-                                <li>{item}</li>
-                            ))}
-                        </ul>
-                        <div class="product-links">
-                            <a class="button button-primary" href="/products/devtoolsforme">
-                                View product page
-                            </a>
-                            <a
-                                class="button button-secondary"
-                                href={featuredProduct.href}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Open live product
-                            </a>
-                        </div>
-                    </article>
-                    <article class="project-card stack-card">
-                        <figure class="product-screenshot-frame product-screenshot-frame-compact product-screenshot-frame-micros-compact">
-                            <img
-                                src="/microsproject.png"
-                                alt="MicrOS website screenshot"
-                                loading="lazy"
-                                width="1920"
-                                height="1187"
-                            />
-                        </figure>
-                        <p class="card-kicker">Open-source product</p>
-                        <h3>{microsProduct.name}</h3>
-                        <p>{microsProduct.summary}</p>
-                        <div class="tag-row stack-tags">
-                            {microsProduct.categories.slice(0, 5).map((category) => (
-                                <span>{category}</span>
-                            ))}
-                        </div>
-                        <ul class="stack-examples">
-                            {microsProduct.proof.slice(0, 2).map((item) => (
-                                <li>{item}</li>
-                            ))}
-                        </ul>
-                        <div class="product-links">
-                            <a class="button button-primary" href="/products/micros">
-                                View product page
-                            </a>
-                            <a
-                                class="button button-secondary"
-                                href={microsProduct.repo}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Open repository
-                            </a>
-                        </div>
-                    </article>
+                <div class="project-grid work-grid">
+                    {homeProducts.map((product) => {
+                        const screenshot =
+                            productPreviewMap[
+                                product.slug as keyof typeof productPreviewMap
+                            ];
+                        const secondaryHref =
+                            "repo" in product && product.repo
+                                ? product.repo
+                                : product.href;
+                        const secondaryLabel =
+                            "repo" in product && product.repo
+                                ? "Open repository"
+                                : "Open live project";
+
+                        return (
+                            <article class="project-card stack-card tall-card">
+                                {screenshot && (
+                                    <figure
+                                        class={`product-screenshot-frame ${screenshot.frameClass}`}
+                                    >
+                                        <img
+                                            src={screenshot.src}
+                                            alt={screenshot.alt}
+                                            loading="lazy"
+                                            width={screenshot.width}
+                                            height={screenshot.height}
+                                        />
+                                    </figure>
+                                )}
+                                <p class="card-kicker">{product.label}</p>
+                                <h3>{product.name}</h3>
+                                <p>{product.summary}</p>
+                                <div class="tag-row stack-tags">
+                                    {product.categories
+                                        .slice(0, 5)
+                                        .map((category) => (
+                                            <span>{category}</span>
+                                        ))}
+                                </div>
+                                <ul class="stack-examples">
+                                    {product.proof.slice(0, 2).map((item) => (
+                                        <li>{item}</li>
+                                    ))}
+                                </ul>
+                                <div class="product-links">
+                                    <a
+                                        class="button button-primary"
+                                        href={`/products/${product.slug}`}
+                                    >
+                                        View product page
+                                    </a>
+                                    <a
+                                        class="button button-secondary"
+                                        href={secondaryHref}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {secondaryLabel}
+                                    </a>
+                                </div>
+                            </article>
+                        );
+                    })}
                 </div>
             </section>
         )
@@ -464,12 +402,84 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         </figure>
     </section>
 
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Credentials</p>
+                <h2>
+                    Formal training, recognition, and published technical work
+                    behind the delivery experience.
+                </h2>
+            </div>
+            <a href="/work">See the full work page</a>
+        </div>
+        <div class="credentials-grid">
+            <article class="project-card credential-card">
+                <p class="card-kicker">Education</p>
+                <h3>Academic background</h3>
+                <ul class="credential-list">
+                    {
+                        education.map((item) => (
+                            <li>
+                                <strong>{item.degree}</strong>
+                                <span>
+                                    {item.institution} · {item.period}
+                                </span>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Awards</p>
+                <h3>Recognition</h3>
+                <ul class="credential-list">
+                    {awards.map((item) => <li>{item}</li>)}
+                </ul>
+            </article>
+            <article class="project-card credential-card">
+                <p class="card-kicker">Publications</p>
+                <h3>Research and technical writing</h3>
+                <ul class="credential-list">
+                    {publications.map((item) => <li>{item}</li>)}
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Experience timeline</p>
+                <h2>
+                    A concise view of where the work happened and what kind of
+                    engineering sat behind it.
+                </h2>
+            </div>
+            <a href="/work">See the full work page</a>
+        </div>
+        <div class="experience-list">
+            {
+                experience.map((entry) => (
+                    <article class="experience-item">
+                        <div class="experience-period">{entry.period}</div>
+                        <div class="experience-content">
+                            <p class="card-kicker">{entry.company}</p>
+                            <h3>{entry.role}</h3>
+                            <p>{entry.summary}</p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
     <section class="panel panel-shell home-contact-strip">
         <div class="home-contact-copy">
             <p class="eyebrow">Contact</p>
             <h2>
-                Reach out through LinkedIn, GitHub, or Facebook, or send a
-                short inquiry directly from the homepage.
+                Reach out through LinkedIn, GitHub, or Facebook, or send a short
+                inquiry directly from the homepage.
             </h2>
             <div class="home-contact-links">
                 {
@@ -523,9 +533,11 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     <span>Primary tech stack</span>
                     <select name="primary_tech_stack">
                         <option value="">Select stack</option>
-                        {compactTechStackOptions.map((option) => (
-                            <option value={option}>{option}</option>
-                        ))}
+                        {
+                            compactTechStackOptions.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))
+                        }
                     </select>
                 </label>
                 <label class="field-full">

@@ -105,6 +105,78 @@ export const projects = [
 
 export const products = [
     {
+        slug: 'vt100logging',
+        name: 'vt100logging',
+        label: 'Python tooling product',
+        href: 'https://pypi.org/project/vt100logging/',
+        repo: 'https://github.com/g2labs-grzegorz-grzeda/vt100logging',
+        tagline: 'A small Python logging product built for readable terminal output.',
+        summary:
+            'A lightweight Python utility that makes terminal logs easier to scan by adding VT100-colored output on top of the standard logging module.',
+        story:
+            'vt100logging started as a narrow internal-quality problem worth solving properly: developers and operators read terminal logs constantly, so log severity should be visible immediately without setting up a heavy logging stack. The result is a small public product with a clear install path, a thin API surface, and packaging disciplined enough for reuse.',
+        audience: [
+            'Python developers who want cleaner console logs without first building custom formatter infrastructure',
+            'Engineers shipping scripts, internal tools, or small services where terminal readability matters every day',
+            'Teams who value compact public utilities that remove repetitive setup without adding framework weight'
+        ],
+        stats: [
+            { value: 'PyPI', label: 'published package' },
+            { value: 'MIT', label: 'licensed' },
+            { value: 'Win11 + Ubuntu', label: 'tested OS targets' },
+            { value: 'console + file', label: 'logging modes' }
+        ],
+        pillars: [
+            {
+                title: 'Low-friction setup',
+                description:
+                    'The package is designed to be installed and initialized quickly through a small API instead of forcing a full custom logging configuration for common cases.'
+            },
+            {
+                title: 'Readable terminal output',
+                description:
+                    'Colored VT100 levels make debug, info, warning, and error messages easier to separate visually in real terminal output where developers need to spot issues fast.'
+            },
+            {
+                title: 'Practical utility scope',
+                description:
+                    'It stays focused on a narrow but genuinely useful problem: shipping a better logging experience for scripts, tools, services, and internal developer workflows.'
+            }
+        ],
+        categories: [
+            'Python',
+            'Logging',
+            'CLI tooling',
+            'Developer utilities',
+            'Open source',
+            'PyPI'
+        ],
+        featuredTools: [
+            'Simple `vt100logging_init()` entry point for module-level setup',
+            'Colored VT100 formatting for debug, info, warning, and error levels',
+            'Convenience helpers such as `D`, `I`, `W`, `E`, and `EX`',
+            'Optional sidecar file logging for persistent local logs',
+            'Minimal package surface suitable for scripts and internal tools'
+        ],
+        miniature: {
+            helperLabel: 'Python logging helper',
+            nav: ['PyPI', 'GitHub', 'Usage'],
+            searchLabel: 'Install vt100logging',
+            summaryStats: ['PyPI package', 'MIT', 'colored output'],
+            categoryPreview: ['Python', 'Logging', 'CLI', 'Utilities'],
+            toolPreview: [
+                { category: 'Init', name: 'vt100logging_init' },
+                { category: 'Levels', name: 'D / I / W / E' },
+                { category: 'Exceptions', name: 'EX helper' }
+            ]
+        },
+        proof: [
+            'Shows product judgment around small but high-frequency developer pain points, not only larger public-facing apps',
+            'Demonstrates packaging, distribution, and maintenance discipline through a Python utility shipped publicly on PyPI',
+            'Fits the same G2Labs pattern as other tools: narrow scope, clear value, and pragmatic implementation over unnecessary framework weight'
+        ]
+    },
+    {
         slug: 'micros',
         name: 'MicrOS',
         label: 'Open-source product',
@@ -460,6 +532,30 @@ export const experience = [
 ];
 
 export const caseStudies = [
+    {
+        title: 'Python logging utility turned into a reusable public product',
+        client: 'G2Labs',
+        period: '2026-present',
+        context:
+            'A repeated internal tooling problem: console logs were useful but slower to scan than they should be during development, debugging, and small-service work.',
+        challenge:
+            'The goal was to improve day-to-day Python logging without creating another heavyweight abstraction or private one-off helper that would be hard to reuse later.',
+        ownership:
+            'Defined the package scope, shaped the thin API, implemented the formatter and helper layer, and published the result as a reusable Python package with public documentation and distribution.',
+        work: [
+            'Designed the package around the standard logging module instead of replacing it wholesale',
+            'Implemented VT100-colored console formatting, convenience helpers, and optional file logging',
+            'Published the package to PyPI and backed it with a public GitHub repository for inspection and reuse'
+        ],
+        proofPoints: [
+            'Useful for clients who need small internal tools and utilities treated with product discipline rather than left as disposable scripts',
+            'Shows that G2Labs can package and publish practical Python tooling, not only firmware and browser-side utilities',
+            'Relevant when the right answer is a thin, well-shaped developer product instead of a larger platform investment'
+        ],
+        stack: ['Python', 'logging', 'PyPI packaging', 'developer tooling'],
+        outcome:
+            'Turned a recurring engineering pain point into a small public product that is installable, inspectable, and reusable across future tooling work.'
+    },
     {
         title: 'Embedded delivery under real program constraints',
         client: 'Sigma Software Group',

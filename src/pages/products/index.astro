@@ -3,6 +3,13 @@ import { products } from "../../data/company";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const productScreenshotMap = {
+    vt100logging: {
+        src: "/vt100logging.png",
+        alt: "vt100logging terminal screenshot",
+        width: 1000,
+        height: 700,
+        frameClass: "product-screenshot-frame-compact",
+    },
     devtoolsforme: {
         src: "/devtoolsforme.png",
         alt: "DevToolsForMe homepage screenshot",
@@ -15,7 +22,8 @@ const productScreenshotMap = {
         alt: "MicrOS website screenshot",
         width: 1920,
         height: 1187,
-        frameClass: "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
+        frameClass:
+            "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
     },
 } as const;
 ---
@@ -26,36 +34,43 @@ const productScreenshotMap = {
 >
     <section class="page-intro panel">
         <p class="eyebrow">Products</p>
-        <h1>
-            Product work that makes the engineering taste visible.
-        </h1>
+        <h1>Product work that makes the engineering taste visible.</h1>
         <p class="lead">
             These products show two sides of the same delivery style: fast,
-            useful software surfaces for engineers and clear, low-level
-            embedded systems work in public.
+            useful software surfaces for engineers and clear, low-level embedded
+            systems work in public.
         </p>
     </section>
 
     <section class="project-grid work-grid">
         {
             products.map((product) => {
-                const screenshot = productScreenshotMap[product.slug as keyof typeof productScreenshotMap];
+                const screenshot =
+                    productScreenshotMap[
+                        product.slug as keyof typeof productScreenshotMap
+                    ];
+                const secondaryHref =
+                    "repo" in product && product.repo ? product.repo : product.href;
+                const secondaryLabel =
+                    product.slug === "vt100logging"
+                        ? "Open package"
+                        : "Open live project";
 
                 return (
                     <article class="project-card tall-card">
-                        {
-                            screenshot && (
-                                <figure class={`product-screenshot-frame ${screenshot.frameClass}`}>
-                                    <img
-                                        src={screenshot.src}
-                                        alt={screenshot.alt}
-                                        loading="lazy"
-                                        width={screenshot.width}
-                                        height={screenshot.height}
-                                    />
-                                </figure>
-                            )
-                        }
+                        {screenshot && (
+                            <figure
+                                class={`product-screenshot-frame ${screenshot.frameClass}`}
+                            >
+                                <img
+                                    src={screenshot.src}
+                                    alt={screenshot.alt}
+                                    loading="lazy"
+                                    width={screenshot.width}
+                                    height={screenshot.height}
+                                />
+                            </figure>
+                        )}
                         <p class="card-kicker">{product.label}</p>
                         <h2>{product.name}</h2>
                         <p>{product.summary}</p>
@@ -66,16 +81,19 @@ const productScreenshotMap = {
                             ))}
                         </div>
                         <div class="product-links">
-                            <a class="button button-primary" href={`/products/${product.slug}`}>
+                            <a
+                                class="button button-primary"
+                                href={`/products/${product.slug}`}
+                            >
                                 View product page
                             </a>
                             <a
                                 class="button button-secondary"
-                                href={product.href}
+                                href={secondaryHref}
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                Open live project
+                                {secondaryLabel}
                             </a>
                         </div>
                     </article>

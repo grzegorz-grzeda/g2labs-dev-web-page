@@ -1,0 +1,236 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const product = products.find((entry) => entry.slug === "vt100logging");
+
+if (!product) {
+    throw new Error("Product showcase data for vt100logging is missing.");
+}
+---
+
+<BaseLayout
+    title="vt100logging | Product Showcase | G2Labs"
+    description="vt100logging is a Python tooling product by G2Labs that improves terminal log readability with a minimal public package surface."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">{product.label}</p>
+            <h1>{product.name}</h1>
+            <p class="lead">
+                {product.tagline}
+                {product.summary}
+            </p>
+            <p>{product.story}</p>
+            <div class="product-links">
+                <a
+                    class="button button-primary"
+                    href={product.href}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open on PyPI
+                </a>
+                <a
+                    class="button button-secondary"
+                    href={product.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open the repository
+                </a>
+                <a class="button button-secondary" href="/contact">
+                    Ask about similar tooling
+                </a>
+            </div>
+        </div>
+        <div class="product-hero-side">
+            <figure class="product-screenshot-frame product-screenshot-frame-hero">
+                <img
+                    src="/vt100logging.png"
+                    alt="vt100logging terminal screenshot"
+                    loading="lazy"
+                    width="1000"
+                    height="700"
+                />
+            </figure>
+            <div class="hero-card product-proof-summary">
+                <p>What the product signals</p>
+                <ul>
+                    {product.proof.map((item) => <li>{item}</li>)}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product snapshot</p>
+                <h2>
+                        A compact developer product that solves one repeated
+                        workflow problem cleanly and publicly.
+                </h2>
+            </div>
+            <a href={product.href} target="_blank" rel="noreferrer"
+                >Visit the PyPI package</a
+            >
+        </div>
+        <div class="product-stat-grid">
+            {
+                product.stats.map((stat) => (
+                    <article class="project-card product-stat">
+                        <strong>{stat.value}</strong>
+                        <p>{stat.label}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell product-highlights">
+        <div>
+            <p class="eyebrow">Who it is for</p>
+            <h2>
+                Useful when scripts, internal tools, or small services need a
+                better operator and developer experience immediately.
+            </h2>
+            <ul class="stack-examples">
+                {product.audience.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+        <div class="project-card stack-card">
+            <p class="card-kicker">What it solves</p>
+            <h2>Better terminal readability without a heavy logging setup.</h2>
+            <p>
+                The package keeps setup minimal while making console output much
+                easier to scan during local runs, tool execution, and service
+                debugging.
+            </p>
+            <div class="product-categories">
+                {
+                    product.categories.map((category) => (
+                        <span>{category}</span>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Public entry points</p>
+                <h2>
+                    The package is easy to inspect, install, and reuse from the
+                    public Python ecosystem.
+                </h2>
+            </div>
+        </div>
+        <div class="project-grid">
+            <article class="project-card stack-card">
+                <p class="card-kicker">Package listing</p>
+                <h2>Published on PyPI</h2>
+                <p>
+                    Installation, usage examples, and release metadata are all
+                    available through the public package page.
+                </p>
+                <div class="product-links">
+                    <a
+                        class="button button-secondary"
+                        href={product.href}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Open PyPI package
+                    </a>
+                </div>
+            </article>
+            <article class="project-card stack-card">
+                <p class="card-kicker">Source code</p>
+                <h2>Public repository</h2>
+                <p>
+                    The repository shows the intentionally small package surface,
+                    wrapper approach, and documentation around usage.
+                </p>
+                <div class="product-links">
+                    <a
+                        class="button button-secondary"
+                        href={product.repo}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Open GitHub repo
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product qualities</p>
+                <h2>
+                    The value is narrow, but the execution is disciplined and
+                    directly useful.
+                </h2>
+            </div>
+        </div>
+        <div class="product-pillars">
+            {
+                product.pillars.map((pillar) => (
+                    <article class="project-card product-pillar">
+                        <h2>{pillar.title}</h2>
+                        <p>{pillar.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Representative surfaces</p>
+                <h2>
+                    A few specific package behaviors that make vt100logging
+                    better than ad hoc repeated logging setup.
+                </h2>
+            </div>
+        </div>
+        <div class="project-grid">
+            {
+                product.featuredTools.map((tool) => (
+                    <article class="project-card tall-card">
+                        <p class="card-kicker">Package surface</p>
+                        <p>{tool}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Why it matters for clients</p>
+                <h2>
+                    vt100logging shows the same engineering preference as the
+                    larger products: small scope, clear value, public
+                    reusability, and practical delivery.
+                </h2>
+            </div>
+        </div>
+        <div class="product-proof-grid">
+            {
+                product.proof.map((item) => (
+                    <article class="project-card product-proof-card">
+                        <h2>Execution signal</h2>
+                        <p>{item}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>
