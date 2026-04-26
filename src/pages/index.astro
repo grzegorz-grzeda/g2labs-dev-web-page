@@ -24,10 +24,6 @@ const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
     )
     .slice(0, 2);
 
-const distilledTechStack = techStack.map((group) => ({
-    ...group,
-    items: group.items.slice(0, 4),
-}));
 const compactTechStackOptions = [
     ...new Set(techStack.flatMap((group) => group.items)),
     "Other",
@@ -68,20 +64,22 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 >
     <section class="hero panel">
         <div>
-            <p class="eyebrow">Connected-product delivery from Poland</p>
+            <p class="eyebrow">Firmware and connected-product delivery</p>
             <h1>
-                Ship connected products without splitting firmware, integration,
-                and product software into separate delivery tracks.
+                Firmware and connected-product engineering for teams shipping
+                real devices.
             </h1>
             <p class="lead">
-                {company.description} The strongest fit is delivery-critical work:
-                firmware rescue, device-to-software integration, and MVP or product
-                work where one engineer needs to keep the technical thread intact
-                end to end.
+                G2Labs helps teams fix, build, and ship embedded systems when
+                firmware, connectivity, and product software have to work
+                together in production. The strongest fit is delivery-critical
+                work: firmware rescue, device-to-software integration, and MVP
+                paths where one engineer needs to keep the technical thread
+                intact.
             </p>
             <div class="hero-actions">
                 <a class="button button-primary" href="/contact"
-                    >Start a conversation</a
+                    >Discuss a project</a
                 >
                 <a class="button button-secondary" href="/work"
                     >See selected work</a
@@ -91,14 +89,9 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         <div class="hero-card">
             <p>Why teams bring in G2Labs</p>
             <ul>
-                <li>
-                    One engineering thread from firmware through integration
-                </li>
-                <li>
-                    Useful in rescue, delivery, and integration-heavy product
-                    work
-                </li>
-                <li>Hands-on execution without agency-style layers</li>
+                <li>Firmware rescue, stabilization, and delivery</li>
+                <li>Device-to-cloud and device-to-app integration</li>
+                <li>Hands-on execution from prototype toward production</li>
             </ul>
         </div>
     </section>
@@ -211,11 +204,11 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <div>
                 <p class="eyebrow">Offers</p>
                 <h2>
-                    Hire G2Labs when product risk sits at the boundary between
-                    the device and everything around it.
+                    Work with G2Labs when product risk sits at the boundary
+                    between the device and everything around it.
                 </h2>
             </div>
-            <a href="/work">See the full work page</a>
+            <a href="/contact">Start with the bottleneck</a>
         </div>
         <div class="project-grid work-grid">
             {
@@ -228,6 +221,13 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     </article>
                 ))
             }
+        </div>
+        <div class="section-cta">
+            <p>
+                Have a stuck firmware slice, integration gap, or MVP that needs
+                a clearer path to production?
+            </p>
+            <a class="button button-primary" href="/contact">Work with me</a>
         </div>
     </section>
 
@@ -267,6 +267,52 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 ))
             }
         </div>
+        <div class="section-cta">
+            <p>
+                These examples are closest to work where embedded behavior,
+                product software, and delivery pressure cannot be separated.
+            </p>
+            <a class="button button-secondary" href="/contact"
+                >Discuss a similar problem</a
+            >
+        </div>
+    </section>
+
+    <section class="panel panel-shell devtools-funnel-strip">
+        <div class="devtools-funnel-copy">
+            <p class="eyebrow">Free tools for developers</p>
+            <h2>
+                DevToolsForMe turns recurring embedded and software tasks into
+                fast browser tools.
+            </h2>
+            <p>
+                The public tool catalog is a live proof surface for G2Labs:
+                practical utilities, embedded-focused workflows, and product
+                delivery that stays lightweight enough to use every day.
+            </p>
+            <div class="hero-actions">
+                <a
+                    class="button button-primary"
+                    href="https://devtoolsforme.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open DevToolsForMe
+                </a>
+                <a class="button button-secondary" href="/products/devtoolsforme">
+                    See why it matters
+                </a>
+            </div>
+        </div>
+        <figure class="product-screenshot-frame devtools-funnel-preview">
+            <img
+                src="/devtoolsforme.png"
+                alt="DevToolsForMe homepage screenshot"
+                loading="lazy"
+                width="1920"
+                height="1459"
+            />
+        </figure>
     </section>
 
     {
@@ -359,8 +405,8 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         <div class="home-contact-copy">
             <p class="eyebrow">Contact</p>
             <h2>
-                Reach out through LinkedIn, GitHub, or Facebook, or send a short
-                inquiry directly from the homepage.
+                Send the bottleneck, the product stage, and the technical
+                context. I will reply with whether G2Labs is a good fit.
             </h2>
             <div class="home-contact-links">
                 {

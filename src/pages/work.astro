@@ -19,14 +19,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="page-intro panel">
         <p class="eyebrow">Work</p>
         <h1>
-            Case studies and offers for teams that need one technical thread
-            across firmware, integration, and delivery.
+            Offers and case studies for teams shipping connected products under
+            real delivery pressure.
         </h1>
         <p class="lead">
-            G2Labs is most useful where the hard part is not a single module,
-            but the boundary between the device, the software around it, and the
-            need to actually ship.
+            G2Labs is most useful when the hard part is not a single module, but
+            the boundary between the device, the software around it, and the
+            need to make it dependable enough to ship.
         </p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="/contact">Discuss a project</a>
+            <a class="button button-secondary" href="#case-studies"
+                >Read case studies</a
+            >
+        </div>
     </section>
 
     <section class="project-grid work-grid">
@@ -99,7 +105,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
     </section>
 
-    <section class="panel panel-shell">
+    <section class="panel panel-shell section-closing-cta">
+        <div>
+            <p class="eyebrow">Start here</p>
+            <h2>
+                The best first message is a concrete bottleneck: what is stuck,
+                what hardware or stack is involved, and what has to ship next.
+            </h2>
+        </div>
+        <a class="button button-primary" href="/contact">Send a project brief</a>
+    </section>
+
+    <section id="case-studies" class="panel panel-shell">
         <div class="section-heading compact-heading">
             <div>
                 <p class="eyebrow">Case studies</p>

@@ -39,9 +39,9 @@ export const services = [
         title: 'Firmware delivery sprint',
         format: 'Offer 01',
         description:
-            'Take ownership of a firmware slice that has to move now: bring-up, feature delivery, stabilization, protocol work, or untangling code that has become hard to ship safely.',
+            'Fix, stabilize, or ship the firmware slice blocking the product: bring-up, RTOS work, wireless behavior, protocol code, field updates, or code that has become hard to change safely.',
         outcome:
-            'Best when a team needs execution and technical clarity more than another coordination layer.',
+            'Best when a product team needs reliable device behavior now, not another broad assessment that leaves implementation untouched.',
         deliverables: [
             'Implementation in C or C++ across bare-metal and RTOS-based targets',
             'Debugging, integration, and focused handover notes for the owning team',
@@ -52,9 +52,9 @@ export const services = [
         title: 'Connected product integration',
         format: 'Offer 02',
         description:
-            'Define and build the boundary between the device and the rest of the product: payloads, APIs, tooling, backend touchpoints, desktop utilities, and the software operators actually rely on.',
+            'Build the part where the device becomes a product: payloads, APIs, MQTT or HTTP flows, desktop or browser utilities, backend touchpoints, and the tools operators actually use.',
         outcome:
-            'Best when firmware exists, but the product still feels fragmented once data leaves the device.',
+            'Best when firmware exists, but the product still breaks down once data leaves the device.',
         deliverables: [
             'Device-to-backend or device-to-app interface definition grounded in real constraints',
             'Utility software, integration code, or supporting product tooling around the embedded core',
@@ -65,9 +65,9 @@ export const services = [
         title: 'MVP and delivery acceleration',
         format: 'Offer 03',
         description:
-            'Move an embedded or connected-product MVP faster by combining implementation with pragmatic planning, selective AI-assisted tooling, and explicit technical decision-making.',
+            'Move an embedded or connected-product MVP from uncertain prototype work toward a buildable product path with hands-on implementation, sharp scope, and explicit technical decisions.',
         outcome:
-            'Best when a small team has to ship across hardware and software without pretending those concerns can be separated later.',
+            'Best when a small team has to ship across hardware and software without waiting until later to discover the risky boundary.',
         deliverables: [
             'Architecture and implementation help on the slice that currently blocks progress',
             'AI-assisted scaffolding, documentation, and internal tooling where it genuinely shortens the loop',

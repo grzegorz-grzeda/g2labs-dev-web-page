@@ -17,15 +17,45 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
 <!doctype html>
 <html lang="en">
     <head>
+        <script is:inline>
+            (() => {
+                const storageKey = "g2labs-theme";
+                const validThemes = new Set(["light", "dark", "system"]);
+                const getStoredTheme = () => {
+                    try {
+                        return localStorage.getItem(storageKey);
+                    } catch {
+                        return null;
+                    }
+                };
+                const storedTheme = getStoredTheme();
+                const themeChoice = validThemes.has(storedTheme)
+                    ? storedTheme
+                    : "system";
+                const systemIsDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                const resolvedTheme =
+                    themeChoice === "system"
+                        ? systemIsDark
+                            ? "dark"
+                            : "light"
+                        : themeChoice;
+
+                document.documentElement.dataset.theme = resolvedTheme;
+                document.documentElement.dataset.themeChoice = themeChoice;
+                document.documentElement.style.colorScheme = resolvedTheme;
+            })();
+        </script>
         {/* Google Analytics integration */}
         {isGoogleAnalyticsConfigured && (
             <>
-                <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
-                <script set:dangerously>
-{`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${googleAnalyticsId}');`}
+                <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+                <script is:inline define:vars={{ googleAnalyticsId }}>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', googleAnalyticsId);
                 </script>
             </>
         )}
@@ -63,29 +93,49 @@ gtag('config', '${googleAnalyticsId}');`}
                             <span>Embedded-first engineering from Poland</span>
                         </span>
                     </a>
-                    <nav class="site-nav" aria-label="Primary">
-                        <div class="site-nav-primary">
-                            <a href="/work">Work</a>
-                            <a class="site-nav-cta" href="/contact">Contact</a>
+                    <div class="header-actions">
+                        <nav class="site-nav" aria-label="Primary">
+                            <div class="site-nav-primary">
+                                <a href="/work">Work</a>
+                                <a class="site-nav-cta" href="/contact">Contact</a>
+                            </div>
+                            <div class="site-nav-secondary">
+                                <a href="/products">Products</a>
+                                <a href="/tech-stack">Tech Stack</a>
+                                <a href="/blog">Blog</a>
+                            </div>
+                        </nav>
+                        <div
+                            class="theme-switch"
+                            role="group"
+                            aria-label="Color theme"
+                        >
+                            <button
+                                type="button"
+                                data-theme-option="light"
+                                aria-pressed="false">Light</button
+                            >
+                            <button
+                                type="button"
+                                data-theme-option="dark"
+                                aria-pressed="false">Dark</button
+                            >
+                            <button
+                                type="button"
+                                data-theme-option="system"
+                                aria-pressed="false">System</button
+                            >
                         </div>
-                        <div class="site-nav-secondary">
-                            <a href="/products">Products</a>
-                            <a href="/tech-stack">Tech Stack</a>
-                            <a href="/blog">Blog</a>
-                        </div>
-                    </nav>
+                    </div>
                 </div>
             </header>
             <main>
                 <slot />
             </main>
-                                        <script set:dangerously>
-                        {`window.dataLayer = window.dataLayer || [];
+            <footer class="site-footer">
                 <a class="footer-brand" href="/">
                     <img
                         class="footer-logo"
-                                        </script>
-                                    </>
                         src="/logo.png"
                         alt="G2Labs logo"
                         width="150"
@@ -159,6 +209,75 @@ gtag('config', '${googleAnalyticsId}');`}
                 </div>
             </footer>
         </div>
+        <script is:inline>
+            (() => {
+                const storageKey = "g2labs-theme";
+                const validThemes = new Set(["light", "dark", "system"]);
+                const getStoredTheme = () => {
+                    try {
+                        return localStorage.getItem(storageKey);
+                    } catch {
+                        return null;
+                    }
+                };
+                const setStoredTheme = (themeChoice) => {
+                    try {
+                        localStorage.setItem(storageKey, themeChoice);
+                    } catch {
+                        return;
+                    }
+                };
+                const mediaQuery = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                );
+                const buttons = [...document.querySelectorAll("[data-theme-option]")];
+
+                const resolveTheme = (themeChoice) => {
+                    if (themeChoice === "system") {
+                        return mediaQuery.matches ? "dark" : "light";
+                    }
+
+                    return themeChoice;
+                };
+
+                const applyTheme = (themeChoice) => {
+                    const nextChoice = validThemes.has(themeChoice)
+                        ? themeChoice
+                        : "system";
+                    const resolvedTheme = resolveTheme(nextChoice);
+
+                    document.documentElement.dataset.theme = resolvedTheme;
+                    document.documentElement.dataset.themeChoice = nextChoice;
+                    document.documentElement.style.colorScheme = resolvedTheme;
+
+                    buttons.forEach((button) => {
+                        const isActive =
+                            button.dataset.themeOption === nextChoice;
+                        button.classList.toggle("is-active", isActive);
+                        button.setAttribute("aria-pressed", String(isActive));
+                    });
+                };
+
+                buttons.forEach((button) => {
+                    button.addEventListener("click", () => {
+                        const nextChoice = button.dataset.themeOption || "system";
+                        setStoredTheme(nextChoice);
+                        applyTheme(nextChoice);
+                    });
+                });
+
+                mediaQuery.addEventListener("change", () => {
+                    const storedTheme = getStoredTheme();
+                    const themeChoice = validThemes.has(storedTheme)
+                        ? storedTheme
+                        : "system";
+                    applyTheme(themeChoice);
+                });
+
+                const storedTheme = getStoredTheme();
+                applyTheme(validThemes.has(storedTheme) ? storedTheme : "system");
+            })();
+        </script>
     </body>
 </html>
 
