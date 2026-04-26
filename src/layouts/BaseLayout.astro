@@ -47,18 +47,6 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                 document.documentElement.style.colorScheme = resolvedTheme;
             })();
         </script>
-        {/* Google Analytics integration */}
-        {isGoogleAnalyticsConfigured && (
-            <>
-                <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
-                <script is:inline define:vars={{ googleAnalyticsId }}>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', googleAnalyticsId);
-                </script>
-            </>
-        )}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
@@ -204,11 +192,138 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                     <div class="footer-legal-links" aria-label="Legal links">
                         <a href="/privacy">Privacy notice</a>
                         <a href="/terms">Terms of use</a>
+                        <button type="button" data-cookie-consent-settings>
+                            Cookie settings
+                        </button>
                     </div>
                     <p>{company.location}</p>
                 </div>
             </footer>
         </div>
+        <div
+            class="cookie-consent"
+            data-cookie-consent
+            hidden
+            role="region"
+            aria-label="Cookie consent"
+        >
+            <div class="cookie-consent-copy">
+                <p class="cookie-consent-title">Analytics consent</p>
+                <p>
+                    G2Labs can use Google Analytics to understand site usage.
+                    Declining keeps analytics disabled. You can read more in the
+                    <a href="/privacy">privacy notice</a>.
+                </p>
+            </div>
+            <div class="cookie-consent-actions">
+                <button
+                    class="button button-secondary"
+                    type="button"
+                    data-cookie-consent-decline
+                >
+                    Decline
+                </button>
+                <button
+                    class="button button-primary"
+                    type="button"
+                    data-cookie-consent-accept
+                >
+                    Accept analytics
+                </button>
+            </div>
+        </div>
+        <script
+            is:inline
+            define:vars={{ googleAnalyticsId, isGoogleAnalyticsConfigured }}
+        >
+            (() => {
+                const storageKey = "g2labs-cookie-consent";
+                const banner = document.querySelector("[data-cookie-consent]");
+                const acceptButton = document.querySelector(
+                    "[data-cookie-consent-accept]",
+                );
+                const declineButton = document.querySelector(
+                    "[data-cookie-consent-decline]",
+                );
+                const settingsButton = document.querySelector(
+                    "[data-cookie-consent-settings]",
+                );
+
+                const getConsent = () => {
+                    try {
+                        return localStorage.getItem(storageKey);
+                    } catch {
+                        return null;
+                    }
+                };
+
+                const setConsent = (choice) => {
+                    try {
+                        localStorage.setItem(storageKey, choice);
+                    } catch {
+                        return;
+                    }
+                };
+
+                const loadAnalytics = () => {
+                    if (
+                        window.g2labsAnalyticsLoaded ||
+                        !isGoogleAnalyticsConfigured
+                    ) {
+                        return;
+                    }
+
+                    window.g2labsAnalyticsLoaded = true;
+                    window.dataLayer = window.dataLayer || [];
+                    window.gtag = function gtag() {
+                        window.dataLayer.push(arguments);
+                    };
+                    window.gtag("js", new Date());
+                    window.gtag("config", googleAnalyticsId);
+
+                    const script = document.createElement("script");
+                    script.async = true;
+                    script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`;
+                    document.head.appendChild(script);
+                };
+
+                const hideBanner = () => {
+                    if (banner) {
+                        banner.hidden = true;
+                    }
+                };
+
+                const showBanner = () => {
+                    if (banner) {
+                        banner.hidden = false;
+                    }
+                };
+
+                const storedConsent = getConsent();
+
+                if (storedConsent === "accepted") {
+                    loadAnalytics();
+                    hideBanner();
+                } else if (storedConsent === "declined") {
+                    hideBanner();
+                } else {
+                    showBanner();
+                }
+
+                acceptButton?.addEventListener("click", () => {
+                    setConsent("accepted");
+                    loadAnalytics();
+                    hideBanner();
+                });
+
+                declineButton?.addEventListener("click", () => {
+                    setConsent("declined");
+                    hideBanner();
+                });
+
+                settingsButton?.addEventListener("click", showBanner);
+            })();
+        </script>
         <script is:inline>
             (() => {
                 const storageKey = "g2labs-theme";

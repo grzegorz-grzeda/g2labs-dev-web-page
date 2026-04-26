@@ -1669,14 +1669,77 @@ main {
     margin: 8px 0 6px;
 }
 
-.footer-legal-links a {
+.footer-legal-links a,
+.footer-legal-links button {
     color: var(--accent-deep);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
     text-decoration: none;
     border-bottom: 1px solid transparent;
 }
 
-.footer-legal-links a:hover {
+.footer-legal-links a:hover,
+.footer-legal-links button:hover {
     border-color: currentColor;
+}
+
+.cookie-consent {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    width: min(760px, calc(100% - 36px));
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background:
+        linear-gradient(180deg, var(--surface-wash), transparent 100%),
+        var(--surface);
+    box-shadow: var(--panel-shadow-hover);
+    backdrop-filter: blur(10px);
+}
+
+.cookie-consent[hidden] {
+    display: none;
+}
+
+.cookie-consent-copy {
+    display: grid;
+    gap: 6px;
+}
+
+.cookie-consent-copy p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.cookie-consent-copy a {
+    color: var(--accent-deep);
+}
+
+.cookie-consent-title {
+    color: var(--text) !important;
+    font-weight: 500;
+}
+
+.cookie-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cookie-consent-actions .button {
+    min-height: 42px;
+    white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -1701,6 +1764,7 @@ main {
     .section-cta,
     .section-closing-cta,
     .devtools-funnel-strip,
+    .cookie-consent,
     .site-footer {
         grid-template-columns: 1fr;
         flex-direction: column;
@@ -1767,6 +1831,16 @@ main {
     .hero h1 {
         font-size: clamp(1.95rem, 8vw, 2.5rem);
         max-width: 18ch;
+    }
+
+    .cookie-consent {
+        right: 10px;
+        bottom: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .cookie-consent-actions {
+        justify-content: flex-start;
     }
 }
 
