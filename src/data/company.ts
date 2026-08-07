@@ -105,6 +105,66 @@ export const projects = [
 
 export const products = [
     {
+        slug: 'knowledgebase',
+        name: 'G2Labs Knowledge Base',
+        label: 'Personal engineering resource',
+        href: 'https://g2labsknowledgebase.netlify.app/',
+        tagline: 'Datasheets and working notes in one lean index.',
+        summary:
+            'A lightweight, searchable library for the technical documents and practical notes used in day-to-day embedded engineering work.',
+        story:
+            'The knowledgebase keeps frequently used component references close at hand without turning personal documentation into a heavyweight platform. Resources are organized by category, enriched with working notes and tags, and searchable from a single focused interface.',
+        audience: [
+            'Embedded engineers who regularly move between component datasheets, boards, and implementation notes',
+            'Makers and developers who want a quick reference for common sensors, MCUs, displays, and power components',
+            'Anyone interested in a lean, maintainable pattern for curating a personal technical library'
+        ],
+        stats: [
+            { value: '14', label: 'resources indexed' },
+            { value: '5', label: 'technical categories' },
+            { value: '1', label: 'searchable index' },
+            { value: 'Lean', label: 'delivery model' }
+        ],
+        pillars: [
+            {
+                title: 'Fast retrieval',
+                description:
+                    'Full-library search across titles, tags, notes, and vendors makes a useful reference easier to recover during active engineering work.'
+            },
+            {
+                title: 'Curated context',
+                description:
+                    'Datasheets sit alongside working notes and structured metadata, keeping practical context closer to the original technical source.'
+            },
+            {
+                title: 'Deliberately lean',
+                description:
+                    'A small static interface and folder-based resource model keep the library easy to host, inspect, and extend without platform overhead.'
+            }
+        ],
+        categories: [
+            'Datasheets',
+            'Working notes',
+            'MCUs',
+            'Development kits',
+            'Sensors',
+            'Displays',
+            'Power'
+        ],
+        featuredTools: [
+            'Search across resource titles, tags, notes, and vendors',
+            'Category filters for quickly narrowing the library',
+            'Curated references for STM32, Nordic, AVR, and 8051 devices',
+            'Resources covering sensors, displays, and power-management parts',
+            'Folder-based metadata that keeps new entries simple to add'
+        ],
+        proof: [
+            'Shows how small internal information systems can remove friction from repeated engineering work',
+            'Demonstrates practical information architecture around real embedded hardware references',
+            'Reflects a preference for focused tools that stay easy to own and evolve'
+        ]
+    },
+    {
         slug: 'vt100logging',
         name: 'vt100logging',
         label: 'Python tooling product',

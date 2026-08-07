@@ -1,0 +1,115 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const product = products.find((entry) => entry.slug === "knowledgebase");
+
+if (!product) {
+    throw new Error("Product showcase data for G2Labs Knowledge Base is missing.");
+}
+---
+
+<BaseLayout
+    title="G2Labs Knowledge Base | Product Showcase | G2Labs"
+    description="A lean, searchable G2Labs library for embedded datasheets, component references, and day-to-day engineering notes."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">{product.label}</p>
+            <h1>{product.name}</h1>
+            <p class="lead">{product.tagline} {product.summary}</p>
+            <p>{product.story}</p>
+            <div class="product-links">
+                <a class="button button-primary" href={product.href} target="_blank" rel="noreferrer">
+                    Open the knowledgebase
+                </a>
+                <a class="button button-secondary" href="/contact">Ask about similar tooling</a>
+            </div>
+        </div>
+        <div class="product-hero-side">
+            <figure class="product-screenshot-frame product-screenshot-frame-hero">
+                <img
+                    src="/knowledgebase.png"
+                    alt="G2Labs Knowledge Base showing its searchable resource catalog"
+                    loading="lazy"
+                    width="1440"
+                    height="1200"
+                />
+            </figure>
+            <div class="hero-card product-proof-summary">
+                <p>What the product signals</p>
+                <ul>{product.proof.map((item) => <li>{item}</li>)}</ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Library snapshot</p>
+                <h2>A compact reference surface built around how embedded engineers actually look things up.</h2>
+            </div>
+            <a href={product.href} target="_blank" rel="noreferrer">Visit the live library</a>
+        </div>
+        <div class="product-stat-grid">
+            {product.stats.map((stat) => (
+                <article class="project-card product-stat">
+                    <strong>{stat.value}</strong>
+                    <p>{stat.label}</p>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="panel panel-shell product-highlights">
+        <div>
+            <p class="eyebrow">Who it is for</p>
+            <h2>For technical work where the right reference needs to be one search away.</h2>
+            <ul class="stack-examples">{product.audience.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="project-card stack-card">
+            <p class="card-kicker">Current coverage</p>
+            <h2>Everyday embedded hardware references.</h2>
+            <p>The initial catalog spans common processors, development boards, sensors, displays, and power components.</p>
+            <div class="product-categories">{product.categories.map((category) => <span>{category}</span>)}</div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product qualities</p>
+                <h2>A personal tool shaped for quick retrieval and low maintenance.</h2>
+            </div>
+        </div>
+        <div class="product-pillars">
+            {product.pillars.map((pillar) => (
+                <article class="project-card product-pillar">
+                    <h2>{pillar.title}</h2>
+                    <p>{pillar.description}</p>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Representative surfaces</p>
+                <h2>The small features that make the library useful during real work.</h2>
+            </div>
+        </div>
+        <div class="product-detail-list">
+            {product.featuredTools.map((item) => (
+                <article class="project-card product-detail-card">
+                    <p class="card-kicker product-detail-label">Library capability</p>
+                    <div class="product-detail-copy"><p>{item}</p></div>
+                </article>
+            ))}
+        </div>
+        <div class="section-cta">
+            <p>Need a focused internal index, reference library, or workflow tool?</p>
+            <a class="button button-primary" href="/contact">Talk to G2Labs</a>
+        </div>
+    </section>
+</BaseLayout>
