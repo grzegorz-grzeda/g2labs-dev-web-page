@@ -5,6 +5,7 @@ import {
     clients,
     education,
     experience,
+    packages,
     publications,
     services,
     techStack,
@@ -33,6 +34,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 >Read case studies</a
             >
         </div>
+    </section>
+
+    <section id="packages" class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Packages</p>
+                <h2>Two easy ways to start</h2>
+            </div>
+        </div>
+        <div class="project-grid work-grid package-grid">
+            {
+                packages.map((pkg) => (
+                    <article class="project-card tall-card package-card">
+                        <p class="card-kicker">{pkg.format}</p>
+                        <h3>{pkg.title}</h3>
+                        <p class="package-tagline">{pkg.tagline}</p>
+                        <p>{pkg.description}</p>
+                        <ul class="service-deliverables">
+                            {pkg.checks.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                        <p class="service-outcome">{pkg.deliverable}</p>
+                        <p class="package-price">{pkg.price}</p>
+                        <a class="button button-primary" href="/contact">
+                            Tell me about your project
+                        </a>
+                    </article>
+                ))
+            }
+        </div>
+        <p class="form-note">
+            Send a short note on the product and the problem. I reply within
+            two business days with a proposed scope.
+        </p>
     </section>
 
     <section class="project-grid work-grid">

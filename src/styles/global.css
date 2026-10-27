@@ -1288,6 +1288,30 @@ main {
     color: var(--muted);
 }
 
+.package-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.package-tagline {
+    font-weight: 600;
+}
+
+.package-price {
+    margin-top: auto;
+    padding-top: 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.package-card .button {
+    align-self: flex-start;
+}
+
+#packages .form-note {
+    margin-top: 18px;
+}
+
 .service-list h3,
 .project-card h3,
 .blog-list-item h2,
