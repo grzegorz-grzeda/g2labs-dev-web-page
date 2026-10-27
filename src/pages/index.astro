@@ -33,8 +33,8 @@ const productPreviewMap = {
     vt100logging: {
         src: "/vt100logging.png",
         alt: "vt100logging terminal screenshot",
-        width: 1000,
-        height: 700,
+        width: 605,
+        height: 86,
         frameClass: "product-screenshot-frame-compact",
     },
     devtoolsforme: {
@@ -47,35 +47,46 @@ const productPreviewMap = {
     micros: {
         src: "/microsproject.png",
         alt: "MicrOS website screenshot",
-        width: 1920,
-        height: 1187,
+        width: 2978,
+        height: 1675,
         frameClass:
             "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
     },
+    knowledgebase: {
+        src: "/knowledgebase.png",
+        alt: "G2Labs Knowledge Base resource catalog",
+        width: 1440,
+        height: 1200,
+        frameClass: "product-screenshot-frame-compact",
+    },
 } as const;
-const homeProducts = products.slice(0, 3);
+// DevToolsForMe already has its own strip on the homepage.
+const homeProducts = products
+    .filter((product) => product.slug !== "devtoolsforme")
+    .slice(0, 3);
 
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
 
 <BaseLayout
     title="G2Labs | Embedded systems and connected software from Poland"
-    description="G2Labs is an embedded-first engineering practice from Poland, delivering firmware, IoT integrations, software tooling, and AI-assisted product delivery."
+    description="G2Labs is an embedded-first engineering practice from Poland: Nordic nRF54 and Zephyr firmware, Thread and BLE connectivity, secure device-to-cloud integration, and agentic, AI-assisted delivery."
 >
     <section class="hero panel">
         <div>
-            <p class="eyebrow">Firmware and connected-product delivery</p>
+            <p class="eyebrow">Nordic nRF54 · Zephyr · Thread · BLE</p>
             <h1>
                 Firmware and connected-product engineering for teams shipping
                 real devices.
             </h1>
             <p class="lead">
                 G2Labs helps teams fix, build, and ship embedded systems when
-                firmware, connectivity, and product software have to work
-                together in production. The strongest fit is delivery-critical
-                work: firmware rescue, device-to-software integration, and MVP
-                paths where one engineer needs to keep the technical thread
-                intact.
+                firmware, low-power wireless, security, and product software
+                have to work together in production. Core stack: Nordic nRF54
+                and nRF52 with Zephyr, Thread and BLE, CoAP and DTLS, and
+                MCUboot updates. The strongest fit is delivery-critical work where one
+                engineer needs to keep the technical thread intact from the
+                radio to the service.
             </p>
             <div class="hero-actions">
                 <a class="button button-primary" href="/contact"
@@ -90,7 +101,8 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <p>Why teams bring in G2Labs</p>
             <ul>
                 <li>Firmware rescue, stabilization, and delivery</li>
-                <li>Device-to-cloud and device-to-app integration</li>
+                <li>Thread and BLE devices on nRF54 / nRF52 with Zephyr</li>
+                <li>Secure device-to-cloud integration and field updates</li>
                 <li>Hands-on execution from prototype toward production</li>
             </ul>
         </div>
@@ -101,8 +113,9 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <span>01</span>
             <h2>Embedded depth</h2>
             <p>
-                Firmware, RTOS work, wireless systems, and hardware-adjacent
-                engineering grounded in actual product delivery.
+                Zephyr and RTOS firmware, Thread and BLE networking, secure
+                boot and updates, and hardware-adjacent engineering grounded in
+                actual product delivery.
             </p>
         </article>
         <article class="panel signal">
@@ -115,11 +128,11 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
         </article>
         <article class="panel signal">
             <span>03</span>
-            <h2>Pragmatic AI workflow</h2>
+            <h2>Agentic engineering, human-owned</h2>
             <p>
-                AI helps accelerate research, prototyping, and documentation,
-                but the engineering decisions still stay explicit and
-                reviewable.
+                AI agents speed up implementation, review, research, and
+                documentation. Architecture, security, and every merged change
+                stay explicit, reviewed, and owned by an engineer.
             </p>
         </article>
     </section>
@@ -157,7 +170,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     alt="Grzegorz Grzęda"
                     loading="lazy"
                     width="896"
-                    height="1152"
+                    height="1088"
                 />
             </figure>
             <div class="about-copy">
@@ -427,7 +440,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <input
                 type="hidden"
                 name="_subject"
-                value="Homepage inquiry from g2labs.dev"
+                value="Homepage inquiry from g2labs.pl"
             />
             <input type="hidden" name="_redirect" value={thankYouPath} />
             <input
@@ -516,7 +529,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 alt="Grzegorz Grzęda in a casual portrait"
                 loading="lazy"
                 width="896"
-                height="1152"
+                height="1088"
             />
         </figure>
     </section>

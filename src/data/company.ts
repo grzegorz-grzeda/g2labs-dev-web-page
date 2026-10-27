@@ -5,10 +5,10 @@ export const company = {
     description:
         'G2Labs is the independent engineering practice of Grzegorz Grzeda, helping teams ship connected products when firmware, device integration, and product software need to stay in one engineering thread.',
     longBio:
-        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, GUI applications, backend integrations, and education-oriented open-source work. The delivery range now spans ESP32, STM32, nRF52, custom low-level targets, IoT protocols such as MQTT, CoAP, and OpenThread, and the software around the device including Node.js, cloud-connected integrations, and utility tooling.',
+        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, FPGA, GUI applications, backend integrations, and education-oriented open-source work. The core stack today is Nordic nRF54 and nRF52 with Zephyr RTOS: Thread and BLE networking, CoAP and DTLS, MCUboot-based updates, and device security, designed end to end from the radio to the service behind it. The wider range covers ESP32, STM32, AVR, BLE, MQTT, and the software around the device, built with an agentic, AI-assisted workflow that keeps every engineering decision reviewable.',
     contactIntro:
         'Use the inquiry form below if it is enabled in this deployment, or reach out through LinkedIn or GitHub if you prefer a direct first contact.',
-    site: 'https://g2labs.dev'
+    site: 'https://g2labs.pl'
 };
 
 export const links = [
@@ -27,10 +27,6 @@ export const links = [
     {
         label: 'CEIDG registry',
         href: 'https://aplikacja.ceidg.gov.pl/ceidg/ceidg.public.ui/SearchDetails.aspx?Id=cc1e7a0d-2beb-453a-90b5-d439a501fd99'
-    },
-    {
-        label: 'Legacy site',
-        href: 'https://www.g2labs.pl/'
     }
 ];
 
@@ -39,11 +35,11 @@ export const services = [
         title: 'Firmware delivery sprint',
         format: 'Offer 01',
         description:
-            'Fix, stabilize, or ship the firmware slice blocking the product: bring-up, RTOS work, wireless behavior, protocol code, field updates, or code that has become hard to change safely.',
+            'Fix, stabilize, or ship the firmware slice blocking the product: board bring-up, Zephyr and other RTOS work, BLE and Thread behavior, protocol code, MCUboot field updates, or code that has become hard to change safely.',
         outcome:
             'Best when a product team needs reliable device behavior now, not another broad assessment that leaves implementation untouched.',
         deliverables: [
-            'Implementation in C or C++ across bare-metal and RTOS-based targets',
+            'Implementation in C or C++ across bare-metal and RTOS-based targets, with Nordic nRF54 / nRF52 and Zephyr as the current home ground',
             'Debugging, integration, and focused handover notes for the owning team',
             'A short plan around the riskiest technical decisions instead of broad discovery theater'
         ]
@@ -52,11 +48,11 @@ export const services = [
         title: 'Connected product integration',
         format: 'Offer 02',
         description:
-            'Build the part where the device becomes a product: payloads, APIs, MQTT or HTTP flows, desktop or browser utilities, backend touchpoints, and the tools operators actually use.',
+            'Build the part where the device becomes a product: secure CoAP or MQTT flows, payloads and APIs, provisioning and update paths, backend touchpoints, and the tools operators actually use.',
         outcome:
             'Best when firmware exists, but the product still breaks down once data leaves the device.',
         deliverables: [
-            'Device-to-backend or device-to-app interface definition grounded in real constraints',
+            'Device-to-backend or device-to-app interface definition grounded in real constraints, including transport security (DTLS / TLS) and key handling',
             'Utility software, integration code, or supporting product tooling around the embedded core',
             'Practical alignment on where responsibilities sit between firmware, backend, and UI layers'
         ]
@@ -70,13 +66,19 @@ export const services = [
             'Best when a small team has to ship across hardware and software without waiting until later to discover the risky boundary.',
         deliverables: [
             'Architecture and implementation help on the slice that currently blocks progress',
-            'AI-assisted scaffolding, documentation, and internal tooling where it genuinely shortens the loop',
+            'Agentic, AI-assisted implementation, documentation, and internal tooling where it genuinely shortens the loop, with human review kept in charge',
             'A realistic path from prototype behavior to something a team can keep building on'
         ]
     }
 ];
 
 export const projects = [
+    {
+        name: 'Secure low-power wireless device (under NDA)',
+        category: 'Low-power wireless and device security',
+        summary: 'End-to-end architecture and firmware for a connected low-power device, covering mesh networking, secured device-to-service communication, and the service side. Client and product details are under NDA.',
+        impact: 'The kind of work where radio behavior, transport security, and the service on the other side have to be designed as one system.'
+    },
     {
         name: 'Medical robotics software stack',
         category: 'Embedded systems and product integration',
@@ -104,138 +106,6 @@ export const projects = [
 ];
 
 export const products = [
-    {
-        slug: 'knowledgebase',
-        name: 'G2Labs Knowledge Base',
-        label: 'Personal engineering resource',
-        href: 'https://g2labsknowledgebase.netlify.app/',
-        tagline: 'Datasheets and working notes in one lean index.',
-        summary:
-            'A lightweight, searchable library for the technical documents and practical notes used in day-to-day embedded engineering work.',
-        story:
-            'The knowledgebase keeps frequently used component references close at hand without turning personal documentation into a heavyweight platform. Resources are organized by category, enriched with working notes and tags, and searchable from a single focused interface.',
-        audience: [
-            'Embedded engineers who regularly move between component datasheets, boards, and implementation notes',
-            'Makers and developers who want a quick reference for common sensors, MCUs, displays, and power components',
-            'Anyone interested in a lean, maintainable pattern for curating a personal technical library'
-        ],
-        stats: [
-            { value: '14', label: 'resources indexed' },
-            { value: '5', label: 'technical categories' },
-            { value: '1', label: 'searchable index' },
-            { value: 'Lean', label: 'delivery model' }
-        ],
-        pillars: [
-            {
-                title: 'Fast retrieval',
-                description:
-                    'Full-library search across titles, tags, notes, and vendors makes a useful reference easier to recover during active engineering work.'
-            },
-            {
-                title: 'Curated context',
-                description:
-                    'Datasheets sit alongside working notes and structured metadata, keeping practical context closer to the original technical source.'
-            },
-            {
-                title: 'Deliberately lean',
-                description:
-                    'A small static interface and folder-based resource model keep the library easy to host, inspect, and extend without platform overhead.'
-            }
-        ],
-        categories: [
-            'Datasheets',
-            'Working notes',
-            'MCUs',
-            'Development kits',
-            'Sensors',
-            'Displays',
-            'Power'
-        ],
-        featuredTools: [
-            'Search across resource titles, tags, notes, and vendors',
-            'Category filters for quickly narrowing the library',
-            'Curated references for STM32, Nordic, AVR, and 8051 devices',
-            'Resources covering sensors, displays, and power-management parts',
-            'Folder-based metadata that keeps new entries simple to add'
-        ],
-        proof: [
-            'Shows how small internal information systems can remove friction from repeated engineering work',
-            'Demonstrates practical information architecture around real embedded hardware references',
-            'Reflects a preference for focused tools that stay easy to own and evolve'
-        ]
-    },
-    {
-        slug: 'vt100logging',
-        name: 'vt100logging',
-        label: 'Python tooling product',
-        href: 'https://pypi.org/project/vt100logging/',
-        repo: 'https://github.com/g2labs-grzegorz-grzeda/vt100logging',
-        tagline: 'A small Python logging product built for readable terminal output.',
-        summary:
-            'A lightweight Python utility that makes terminal logs easier to scan by adding VT100-colored output on top of the standard logging module.',
-        story:
-            'vt100logging started as a narrow internal-quality problem worth solving properly: developers and operators read terminal logs constantly, so log severity should be visible immediately without setting up a heavy logging stack. The result is a small public product with a clear install path, a thin API surface, and packaging disciplined enough for reuse.',
-        audience: [
-            'Python developers who want cleaner console logs without first building custom formatter infrastructure',
-            'Engineers shipping scripts, internal tools, or small services where terminal readability matters every day',
-            'Teams who value compact public utilities that remove repetitive setup without adding framework weight'
-        ],
-        stats: [
-            { value: 'PyPI', label: 'published package' },
-            { value: 'MIT', label: 'licensed' },
-            { value: 'Win11 + Ubuntu', label: 'tested OS targets' },
-            { value: 'console + file', label: 'logging modes' }
-        ],
-        pillars: [
-            {
-                title: 'Low-friction setup',
-                description:
-                    'The package is designed to be installed and initialized quickly through a small API instead of forcing a full custom logging configuration for common cases.'
-            },
-            {
-                title: 'Readable terminal output',
-                description:
-                    'Colored VT100 levels make debug, info, warning, and error messages easier to separate visually in real terminal output where developers need to spot issues fast.'
-            },
-            {
-                title: 'Practical utility scope',
-                description:
-                    'It stays focused on a narrow but genuinely useful problem: shipping a better logging experience for scripts, tools, services, and internal developer workflows.'
-            }
-        ],
-        categories: [
-            'Python',
-            'Logging',
-            'CLI tooling',
-            'Developer utilities',
-            'Open source',
-            'PyPI'
-        ],
-        featuredTools: [
-            'Simple `vt100logging_init()` entry point for module-level setup',
-            'Colored VT100 formatting for debug, info, warning, and error levels',
-            'Convenience helpers such as `D`, `I`, `W`, `E`, and `EX`',
-            'Optional sidecar file logging for persistent local logs',
-            'Minimal package surface suitable for scripts and internal tools'
-        ],
-        miniature: {
-            helperLabel: 'Python logging helper',
-            nav: ['PyPI', 'GitHub', 'Usage'],
-            searchLabel: 'Install vt100logging',
-            summaryStats: ['PyPI package', 'MIT', 'colored output'],
-            categoryPreview: ['Python', 'Logging', 'CLI', 'Utilities'],
-            toolPreview: [
-                { category: 'Init', name: 'vt100logging_init' },
-                { category: 'Levels', name: 'D / I / W / E' },
-                { category: 'Exceptions', name: 'EX helper' }
-            ]
-        },
-        proof: [
-            'Shows product judgment around small but high-frequency developer pain points, not only larger public-facing apps',
-            'Demonstrates packaging, distribution, and maintenance discipline through a Python utility shipped publicly on PyPI',
-            'Fits the same G2Labs pattern as other tools: narrow scope, clear value, and pragmatic implementation over unnecessary framework weight'
-        ]
-    },
     {
         slug: 'micros',
         name: 'MicrOS',
@@ -383,6 +253,138 @@ export const products = [
             'Demonstrates practical browser-side implementation for technical utilities, not only brochure-style frontend work',
             'Reflects G2Labs strengths in embedded workflows, utility software, and delivery of small but genuinely useful engineering surfaces'
         ]
+    },
+    {
+        slug: 'knowledgebase',
+        name: 'G2Labs Knowledge Base',
+        label: 'Personal engineering resource',
+        href: 'https://g2labsknowledgebase.netlify.app/',
+        tagline: 'Datasheets and working notes in one lean index.',
+        summary:
+            'A lightweight, searchable library for the technical documents and practical notes used in day-to-day embedded engineering work.',
+        story:
+            'The knowledgebase keeps frequently used component references close at hand without turning personal documentation into a heavyweight platform. Resources are organized by category, enriched with working notes and tags, and searchable from a single focused interface.',
+        audience: [
+            'Embedded engineers who regularly move between component datasheets, boards, and implementation notes',
+            'Makers and developers who want a quick reference for common sensors, MCUs, displays, and power components',
+            'Anyone interested in a lean, maintainable pattern for curating a personal technical library'
+        ],
+        stats: [
+            { value: '14', label: 'resources indexed' },
+            { value: '5', label: 'technical categories' },
+            { value: '1', label: 'searchable index' },
+            { value: 'Lean', label: 'delivery model' }
+        ],
+        pillars: [
+            {
+                title: 'Fast retrieval',
+                description:
+                    'Full-library search across titles, tags, notes, and vendors makes a useful reference easier to recover during active engineering work.'
+            },
+            {
+                title: 'Curated context',
+                description:
+                    'Datasheets sit alongside working notes and structured metadata, keeping practical context closer to the original technical source.'
+            },
+            {
+                title: 'Deliberately lean',
+                description:
+                    'A small static interface and folder-based resource model keep the library easy to host, inspect, and extend without platform overhead.'
+            }
+        ],
+        categories: [
+            'Datasheets',
+            'Working notes',
+            'MCUs',
+            'Development kits',
+            'Sensors',
+            'Displays',
+            'Power'
+        ],
+        featuredTools: [
+            'Search across resource titles, tags, notes, and vendors',
+            'Category filters for quickly narrowing the library',
+            'Curated references for STM32, Nordic, AVR, and 8051 devices',
+            'Resources covering sensors, displays, and power-management parts',
+            'Folder-based metadata that keeps new entries simple to add'
+        ],
+        proof: [
+            'Shows how small internal information systems can remove friction from repeated engineering work',
+            'Demonstrates practical information architecture around real embedded hardware references',
+            'Reflects a preference for focused tools that stay easy to own and evolve'
+        ]
+    },
+    {
+        slug: 'vt100logging',
+        name: 'vt100logging',
+        label: 'Python tooling product',
+        href: 'https://pypi.org/project/vt100logging/',
+        repo: 'https://github.com/g2labs-grzegorz-grzeda/vt100logging',
+        tagline: 'A small Python logging product built for readable terminal output.',
+        summary:
+            'A lightweight Python utility that makes terminal logs easier to scan by adding VT100-colored output on top of the standard logging module.',
+        story:
+            'vt100logging started as a narrow internal-quality problem worth solving properly: developers and operators read terminal logs constantly, so log severity should be visible immediately without setting up a heavy logging stack. The result is a small public product with a clear install path, a thin API surface, and packaging disciplined enough for reuse.',
+        audience: [
+            'Python developers who want cleaner console logs without first building custom formatter infrastructure',
+            'Engineers shipping scripts, internal tools, or small services where terminal readability matters every day',
+            'Teams who value compact public utilities that remove repetitive setup without adding framework weight'
+        ],
+        stats: [
+            { value: 'PyPI', label: 'published package' },
+            { value: 'MIT', label: 'licensed' },
+            { value: 'Win11 + Ubuntu', label: 'tested OS targets' },
+            { value: 'console + file', label: 'logging modes' }
+        ],
+        pillars: [
+            {
+                title: 'Low-friction setup',
+                description:
+                    'The package is designed to be installed and initialized quickly through a small API instead of forcing a full custom logging configuration for common cases.'
+            },
+            {
+                title: 'Readable terminal output',
+                description:
+                    'Colored VT100 levels make debug, info, warning, and error messages easier to separate visually in real terminal output where developers need to spot issues fast.'
+            },
+            {
+                title: 'Practical utility scope',
+                description:
+                    'It stays focused on a narrow but genuinely useful problem: shipping a better logging experience for scripts, tools, services, and internal developer workflows.'
+            }
+        ],
+        categories: [
+            'Python',
+            'Logging',
+            'CLI tooling',
+            'Developer utilities',
+            'Open source',
+            'PyPI'
+        ],
+        featuredTools: [
+            'Simple `vt100logging_init()` entry point for module-level setup',
+            'Colored VT100 formatting for debug, info, warning, and error levels',
+            'Convenience helpers such as `D`, `I`, `W`, `E`, and `EX`',
+            'Optional sidecar file logging for persistent local logs',
+            'Minimal package surface suitable for scripts and internal tools'
+        ],
+        miniature: {
+            helperLabel: 'Python logging helper',
+            nav: ['PyPI', 'GitHub', 'Usage'],
+            searchLabel: 'Install vt100logging',
+            summaryStats: ['PyPI package', 'MIT', 'colored output'],
+            categoryPreview: ['Python', 'Logging', 'CLI', 'Utilities'],
+            toolPreview: [
+                { category: 'Init', name: 'vt100logging_init' },
+                { category: 'Levels', name: 'D / I / W / E' },
+                { category: 'Exceptions', name: 'EX helper' }
+            ]
+        },
+        proof: [
+            'Shows product judgment around small but high-frequency developer pain points, not only larger public-facing apps',
+            'Demonstrates packaging, distribution, and maintenance discipline through a Python utility shipped publicly on PyPI',
+            'Fits the same G2Labs pattern as other tools: narrow scope, clear value, and pragmatic implementation over unnecessary framework weight'
+        ]
     }
 ];
 
@@ -414,11 +416,11 @@ export const experience = [
         company: 'Sigma Software Group',
         role: 'Senior Software Developer',
         summary:
-            'Worked in client-facing embedded product delivery where implementation work and execution planning had to stay closely aligned.',
+            'Client-facing embedded product delivery for connected low-power devices, from firmware to end-to-end architecture. Project details are under NDA.',
         highlights: [
-            'Embedded product-program delivery in a consulting environment',
-            'Implementation work on delivery-critical product slices',
-            'Technical risk kept visible in planning and cross-team execution'
+            'Firmware for low-power wireless devices on a modern RTOS',
+            'Secure device-to-service communication',
+            'End-to-end architecture work with an agentic, AI-assisted development workflow'
         ]
     },
     {
@@ -435,74 +437,38 @@ export const experience = [
     },
     {
         period: '2021-2023',
-        company: 'Baracoda Group',
+        company: 'Baracoda Group (Alsoft)',
         role: 'Senior Embedded Software Engineer',
         summary:
-            'Worked on connected embedded product delivery in the Baracoda environment, focused on dependable device behavior and product-side integration.',
+            'Connected embedded product delivery for Baracoda through Alsoft, a Baracoda company, focused on dependable device behavior, Wi-Fi connectivity, and safe field updates.',
         highlights: [
-            'Senior embedded ownership in a connected-product setting',
-            'Device-side implementation under real product constraints',
+            'ESP32 firmware for an intelligent weight scale with Wi-Fi connectivity',
+            'FOTA update paths tied to real device behavior in the field',
             'Embedded delivery tied to broader product behavior and field reliability'
         ]
     },
     {
-        period: '2021-2023',
-        company: 'Alsoft, a Baracoda company',
-        role: 'Senior Embedded Software Engineer',
-        summary:
-            'Parallel role context listed in the profile for the same Baracoda delivery period, reflecting the company structure around the work.',
-        highlights: [
-            'Senior embedded role in the same delivery window as Baracoda',
-            'Connected-device implementation and product integration context',
-            'Part of the product environment behind the Baracoda work period'
-        ]
-    },
-    {
-        period: '2021-2021',
+        period: '2020-2021',
         company: 'Softwarely',
-        role: 'Team Leader',
+        role: 'Senior Embedded Software Engineer, then Team Leader',
         summary:
-            'Led the embedded team while delivering BLE Mesh sensoring solutions in a short but management-heavy delivery period.',
+            'Started as a senior embedded engineer and moved into leading the embedded team while delivering BLE Mesh sensoring solutions.',
         highlights: [
-            'Embedded team leadership',
+            'Embedded team leadership with hands-on technical ownership',
             'Delivery ownership for BLE Mesh sensoring work',
-            'Hands-on technical leadership rather than coordination-only management'
-        ]
-    },
-    {
-        period: '2020-2021',
-        company: 'Softwarely',
-        role: 'Senior Embedded Software Engineer',
-        summary:
-            'Worked as a senior embedded engineer in the same Softwarely period, contributing directly to delivery while moving into team leadership.',
-        highlights: [
-            'Senior embedded implementation role',
-            'Overlap between direct engineering and team leadership responsibilities',
-            'Delivery in wireless and sensor-oriented embedded work'
-        ]
-    },
-    {
-        period: '2021-2021',
-        company: 'SeaChange Poland',
-        role: 'Client Roku Developer',
-        summary:
-            'Developed client application software for the Roku platform in a production media environment serving large subscriber bases.',
-        highlights: [
-            'Roku client software in BrightScript',
-            'Consumer-facing client behavior in production platforms',
-            'Work shaped by platform constraints and live product expectations'
+            'Wireless and sensor-oriented embedded implementation'
         ]
     },
     {
         period: '2020-2021',
         company: 'SeaChange Poland',
-        role: 'Client Legacy Embedded Engineer',
+        role: 'Client Legacy Embedded Engineer, then Client Roku Developer',
         summary:
-            'Developed software for legacy Motorola set-top-box platforms together with supporting utility software.',
+            'Developed client software for legacy Motorola set-top-box platforms, then Roku client applications for a production media platform serving large subscriber bases.',
         highlights: [
             'Client application development in C for legacy embedded platforms',
-            'Python utility software around product delivery',
-            'Production maintenance and evolution under legacy constraints'
+            'Roku client software in BrightScript under live product expectations',
+            'Python utility software around product delivery'
         ]
     },
     {
@@ -510,7 +476,7 @@ export const experience = [
         company: 'DisplayLink',
         role: 'Senior Embedded Development Engineer',
         summary:
-            'Short senior embedded engineering period at DisplayLink in late 2019 and early 2020.',
+            'Senior embedded development inside an established specialist product organization.',
         highlights: [
             'Senior embedded development role',
             'Experience inside an established embedded engineering organization',
@@ -593,52 +559,28 @@ export const experience = [
 
 export const caseStudies = [
     {
-        title: 'Python logging utility turned into a reusable public product',
-        client: 'G2Labs',
-        period: '2026-present',
-        context:
-            'A repeated internal tooling problem: console logs were useful but slower to scan than they should be during development, debugging, and small-service work.',
-        challenge:
-            'The goal was to improve day-to-day Python logging without creating another heavyweight abstraction or private one-off helper that would be hard to reuse later.',
-        ownership:
-            'Defined the package scope, shaped the thin API, implemented the formatter and helper layer, and published the result as a reusable Python package with public documentation and distribution.',
-        work: [
-            'Designed the package around the standard logging module instead of replacing it wholesale',
-            'Implemented VT100-colored console formatting, convenience helpers, and optional file logging',
-            'Published the package to PyPI and backed it with a public GitHub repository for inspection and reuse'
-        ],
-        proofPoints: [
-            'Useful for clients who need small internal tools and utilities treated with product discipline rather than left as disposable scripts',
-            'Shows that G2Labs can package and publish practical Python tooling, not only firmware and browser-side utilities',
-            'Relevant when the right answer is a thin, well-shaped developer product instead of a larger platform investment'
-        ],
-        stack: ['Python', 'logging', 'PyPI packaging', 'developer tooling'],
-        outcome:
-            'Turned a recurring engineering pain point into a small public product that is installable, inspectable, and reusable across future tooling work.'
-    },
-    {
-        title: 'Embedded delivery under real program constraints',
+        title: 'Secure low-power wireless device, from radio to service',
         client: 'Sigma Software Group',
         period: '2023-present',
         context:
-            'Client-facing embedded product delivery where implementation risk and planning risk affected each other directly.',
+            'Client-facing connected-device delivery where low-power mesh networking, secure transport, and the service behind the device had to be designed together. Client and product details are under NDA.',
         challenge:
-            'The work needed embedded execution and delivery planning to stay aligned instead of drifting into separate tracks.',
+            'Network behavior, transport security, and the end-to-end architecture all affect each other, so none of them could be designed in isolation or handed between separate teams.',
         ownership:
-            'Owned embedded-software delivery on implementation slices where technical decisions directly shaped planning and delivery confidence.',
+            'Owned firmware and end-to-end architecture work, including the secured communication path between the device and the backend.',
         work: [
-            'Owned embedded software delivery on client product work',
-            'Worked on the slices where implementation risk directly affected delivery planning',
-            'Kept technical decisions grounded in what the product team actually had to ship'
+            'Firmware for a low-power wireless device on a modern RTOS',
+            'Secured device-to-service communication',
+            'End-to-end architecture spanning device, network, and service, delivered with an agentic, AI-assisted workflow under human review'
         ],
         proofPoints: [
-            'Useful when teams need an engineer who can implement and still speak clearly about delivery risk',
-            'Closer to rescue and execution work than to broad discovery or presentation-heavy consulting',
-            'Best fit where software and hardware realities have to stay visible in the same conversation'
+            'Relevant for products built on low-power mesh networking',
+            'Shows ownership of transport security, not only application firmware',
+            'Useful when teams need one engineer who keeps the device, the network, and the service in the same design'
         ],
-        stack: ['embedded software', 'product integration', 'delivery planning'],
+        stack: ['low-power wireless', 'mesh networking', 'device security', 'under NDA'],
         outcome:
-            'Useful where teams need firmware execution and realistic planning in the same conversation, not passed between separate roles.'
+            'A connected-device architecture where radio, security, and service decisions are made together instead of being reconciled late.'
     },
     {
         title: 'Connected weighing product with ESP32, Wi-Fi, and FOTA',
@@ -667,7 +609,7 @@ export const caseStudies = [
     {
         title: 'Consumer-facing client delivery for large LATAM media platforms',
         client: 'SeaChange',
-        period: '2020-2022',
+        period: '2020-2021',
         context:
             'A production subscriber platform where client software quality was visible immediately and scale made regressions expensive.',
         challenge:
@@ -687,6 +629,30 @@ export const caseStudies = [
         stack: ['Roku client software', 'HLS streaming', 'backend connectivity'],
         outcome:
             'Helped keep product-facing software reliable in an environment where regressions were visible immediately and scale amplified every mistake.'
+    },
+    {
+        title: 'Python logging utility turned into a reusable public product',
+        client: 'G2Labs',
+        period: '2026-present',
+        context:
+            'A repeated internal tooling problem: console logs were useful but slower to scan than they should be during development, debugging, and small-service work.',
+        challenge:
+            'The goal was to improve day-to-day Python logging without creating another heavyweight abstraction or private one-off helper that would be hard to reuse later.',
+        ownership:
+            'Defined the package scope, shaped the thin API, implemented the formatter and helper layer, and published the result as a reusable Python package with public documentation and distribution.',
+        work: [
+            'Designed the package around the standard logging module instead of replacing it wholesale',
+            'Implemented VT100-colored console formatting, convenience helpers, and optional file logging',
+            'Published the package to PyPI and backed it with a public GitHub repository for inspection and reuse'
+        ],
+        proofPoints: [
+            'Useful for clients who need small internal tools and utilities treated with product discipline rather than left as disposable scripts',
+            'Shows that G2Labs can package and publish practical Python tooling, not only firmware and browser-side utilities',
+            'Relevant when the right answer is a thin, well-shaped developer product instead of a larger platform investment'
+        ],
+        stack: ['Python', 'logging', 'PyPI packaging', 'developer tooling'],
+        outcome:
+            'Turned a recurring engineering pain point into a small public product that is installable, inspectable, and reusable across future tooling work.'
     }
 ];
 
@@ -695,24 +661,23 @@ export const techStack = [
         area: 'Embedded targets and firmware',
         summary:
             'Used in embedded delivery, device bring-up, firmware implementation, RTOS-oriented work, and hardware-adjacent product development.',
-        items: ['C', 'C++', 'ESP32', 'STM32', 'nRF52', 'AVR', 'MSP430', 'ZephyrOS', 'RTOS kernels', 'bootloaders', 'FOTA'],
+        items: ['C', 'C++', 'Zephyr RTOS', 'nRF54', 'nRF52', 'ESP32', 'STM32', 'AVR', 'MSP430', 'MCUboot', 'RTOS kernels', 'bootloaders', 'FOTA', 'FPGA'],
         examples: [
             'Baracoda: ESP32 firmware and field update behavior for an intelligent weight scale',
             'M2MTeam: embedded software in medical robotics work',
             'MicrOS: lightweight RTOS work across startup code, linker flow, kernel surfaces, and board bring-up',
-            'Profile-backed experience across bare-metal and OS-driven embedded implementation'
+            'Military University of Technology: picosecond time measurement in Xilinx FPGAs'
         ]
     },
     {
         area: 'Connectivity and product integration',
         summary:
             'Used where device behavior has to connect reliably to the rest of the product and survive real deployment conditions.',
-        items: ['Wi-Fi', 'BLE', 'MQTT', 'CoAP', 'OpenThread', 'UART', 'SPI', 'I2C', 'REST APIs', 'device-to-cloud integration'],
+        items: ['OpenThread', 'Thread', 'BLE', 'BLE Mesh', 'Wi-Fi', 'CoAP', 'DTLS', 'MQTT', 'UART', 'SPI', 'I2C', 'REST APIs', 'device-to-cloud integration'],
         examples: [
             'Baracoda: Wi-Fi connectivity and update flows around the product boundary',
             'Connected-product consulting: firmware, payloads, tooling, and backend touchpoints kept in one thread',
-            'Earlier telemetry-oriented work: hardware interfaces and connected-system integration',
-            'Profile-based experience explicitly covering MQTT, CoAP, OpenThread, and custom APIs'
+            'Softwarely: BLE Mesh sensoring solutions'
         ]
     },
     {
@@ -724,7 +689,6 @@ export const techStack = [
             'G2Labs delivery work: utility software and web-adjacent tooling around embedded products',
             'SeaChange: software around a production media platform with integration constraints',
             'Internal and client tooling: Python and Node.js where they shortened delivery loops',
-            'Profile-backed range including WordPress and cloud-connected integrations for modern hardware platforms',
             'MicrOS: simulator-backed iteration and sample execution through QEMU'
         ]
     },
@@ -732,13 +696,13 @@ export const techStack = [
         area: 'Workflow and engineering environment',
         summary:
             'Used in daily delivery, debugging, collaboration, and implementation flow across client, product, and open-source work.',
-        items: ['GitHub', 'GitLab', 'VS Code', 'Eclipse', 'CMake', 'Ninja', 'Linux (Ubuntu)', 'CI workflows'],
+        items: ['GitHub', 'GitLab', 'VS Code', 'Eclipse', 'CMake', 'Ninja', 'west', 'Linux (Ubuntu)', 'CI workflows', 'agentic coding (Claude Code)'],
         examples: [
             'Client delivery across established teams: GitHub and GitLab workflows',
             'Embedded development: VS Code, Eclipse, and Linux (Ubuntu) in day-to-day implementation',
             'Consulting and product work: CI-backed iteration and handover support',
             'MicrOS: public build flow and contributor-facing tooling around CMake and Ninja',
-            'Profile-listed workflow depth including CMake and open-source developer tooling'
+            'Agentic coding: AI agents for implementation, review, and documentation, with every change still reviewed and owned by an engineer'
         ]
     }
 ];
@@ -788,7 +752,7 @@ export const business = {
         'https://aplikacja.ceidg.gov.pl/ceidg/ceidg.public.ui/SearchDetails.aspx?Id=cc1e7a0d-2beb-453a-90b5-d439a501fd99',
     responseWindow: 'Usually within 2 business days',
     engagementModes: [
-        'Remote-first from Poland',
+        'Remote-first from Poland, B2B',
         'Hands-on implementation and delivery support',
         'Useful for rescue work, integration work, and focused MVP delivery'
     ]

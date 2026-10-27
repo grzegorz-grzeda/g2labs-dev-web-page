@@ -1,3 +1,16 @@
 [build]
 command = "npm run build"
 publish = "dist"
+
+# g2labs.pl is the primary domain; send the .dev aliases there.
+[[redirects]]
+from = "https://g2labs.dev/*"
+to = "https://g2labs.pl/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://www.g2labs.dev/*"
+to = "https://g2labs.pl/:splat"
+status = 301
+force = true
