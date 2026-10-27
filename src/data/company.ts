@@ -7,7 +7,8 @@ export const company = {
     longBio:
         'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, FPGA, GUI applications, backend integrations, and education-oriented open-source work. The core stack today is Nordic nRF54 and nRF52 with Zephyr RTOS: Thread and BLE networking, CoAP and DTLS, MCUboot-based updates, and device security, designed end to end from the radio to the service behind it. The wider range covers ESP32, STM32, AVR, BLE, MQTT, and the software around the device, built with an agentic, AI-assisted workflow that keeps every engineering decision reviewable.',
     contactIntro:
-        'Use the inquiry form below if it is enabled in this deployment, or reach out through LinkedIn or GitHub if you prefer a direct first contact.',
+        'Email me directly or use the form. A short note on the product stage, the hardware, and what is blocking you is enough to start.',
+    email: 'grzegorz.grzeda@g2labs.pl',
     site: 'https://g2labs.pl'
 };
 
@@ -28,6 +29,17 @@ export const links = [
         label: 'CEIDG registry',
         href: 'https://aplikacja.ceidg.gov.pl/ceidg/ceidg.public.ui/SearchDetails.aspx?Id=cc1e7a0d-2beb-453a-90b5-d439a501fd99'
     }
+];
+
+// Short list for the "primary stack" field in contact forms.
+export const stackAreas = [
+    'Nordic nRF / Zephyr',
+    'Thread, BLE, or other wireless',
+    'ESP32',
+    'STM32 or other MCU',
+    'Device-to-cloud / backend integration',
+    'Desktop or developer tooling',
+    'Other'
 ];
 
 export const services = [

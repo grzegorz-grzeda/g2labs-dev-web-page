@@ -1,13 +1,9 @@
 ---
-import { business, company, links, services, techStack } from "../data/company";
+import { business, company, links, services, stackAreas } from "../data/company";
 import { herotofuEndpoint, isFormConfigured, thankYouPath } from "../lib/forms";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const serviceOptions = [...services.map((service) => service.title), "Other"];
-const techStackOptions = [
-    ...new Set(techStack.flatMap((group) => group.items)),
-    "Other",
-];
 const productStageOptions = [
     "Discovery",
     "Prototype",
@@ -25,20 +21,19 @@ const productStageOptions = [
 >
     <section class="page-intro panel">
         <p class="eyebrow">Contact</p>
-        <h1>
-            Let’s discuss firmware, connected products, or the software around
-            them.
-        </h1>
+        <h1>Let’s talk about your device.</h1>
         <p class="lead">{company.contactIntro}</p>
+        <p class="lead">
+            <a class="contact-email" href={`mailto:${company.email}`}
+                >{company.email}</a
+            >
+        </p>
     </section>
 
     <section class="contact-grid">
         <div class="panel panel-shell">
-            <p class="eyebrow">How G2Labs works</p>
-            <h2>
-                Best fit for teams that need technical clarity more than agency
-                choreography.
-            </h2>
+            <p class="eyebrow">How it works</p>
+            <h2>Start with one concrete problem.</h2>
             <p>
                 Most engagements start with a concrete problem: firmware
                 delivery, wireless integration, MVP scope for a connected
@@ -72,7 +67,7 @@ const productStageOptions = [
         <div class="section-heading compact-heading">
             <div>
                 <p class="eyebrow">Inquiry form</p>
-                <h2>Enough structure to start with a useful first message.</h2>
+                <h2>Send an inquiry</h2>
             </div>
         </div>
 
@@ -145,11 +140,11 @@ const productStageOptions = [
                     </select>
                 </label>
                 <label>
-                    <span>Primary tech stack involved</span>
+                    <span>Main area</span>
                     <select name="primary_tech_stack">
-                        <option value="">Select stack</option>
+                        <option value="">Select one</option>
                         {
-                            techStackOptions.map((option) => (
+                            stackAreas.map((option) => (
                                 <option value={option}>{option}</option>
                             ))
                         }
@@ -181,13 +176,14 @@ const productStageOptions = [
                 >
                     Send inquiry
                 </button>
-                <p class="form-note">
-                    {
-                        isFormConfigured
-                            ? "Submissions are active for this deployment and will post directly to Herotofu."
-                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions."
-                    }
-                </p>
+                {
+                    !isFormConfigured && (
+                        <p class="form-note">
+                            The form is offline right now. Please email me
+                            directly.
+                        </p>
+                    )
+                }
             </div>
         </form>
     </section>
@@ -195,11 +191,8 @@ const productStageOptions = [
     <section class="panel panel-shell trust-section">
         <div class="section-heading compact-heading">
             <div>
-                <p class="eyebrow">Business details</p>
-                <h2>
-                    Verification, registry, and practical engagement details in
-                    one place.
-                </h2>
+                <p class="eyebrow">Company</p>
+                <h2>Business details</h2>
             </div>
         </div>
         <div class="trust-grid">
@@ -218,6 +211,13 @@ const productStageOptions = [
             <div class="trust-item">
                 <span>Active since</span>
                 <strong>{business.started}</strong>
+            </div>
+            <div class="trust-item">
+                <span>Email</span>
+                <strong
+                    ><a href={`mailto:${company.email}`}>{company.email}</a
+                    ></strong
+                >
             </div>
             <div class="trust-item">
                 <span>Country</span>
@@ -240,12 +240,4 @@ const productStageOptions = [
         </p>
     </section>
 
-    <section class="panel panel-shell contact-note">
-        <p class="eyebrow">What helps</p>
-        <h2>
-            When you reach out, include the product stage, hardware platform,
-            software surface around it, and the delivery problem that currently
-            hurts most.
-        </h2>
-    </section>
 </BaseLayout>

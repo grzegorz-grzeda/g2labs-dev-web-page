@@ -18,7 +18,9 @@ Astro 5 static site deployed on Netlify.
 
 - `src/data/company.ts`: almost all site content lives here: bio, links,
   services (offers), projects, products, clients, experience timeline, case
-  studies, tech stack, education, business details. Prefer editing data here
+  studies, tech stack, education, business details, contact email
+  (`company.email`) and the short `stackAreas` list used by contact forms.
+  Prefer editing data here
   over hardcoding copy in pages.
 - `src/pages/`: routes. `index.astro` (home), `work.astro`, `tech-stack.astro`,
   `contact.astro`, `products/*`, `blog/*`, legal pages.
@@ -62,6 +64,11 @@ report a change as verified until CI is green.
 - Do not invent clients, numbers, results, or dates. Use only facts the owner
   stated or that are already in `company.ts`. Ask when unsure.
 - Do not publish the hourly rate anywhere on the site.
+- Keep the homepage short (hero, clients, services, 3 case studies, MicrOS +
+  DevToolsForMe, about, latest posts, contact); details belong on /work and
+  /products. Prefer short headings over long abstract sentences.
+- Never show deployment or developer notes (e.g. form backend names) to
+  visitors.
 - Keep the tone direct and engineering-focused; avoid marketing filler and
   generic lines ("profile-backed", "parallel role context", and the like).
 - Blog posts are written in the owner's first-person voice; keep claims general

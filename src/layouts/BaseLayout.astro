@@ -62,58 +62,37 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
     <body>
         <div class="page-shell">
             <header class="site-header">
-                <div class="site-header-meta">
-                    <span>{company.location}</span>
-                    <span>Embedded, Thread &amp; BLE, IoT software</span>
-                    <span>Agentic, AI-assisted workflow</span>
-                </div>
                 <div class="site-header-shell panel">
                     <a class="brand" href="/">
                         <img
                             class="brand-logo"
                             src="/logo.png"
                             alt="G2Labs logo"
-                            width="68"
-                            height="68"
+                            width="52"
+                            height="52"
                         />
                         <span class="brand-copy">
-                            <strong>G2Labs Grzegorz Grzęda</strong>
-                            <span>Embedded-first engineering from Poland</span>
+                            <strong>G2Labs</strong>
+                            <span>Grzegorz Grzęda · embedded engineering</span>
                         </span>
                     </a>
                     <div class="header-actions">
                         <nav class="site-nav" aria-label="Primary">
-                            <div class="site-nav-primary">
-                                <a href="/work">Work</a>
-                                <a class="site-nav-cta" href="/contact">Contact</a>
-                            </div>
-                            <div class="site-nav-secondary">
-                                <a href="/products">Products</a>
-                                <a href="/tech-stack">Tech Stack</a>
-                                <a href="/blog">Blog</a>
-                            </div>
+                            <a href="/work">Work</a>
+                            <a href="/products">Products</a>
+                            <a href="/tech-stack">Tech Stack</a>
+                            <a href="/blog">Blog</a>
+                            <a class="site-nav-cta" href="/contact">Contact</a>
                         </nav>
-                        <div
-                            class="theme-switch"
-                            role="group"
-                            aria-label="Color theme"
+                        <button
+                            type="button"
+                            class="theme-toggle"
+                            data-theme-toggle
+                            aria-label="Color theme: System"
+                            title="Color theme: System"
                         >
-                            <button
-                                type="button"
-                                data-theme-option="light"
-                                aria-pressed="false">Light</button
-                            >
-                            <button
-                                type="button"
-                                data-theme-option="dark"
-                                aria-pressed="false">Dark</button
-                            >
-                            <button
-                                type="button"
-                                data-theme-option="system"
-                                aria-pressed="false">System</button
-                            >
-                        </div>
+                            <span aria-hidden="true" data-theme-icon>◐</span>
+                        </button>
                     </div>
                 </div>
             </header>
@@ -345,7 +324,12 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                 const mediaQuery = window.matchMedia(
                     "(prefers-color-scheme: dark)",
                 );
-                const buttons = [...document.querySelectorAll("[data-theme-option]")];
+                const toggle = document.querySelector("[data-theme-toggle]");
+                const icon = document.querySelector("[data-theme-icon]");
+                const order = ["system", "light", "dark"];
+                const icons = { system: "\u25D0", light: "\u2600\uFE0E", dark: "\u263E\uFE0E" };
+                const labels = { system: "System", light: "Light", dark: "Dark" };
+                let currentChoice = "system";
 
                 const resolveTheme = (themeChoice) => {
                     if (themeChoice === "system") {
@@ -361,24 +345,26 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                         : "system";
                     const resolvedTheme = resolveTheme(nextChoice);
 
+                    currentChoice = nextChoice;
                     document.documentElement.dataset.theme = resolvedTheme;
                     document.documentElement.dataset.themeChoice = nextChoice;
                     document.documentElement.style.colorScheme = resolvedTheme;
 
-                    buttons.forEach((button) => {
-                        const isActive =
-                            button.dataset.themeOption === nextChoice;
-                        button.classList.toggle("is-active", isActive);
-                        button.setAttribute("aria-pressed", String(isActive));
-                    });
+                    if (icon) {
+                        icon.textContent = icons[nextChoice];
+                    }
+                    if (toggle) {
+                        const label = `Color theme: ${labels[nextChoice]}`;
+                        toggle.setAttribute("aria-label", label);
+                        toggle.setAttribute("title", label);
+                    }
                 };
 
-                buttons.forEach((button) => {
-                    button.addEventListener("click", () => {
-                        const nextChoice = button.dataset.themeOption || "system";
-                        setStoredTheme(nextChoice);
-                        applyTheme(nextChoice);
-                    });
+                toggle?.addEventListener("click", () => {
+                    const nextChoice =
+                        order[(order.indexOf(currentChoice) + 1) % order.length];
+                    setStoredTheme(nextChoice);
+                    applyTheme(nextChoice);
                 });
 
                 mediaQuery.addEventListener("change", () => {
