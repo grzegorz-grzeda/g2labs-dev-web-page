@@ -39,7 +39,7 @@ npm run build
 1. Push this repository to GitHub.
 2. In Netlify, create a new site from that GitHub repository.
 3. Use the default build settings from `netlify.toml`.
-4. In Netlify domain settings, add `g2labs.dev` as the custom domain.
+4. In Netlify domain settings, add `g2labs.pl` as the primary custom domain (keep `g2labs.dev` as a domain alias redirecting to it).
 5. Update your domain DNS so the apex and `www` records point to Netlify.
 6. Enable HTTPS in Netlify after DNS is verified.
 

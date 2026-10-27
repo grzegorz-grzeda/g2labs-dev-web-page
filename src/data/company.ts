@@ -5,10 +5,10 @@ export const company = {
     description:
         'G2Labs is the independent engineering practice of Grzegorz Grzeda, helping teams ship connected products when firmware, device integration, and product software need to stay in one engineering thread.',
     longBio:
-        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, FPGA, GUI applications, backend integrations, and education-oriented open-source work. Current delivery centres on Nordic nRF54L15 and nRF52 with Zephyr RTOS: OpenThread networking, CoAP secured with DTLS, MCUboot-based updates, and device security, designed end to end from the radio to the service behind it. The wider range covers ESP32, STM32, AVR, BLE, MQTT, and the software around the device, built with an agentic, AI-assisted workflow that keeps every engineering decision reviewable.',
+        'Since 2010, Grzegorz has worked across embedded firmware, wireless systems, electronics, FPGA, GUI applications, backend integrations, and education-oriented open-source work. The core stack today is Nordic nRF54 and nRF52 with Zephyr RTOS: Thread and BLE networking, CoAP and DTLS, MCUboot-based updates, and device security, designed end to end from the radio to the service behind it. The wider range covers ESP32, STM32, AVR, BLE, MQTT, and the software around the device, built with an agentic, AI-assisted workflow that keeps every engineering decision reviewable.',
     contactIntro:
         'Use the inquiry form below if it is enabled in this deployment, or reach out through LinkedIn or GitHub if you prefer a direct first contact.',
-    site: 'https://g2labs.dev'
+    site: 'https://g2labs.pl'
 };
 
 export const links = [
@@ -74,9 +74,9 @@ export const services = [
 
 export const projects = [
     {
-        name: 'Secure Thread device on nRF54L15',
+        name: 'Secure low-power wireless device (under NDA)',
         category: 'Low-power wireless and device security',
-        summary: 'End-to-end architecture and firmware for a Thread-connected device on Nordic nRF54L15 with Zephyr, OpenThread, and CoAP secured with DTLS.',
+        summary: 'End-to-end architecture and firmware for a connected low-power device, covering mesh networking, secured device-to-service communication, and the service side. Client and product details are under NDA.',
         impact: 'The kind of work where radio behavior, transport security, and the service on the other side have to be designed as one system.'
     },
     {
@@ -416,10 +416,10 @@ export const experience = [
         company: 'Sigma Software Group',
         role: 'Senior Software Developer',
         summary:
-            'Client-facing embedded product delivery on Nordic nRF54L15 with Zephyr: OpenThread networking, CoAP over DTLS, and end-to-end architecture from the device to the service behind it.',
+            'Client-facing embedded product delivery for connected low-power devices, from firmware to end-to-end architecture. Project details are under NDA.',
         highlights: [
-            'Thread device firmware on nRF54L15 with Zephyr and OpenThread',
-            'Secure device-to-service communication with CoAP over DTLS',
+            'Firmware for low-power wireless devices on a modern RTOS',
+            'Secure device-to-service communication',
             'End-to-end architecture work with an agentic, AI-assisted development workflow'
         ]
     },
@@ -559,26 +559,26 @@ export const experience = [
 
 export const caseStudies = [
     {
-        title: 'Secure Thread device on nRF54L15, from radio to service',
+        title: 'Secure low-power wireless device, from radio to service',
         client: 'Sigma Software Group',
         period: '2023-present',
         context:
-            'Client-facing connected-device delivery on Nordic nRF54L15, where low-power Thread networking, secure transport, and the service behind the device had to be designed together.',
+            'Client-facing connected-device delivery where low-power mesh networking, secure transport, and the service behind the device had to be designed together. Client and product details are under NDA.',
         challenge:
-            'Thread mesh behavior, DTLS-secured CoAP, and the end-to-end architecture all affect each other, so none of them could be designed in isolation or handed between separate teams.',
+            'Network behavior, transport security, and the end-to-end architecture all affect each other, so none of them could be designed in isolation or handed between separate teams.',
         ownership:
-            'Owned firmware and end-to-end architecture work on Zephyr and OpenThread, including the secure CoAP path between the device and the backend.',
+            'Owned firmware and end-to-end architecture work, including the secured communication path between the device and the backend.',
         work: [
-            'Firmware for nRF54L15 on Zephyr RTOS with OpenThread networking',
-            'CoAP over DTLS for secure device-to-service communication',
+            'Firmware for a low-power wireless device on a modern RTOS',
+            'Secured device-to-service communication',
             'End-to-end architecture spanning device, network, and service, delivered with an agentic, AI-assisted workflow under human review'
         ],
         proofPoints: [
-            'Directly relevant for products moving to nRF54 or to Thread-based low-power networking',
+            'Relevant for products built on low-power mesh networking',
             'Shows ownership of transport security, not only application firmware',
             'Useful when teams need one engineer who keeps the device, the network, and the service in the same design'
         ],
-        stack: ['nRF54L15', 'Zephyr RTOS', 'OpenThread', 'CoAP + DTLS'],
+        stack: ['low-power wireless', 'mesh networking', 'device security', 'under NDA'],
         outcome:
             'A connected-device architecture where radio, security, and service decisions are made together instead of being reconciled late.'
     },
@@ -661,12 +661,11 @@ export const techStack = [
         area: 'Embedded targets and firmware',
         summary:
             'Used in embedded delivery, device bring-up, firmware implementation, RTOS-oriented work, and hardware-adjacent product development.',
-        items: ['C', 'C++', 'Zephyr RTOS', 'nRF54L15', 'nRF52', 'ESP32', 'STM32', 'AVR', 'MSP430', 'MCUboot', 'RTOS kernels', 'bootloaders', 'FOTA', 'FPGA'],
+        items: ['C', 'C++', 'Zephyr RTOS', 'nRF54', 'nRF52', 'ESP32', 'STM32', 'AVR', 'MSP430', 'MCUboot', 'RTOS kernels', 'bootloaders', 'FOTA', 'FPGA'],
         examples: [
             'Baracoda: ESP32 firmware and field update behavior for an intelligent weight scale',
             'M2MTeam: embedded software in medical robotics work',
             'MicrOS: lightweight RTOS work across startup code, linker flow, kernel surfaces, and board bring-up',
-            'Sigma Software Group: nRF54L15 firmware on Zephyr RTOS',
             'Military University of Technology: picosecond time measurement in Xilinx FPGAs'
         ]
     },
@@ -678,7 +677,6 @@ export const techStack = [
         examples: [
             'Baracoda: Wi-Fi connectivity and update flows around the product boundary',
             'Connected-product consulting: firmware, payloads, tooling, and backend touchpoints kept in one thread',
-            'Sigma Software Group: OpenThread networking and CoAP secured with DTLS',
             'Softwarely: BLE Mesh sensoring solutions'
         ]
     },

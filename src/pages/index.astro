@@ -82,9 +82,9 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <p class="lead">
                 G2Labs helps teams fix, build, and ship embedded systems when
                 firmware, low-power wireless, security, and product software
-                have to work together in production. Current focus: Nordic
-                nRF54 and Zephyr with OpenThread, CoAP over DTLS, and MCUboot
-                updates. The strongest fit is delivery-critical work where one
+                have to work together in production. Core stack: Nordic nRF54
+                and nRF52 with Zephyr, Thread and BLE, CoAP and DTLS, and
+                MCUboot updates. The strongest fit is delivery-critical work where one
                 engineer needs to keep the technical thread intact from the
                 radio to the service.
             </p>
@@ -440,7 +440,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
             <input
                 type="hidden"
                 name="_subject"
-                value="Homepage inquiry from g2labs.dev"
+                value="Homepage inquiry from g2labs.pl"
             />
             <input type="hidden" name="_redirect" value={thankYouPath} />
             <input
