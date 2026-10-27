@@ -1,9 +1,13 @@
 ---
-import { business, company, links, services, stackAreas } from "../data/company";
+import { business, company, links, packages, services, stackAreas } from "../data/company";
 import { herotofuEndpoint, isFormConfigured, thankYouPath } from "../lib/forms";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const serviceOptions = [...services.map((service) => service.title), "Other"];
+const serviceOptions = [
+    ...packages.map((pkg) => pkg.title),
+    ...services.map((service) => service.title),
+    "Other",
+];
 const productStageOptions = [
     "Discovery",
     "Prototype",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { company, links, products, projects, services } from '../src/data/company';
+import { company, links, packages, products, projects, services } from '../src/data/company';
 
 describe('company data scaffold', () => {
     it('exposes the core brand details', () => {
@@ -12,6 +12,16 @@ describe('company data scaffold', () => {
     it('keeps at least one service and one project entry', () => {
         expect(services.length).toBeGreaterThan(0);
         expect(projects.length).toBeGreaterThan(0);
+    });
+
+    it('keeps fixed-scope packages complete and free of hourly rates', () => {
+        expect(packages.length).toBeGreaterThan(0);
+        for (const pkg of packages) {
+            expect(pkg.title).toBeTruthy();
+            expect(pkg.checks.length).toBeGreaterThan(0);
+            expect(pkg.price).toMatch(/^From /);
+            expect(pkg.price).not.toMatch(/\/\s*h(our)?\b/i);
+        }
     });
 
     it('includes the knowledgebase product with complete showcase data', () => {

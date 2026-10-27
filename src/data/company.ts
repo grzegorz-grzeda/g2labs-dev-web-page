@@ -84,6 +84,41 @@ export const services = [
     }
 ];
 
+// Fixed-scope packages: small, clearly bounded engagements that are easy to
+// buy as a first step. Shown on /work and offered in the contact form.
+export const packages = [
+    {
+        title: 'Nordic / Zephyr firmware audit',
+        format: 'Fixed scope · 2–3 weeks',
+        tagline: 'Find out what is wrong with your firmware before your customers do.',
+        description:
+            'A structured review of the code and configuration of an nRF52 or nRF54 device built on Zephyr or the nRF Connect SDK.',
+        checks: [
+            'Security: key handling, DTLS / TLS, MCUboot setup, image signing, and rollback',
+            'Architecture and code quality: threads, memory, drivers, Devicetree and Kconfig',
+            'Field updates: the OTA path and the risk of bricking devices in the field'
+        ],
+        deliverable:
+            'A written report with findings ranked by severity and concrete recommendations, plus a one-hour walkthrough with your team.',
+        price: 'From €1,900 net'
+    },
+    {
+        title: 'Zephyr / nRF expert on retainer',
+        format: 'Monthly · 10 or 20 hours',
+        tagline: 'A senior embedded engineer on your team without a senior hire.',
+        description:
+            'A fixed block of hours each month for a team that already has its own developers and needs a second pair of experienced eyes.',
+        checks: [
+            'Code review and architecture consultations',
+            'Hard problems: Thread, BLE, CoAP, bootloader, and low-power behavior',
+            'Helping developers who are new to Zephyr get productive faster'
+        ],
+        deliverable:
+            'Asynchronous contact over Slack or email and one call a week. Unused hours do not roll over.',
+        price: 'From €800 net / month'
+    }
+];
+
 export const projects = [
     {
         name: 'Secure low-power wireless device (under NDA)',
