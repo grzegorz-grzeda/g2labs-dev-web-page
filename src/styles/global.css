@@ -1906,6 +1906,19 @@ main {
     transition: background-color 180ms ease, border-color 180ms ease;
 }
 
+.theme-icon {
+    display: none;
+    width: 18px;
+    height: 18px;
+}
+
+:root:not([data-theme-choice]) .theme-icon-system,
+[data-theme-choice="system"] .theme-icon-system,
+[data-theme-choice="light"] .theme-icon-light,
+[data-theme-choice="dark"] .theme-icon-dark {
+    display: block;
+}
+
 .theme-toggle:hover {
     background: var(--surface-strong);
     border-color: var(--accent-soft-border);
