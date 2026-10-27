@@ -4,11 +4,10 @@ import {
     caseStudies,
     clients,
     company,
-    experience,
     links,
     products,
     services,
-    techStack,
+    stackAreas,
 } from "../data/company";
 import { herotofuEndpoint, isFormConfigured, thankYouPath } from "../lib/forms";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -24,26 +23,12 @@ const blogPosts = (await getCollection("blog", ({ data }) => !data.draft))
     )
     .slice(0, 2);
 
-const compactTechStackOptions = [
-    ...new Set(techStack.flatMap((group) => group.items)),
-    "Other",
-];
+// Client work only; the full list lives on /work.
+const homeCaseStudies = caseStudies
+    .filter((study) => study.client !== "G2Labs")
+    .slice(0, 3);
 
 const productPreviewMap = {
-    vt100logging: {
-        src: "/vt100logging.png",
-        alt: "vt100logging terminal screenshot",
-        width: 605,
-        height: 86,
-        frameClass: "product-screenshot-frame-compact",
-    },
-    devtoolsforme: {
-        src: "/devtoolsforme.png",
-        alt: "DevToolsForMe homepage screenshot",
-        width: 1920,
-        height: 1459,
-        frameClass: "product-screenshot-frame-compact",
-    },
     micros: {
         src: "/microsproject.png",
         alt: "MicrOS website screenshot",
@@ -52,176 +37,68 @@ const productPreviewMap = {
         frameClass:
             "product-screenshot-frame-compact product-screenshot-frame-micros-compact",
     },
-    knowledgebase: {
-        src: "/knowledgebase.png",
-        alt: "G2Labs Knowledge Base resource catalog",
-        width: 1440,
-        height: 1200,
+    devtoolsforme: {
+        src: "/devtoolsforme.png",
+        alt: "DevToolsForMe homepage screenshot",
+        width: 2266,
+        height: 1721,
         frameClass: "product-screenshot-frame-compact",
     },
 } as const;
-// DevToolsForMe already has its own strip on the homepage.
-const homeProducts = products
-    .filter((product) => product.slug !== "devtoolsforme")
-    .slice(0, 3);
+const homeProducts = products.filter(
+    (product) => product.slug in productPreviewMap,
+);
 
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
 
 <BaseLayout
-    title="G2Labs | Embedded systems and connected software from Poland"
-    description="G2Labs is an embedded-first engineering practice from Poland: Nordic nRF54 and Zephyr firmware, Thread and BLE connectivity, secure device-to-cloud integration, and agentic, AI-assisted delivery."
+    title="G2Labs | Embedded firmware for connected devices"
+    description="G2Labs is the independent embedded engineering practice of Grzegorz Grzęda: Nordic nRF54 and Zephyr firmware, Thread and BLE connectivity, secure device-to-cloud integration, and field updates."
 >
     <section class="hero panel">
         <div>
-            <p class="eyebrow">Nordic nRF54 · Zephyr · Thread · BLE</p>
-            <h1>
-                Firmware and connected-product engineering for teams shipping
-                real devices.
-            </h1>
+            <p class="eyebrow">Embedded engineering · Poland · B2B</p>
+            <h1>Firmware for connected devices, from the radio to the server.</h1>
             <p class="lead">
-                G2Labs helps teams fix, build, and ship embedded systems when
-                firmware, low-power wireless, security, and product software
-                have to work together in production. Core stack: Nordic nRF54
-                and nRF52 with Zephyr, Thread and BLE, CoAP and DTLS, and
-                MCUboot updates. The strongest fit is delivery-critical work where one
-                engineer needs to keep the technical thread intact from the
-                radio to the service.
+                I'm Grzegorz Grzęda. Since 2010 I have built embedded software
+                for products that ship: Nordic nRF54 and nRF52 with Zephyr,
+                Thread and BLE, secure device-to-cloud communication, and field
+                updates with MCUboot. G2Labs is my independent practice, working
+                remotely with teams across Europe.
             </p>
             <div class="hero-actions">
-                <a class="button button-primary" href="/contact"
+                <a class="button button-primary" href="#contact"
                     >Discuss a project</a
                 >
-                <a class="button button-secondary" href="/work"
-                    >See selected work</a
-                >
+                <a class="button button-secondary" href="/work">See my work</a>
             </div>
         </div>
         <div class="hero-card">
-            <p>Why teams bring in G2Labs</p>
+            <p>What I take on</p>
             <ul>
-                <li>Firmware rescue, stabilization, and delivery</li>
+                <li>Firmware rescue and stabilization</li>
                 <li>Thread and BLE devices on nRF54 / nRF52 with Zephyr</li>
-                <li>Secure device-to-cloud integration and field updates</li>
-                <li>Hands-on execution from prototype toward production</li>
+                <li>Secure device-to-cloud links and OTA updates</li>
+                <li>MVPs from prototype to production</li>
             </ul>
         </div>
     </section>
 
-    <section class="signal-grid">
-        <article class="panel signal">
-            <span>01</span>
-            <h2>Embedded depth</h2>
-            <p>
-                Zephyr and RTOS firmware, Thread and BLE networking, secure
-                boot and updates, and hardware-adjacent engineering grounded in
-                actual product delivery.
-            </p>
-        </article>
-        <article class="panel signal">
-            <span>02</span>
-            <h2>Software range</h2>
-            <p>
-                Desktop, backend, web integrations, and utility tooling that
-                connect devices to the rest of the product stack.
-            </p>
-        </article>
-        <article class="panel signal">
-            <span>03</span>
-            <h2>Agentic engineering, human-owned</h2>
-            <p>
-                AI agents speed up implementation, review, research, and
-                documentation. Architecture, security, and every merged change
-                stay explicit, reviewed, and owned by an engineer.
-            </p>
-        </article>
-    </section>
-
     <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Selected companies</p>
-                <h2>
-                    Experience shaped in product teams that ship beyond
-                    prototype stage.
-                </h2>
-            </div>
-        </div>
+        <p class="eyebrow">Worked with</p>
         <div class="tag-row client-row">
             {clients.map((client) => <span>{client}</span>)}
         </div>
     </section>
 
-    <section class="panel panel-shell about-strip">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">About the studio</p>
-                <h2>
-                    Operating from Poland, built for clients who need one
-                    engineer to understand the device, the software around it,
-                    and the path to delivery.
-                </h2>
-            </div>
-        </div>
-        <div class="about-studio-grid">
-            <figure class="about-portrait">
-                <img
-                    src="/me-2.jpeg"
-                    alt="Grzegorz Grzęda"
-                    loading="lazy"
-                    width="896"
-                    height="1088"
-                />
-            </figure>
-            <div class="about-copy">
-                <p>
-                    {company.longBio}
-                </p>
-                <p>
-                    Public work includes <a href="/products/micros">MicrOS</a>,
-                    a minimal MIT-licensed embedded OS with CMake, Ninja, and
-                    QEMU-based workflows. The live project site and <a
-                        href="https://github.com/microsproject/micros"
-                        target="_blank"
-                        rel="noreferrer">public repository</a
-                    > sit alongside power electronics experiments, embedded tooling,
-                    and developer-facing software projects. The same practical approach
-                    carries into client delivery.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="panel panel-shell market-fit-strip">
-        <div>
-            <p class="eyebrow">Best fit</p>
-            <h2>
-                Built for established teams, still useful when a startup MVP
-                needs to cross hardware and software boundaries fast.
-            </h2>
-        </div>
-        <div class="fit-points">
-            <p>
-                Medium and large companies needing firmware ownership,
-                integration clarity, or delivery support.
-            </p>
-            <p>
-                Startup teams building an MVP where embedded, backend, and
-                interface layers cannot be split into separate tracks.
-            </p>
-        </div>
-    </section>
-
     <section class="panel panel-shell">
         <div class="section-heading compact-heading">
             <div>
-                <p class="eyebrow">Offers</p>
-                <h2>
-                    Work with G2Labs when product risk sits at the boundary
-                    between the device and everything around it.
-                </h2>
+                <p class="eyebrow">Services</p>
+                <h2>How I can help</h2>
             </div>
-            <a href="/contact">Start with the bottleneck</a>
+            <a href="/work">Details</a>
         </div>
         <div class="project-grid work-grid">
             {
@@ -235,30 +112,19 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 ))
             }
         </div>
-        <div class="section-cta">
-            <p>
-                Have a stuck firmware slice, integration gap, or MVP that needs
-                a clearer path to production?
-            </p>
-            <a class="button button-primary" href="/contact">Work with me</a>
-        </div>
     </section>
 
     <section class="panel panel-shell">
-        <div class="section-heading">
+        <div class="section-heading compact-heading">
             <div>
                 <p class="eyebrow">Case studies</p>
-                <h2>
-                    Representative examples of where firmware ownership, product
-                    integration, and delivery pressure had to stay in the same
-                    conversation.
-                </h2>
+                <h2>Selected client work</h2>
             </div>
-            <a href="/work">Open the work page</a>
+            <a href="/work#case-studies">All work and experience</a>
         </div>
         <div class="case-study-grid case-study-row-list">
             {
-                caseStudies.map((study) => (
+                homeCaseStudies.map((study) => (
                     <article class="project-card case-study-card case-study-row-card">
                         <p class="card-kicker case-study-row-label">
                             {study.client} / {study.period}
@@ -271,156 +137,152 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                                     <span>{item}</span>
                                 ))}
                             </div>
-                            <p>{study.ownership}</p>
-                            <p class="service-outcome">
-                                {study.proofPoints[0]}
-                            </p>
                         </div>
                     </article>
                 ))
             }
         </div>
-        <div class="section-cta">
-            <p>
-                These examples are closest to work where embedded behavior,
-                product software, and delivery pressure cannot be separated.
-            </p>
-            <a class="button button-secondary" href="/contact"
-                >Discuss a similar problem</a
-            >
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Open source and products</p>
+                <h2>Things I build in public</h2>
+            </div>
+            <a href="/products">All products</a>
+        </div>
+        <div class="project-grid work-grid product-row-list product-row-list-home">
+            {
+                homeProducts.map((product) => {
+                    const screenshot =
+                        productPreviewMap[
+                            product.slug as keyof typeof productPreviewMap
+                        ];
+
+                    return (
+                        <article class="project-card stack-card tall-card product-row-card product-row-card-home">
+                            <figure
+                                class={`product-screenshot-frame ${screenshot.frameClass}`}
+                            >
+                                <img
+                                    src={screenshot.src}
+                                    alt={screenshot.alt}
+                                    loading="lazy"
+                                    width={screenshot.width}
+                                    height={screenshot.height}
+                                />
+                            </figure>
+                            <div class="product-row-content product-row-content-home">
+                                <p class="card-kicker">{product.label}</p>
+                                <h3>{product.name}</h3>
+                                <p>{product.summary}</p>
+                                <div class="tag-row stack-tags">
+                                    {product.categories
+                                        .slice(0, 5)
+                                        .map((category) => (
+                                            <span>{category}</span>
+                                        ))}
+                                </div>
+                                <div class="product-links">
+                                    <a
+                                        class="button button-primary"
+                                        href={product.href}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Open {product.name}
+                                    </a>
+                                    <a
+                                        class="button button-secondary"
+                                        href={`/products/${product.slug}`}
+                                    >
+                                        More details
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    );
+                })
+            }
         </div>
     </section>
 
-    <section class="panel panel-shell devtools-funnel-strip">
-        <div class="devtools-funnel-copy">
-            <p class="eyebrow">Free tools for developers</p>
-            <h2>
-                DevToolsForMe turns recurring embedded and software tasks into
-                fast browser tools.
-            </h2>
-            <p>
-                The public tool catalog is a live proof surface for G2Labs:
-                practical utilities, embedded-focused workflows, and product
-                delivery that stays lightweight enough to use every day.
-            </p>
-            <div class="hero-actions">
-                <a
-                    class="button button-primary"
-                    href="https://devtoolsforme.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Open DevToolsForMe
-                </a>
-                <a class="button button-secondary" href="/products/devtoolsforme">
-                    See why it matters
-                </a>
+    <section class="panel panel-shell about-strip">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">About</p>
+                <h2>One engineer for the device and the software around it</h2>
             </div>
         </div>
-        <figure class="product-screenshot-frame devtools-funnel-preview">
-            <img
-                src="/devtoolsforme.png"
-                alt="DevToolsForMe homepage screenshot"
-                loading="lazy"
-                width="1920"
-                height="1459"
-            />
-        </figure>
+        <div class="about-studio-grid">
+            <figure class="about-portrait">
+                <img
+                    src="/me-2.jpeg"
+                    alt="Grzegorz Grzęda"
+                    loading="lazy"
+                    width="896"
+                    height="1088"
+                />
+            </figure>
+            <div class="about-copy">
+                <p>{company.longBio}</p>
+                <p>
+                    G2Labs stays intentionally small: you work directly with the
+                    engineer who writes the code, so decisions stay explicit and
+                    communication stays short. The full timeline, education, and
+                    publications are on the <a href="/work">work page</a>.
+                </p>
+            </div>
+        </div>
     </section>
 
     {
-        homeProducts.length > 0 && (
+        blogPosts.length > 0 && (
             <section class="panel panel-shell">
                 <div class="section-heading compact-heading">
                     <div>
-                        <p class="eyebrow">Public proof</p>
-                        <h2>
-                            Public products that make the engineering taste
-                            visible before a client call ever happens.
-                        </h2>
+                        <p class="eyebrow">Writing</p>
+                        <h2>Latest posts</h2>
                     </div>
-                    <a href="/products">See the public product work</a>
+                    <a href="/blog">All posts</a>
                 </div>
-                <div class="project-grid work-grid product-row-list product-row-list-home">
-                    {homeProducts.map((product) => {
-                        const screenshot =
-                            productPreviewMap[
-                                product.slug as keyof typeof productPreviewMap
-                            ];
-                        const secondaryHref =
-                            "repo" in product && product.repo
-                                ? product.repo
-                                : product.href;
-                        const secondaryLabel =
-                            "repo" in product && product.repo
-                                ? "Open repository"
-                                : "Open live project";
-
-                        return (
-                            <article class="project-card stack-card tall-card product-row-card product-row-card-home">
-                                {screenshot && (
-                                    <figure
-                                        class={`product-screenshot-frame ${screenshot.frameClass}`}
-                                    >
-                                        <img
-                                            src={screenshot.src}
-                                            alt={screenshot.alt}
-                                            loading="lazy"
-                                            width={screenshot.width}
-                                            height={screenshot.height}
-                                        />
-                                    </figure>
+                <div class="blog-grid">
+                    {blogPosts.map((post) => (
+                        <article class="post-card panel">
+                            <p>
+                                {post.data.publishDate.toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        month: "short",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    },
                                 )}
-                                <div class="product-row-content product-row-content-home">
-                                    <p class="card-kicker">{product.label}</p>
-                                    <h3>{product.name}</h3>
-                                    <p>{product.summary}</p>
-                                    <div class="tag-row stack-tags">
-                                        {product.categories
-                                            .slice(0, 5)
-                                            .map((category) => (
-                                                <span>{category}</span>
-                                            ))}
-                                    </div>
-                                    <ul class="stack-examples">
-                                        {product.proof
-                                            .slice(0, 2)
-                                            .map((item) => (
-                                                <li>{item}</li>
-                                            ))}
-                                    </ul>
-                                    <div class="product-links">
-                                        <a
-                                            class="button button-primary"
-                                            href={`/products/${product.slug}`}
-                                        >
-                                            View product page
-                                        </a>
-                                        <a
-                                            class="button button-secondary"
-                                            href={secondaryHref}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            {secondaryLabel}
-                                        </a>
-                                    </div>
-                                </div>
-                            </article>
-                        );
-                    })}
+                            </p>
+                            <h3>
+                                <a href={getPostHref(post.id)}>
+                                    {post.data.title}
+                                </a>
+                            </h3>
+                            <p>{post.data.excerpt}</p>
+                        </article>
+                    ))}
                 </div>
             </section>
         )
     }
 
-    <section class="panel panel-shell home-contact-strip">
+    <section class="panel panel-shell home-contact-strip" id="contact">
         <div class="home-contact-copy">
             <p class="eyebrow">Contact</p>
-            <h2>
-                Send the bottleneck, the product stage, and the technical
-                context. I will reply with whether G2Labs is a good fit.
-            </h2>
+            <h2>Tell me what is blocking the product.</h2>
+            <p>
+                Write to <a
+                    class="contact-email"
+                    href={`mailto:${company.email}`}>{company.email}</a
+                > or use the form. I usually reply within 2 business days.
+            </p>
             <div class="home-contact-links">
                 {
                     homeContactLinks.map((link) => (
@@ -470,12 +332,12 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                         required
                     />
                 </label>
-                <label>
-                    <span>Primary tech stack</span>
+                <label class="field-full">
+                    <span>Main area</span>
                     <select name="primary_tech_stack">
-                        <option value="">Select stack</option>
+                        <option value="">Select one</option>
                         {
-                            compactTechStackOptions.map((option) => (
+                            stackAreas.map((option) => (
                                 <option value={option}>{option}</option>
                             ))
                         }
@@ -486,7 +348,7 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                     <textarea
                         name="problem"
                         rows="4"
-                        placeholder="Firmware delivery, device integration, MVP planning, or another concrete product bottleneck."
+                        placeholder="Product stage, hardware, and what is currently blocking you."
                         required></textarea>
                 </label>
             </div>
@@ -499,104 +361,15 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 >
                     Send inquiry
                 </button>
-                <p class="form-note">
-                    {
-                        isFormConfigured
-                            ? "Submissions are active for this deployment and will post directly to Herotofu."
-                            : "Set PUBLIC_HEROTOFU_ENDPOINT in the deployment environment to activate submissions."
-                    }
-                </p>
+                {
+                    !isFormConfigured && (
+                        <p class="form-note">
+                            The form is offline right now. Please email me
+                            directly.
+                        </p>
+                    )
+                }
             </div>
         </form>
     </section>
-
-    <section class="panel panel-shell casual-note-strip">
-        <div class="casual-note-copy">
-            <p class="eyebrow">Behind the work</p>
-            <h2>
-                Independent, hands-on, and usually working close to the real
-                product constraints rather than far above them.
-            </h2>
-            <p>
-                G2Labs stays intentionally small. That keeps communication
-                direct, engineering decisions explicit, and the work close to
-                the actual device and software behavior that teams have to ship.
-            </p>
-        </div>
-        <figure class="panel casual-portrait">
-            <img
-                src="/me-1.jpeg"
-                alt="Grzegorz Grzęda in a casual portrait"
-                loading="lazy"
-                width="896"
-                height="1088"
-            />
-        </figure>
-    </section>
-
-    <section class="panel panel-shell">
-        <div class="section-heading compact-heading">
-            <div>
-                <p class="eyebrow">Experience timeline</p>
-                <h2>
-                    A concise view of where the work happened and what kind of
-                    engineering sat behind it.
-                </h2>
-            </div>
-            <a href="/work">See the full work page</a>
-        </div>
-        <div class="experience-list">
-            {
-                experience.map((entry) => (
-                    <article class="experience-item">
-                        <div class="experience-period">{entry.period}</div>
-                        <div class="experience-content">
-                            <p class="card-kicker">{entry.company}</p>
-                            <h3>{entry.role}</h3>
-                            <p>{entry.summary}</p>
-                        </div>
-                    </article>
-                ))
-            }
-        </div>
-    </section>
-
-    {
-        blogPosts.length > 0 && (
-            <section class="panel panel-shell">
-                <div class="section-heading compact-heading">
-                    <div>
-                        <p class="eyebrow">Latest writing</p>
-                        <h2>
-                            Notes on embedded systems, tooling, and practical
-                            engineering workflow.
-                        </h2>
-                    </div>
-                    <a href="/blog">Open the blog</a>
-                </div>
-                <div class="blog-grid">
-                    {blogPosts.map((post) => (
-                        <article class="post-card panel">
-                            <p>
-                                {post.data.publishDate.toLocaleDateString(
-                                    "en-US",
-                                    {
-                                        month: "short",
-                                        day: "numeric",
-                                        year: "numeric",
-                                    },
-                                )}
-                            </p>
-                            <h3>
-                                <a href={getPostHref(post.id)}>
-                                    {post.data.title}
-                                </a>
-                            </h3>
-                            <p>{post.data.excerpt}</p>
-                        </article>
-                    ))}
-                </div>
-            </section>
-        )
-    }
 </BaseLayout>
