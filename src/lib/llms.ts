@@ -23,6 +23,11 @@ const summary =
     'Since 2010 he has built firmware and connected-device software; the core stack is Nordic nRF54 / nRF52 with Zephyr RTOS, ' +
     'Thread and Bluetooth Low Energy, CoAP and DTLS, MCUboot field updates, and device security. Works remotely with teams across Europe.';
 
+// Nest a post's own markdown headings under its "### title" heading so they
+// do not break the document outline (## -> ####, ### -> #####, ...).
+const demoteHeadings = (markdown: string) =>
+    markdown.replace(/^(#{1,4})(?=\s)/gm, (hashes) => `${hashes}##`);
+
 const getPosts = async () =>
     (await getCollection('blog', ({ data }) => !data.draft)).sort(
         (left, right) =>
@@ -190,7 +195,7 @@ export const buildLlmsFullTxt = async () => {
             '',
             `Published ${post.data.publishDate.toISOString().slice(0, 10)}. ${absoluteUrl(postPath(post.id))}`,
             '',
-            (post.body ?? post.data.excerpt).trim(),
+            demoteHeadings((post.body ?? post.data.excerpt).trim()),
             ''
         ])
     ].join('\n');
