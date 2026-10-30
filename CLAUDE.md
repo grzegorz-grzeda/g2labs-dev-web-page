@@ -35,6 +35,21 @@ Astro 5 static site deployed on Netlify.
 - `tests/company.test.ts`: vitest checks on the data shape (LinkedIn link,
   knowledgebase product with 4 stats, etc.). Keep them passing.
 
+## Machine-readable output (SEO and AI assistants)
+
+- `src/lib/seo.ts`: schema.org JSON-LD (`WebSite`, `Person`,
+  `ProfessionalService` with offers) injected on every page by
+  `BaseLayout.astro`; blog posts add a `BlogPosting`. Also Open Graph and
+  Twitter meta tags.
+- Generated endpoints, all built from `company.ts` and the blog collection:
+  `/sitemap.xml`, `/rss.xml`, `/llms.txt`, `/llms-full.txt`
+  (`src/pages/*.ts`, `src/lib/llms.ts`). Add new top-level pages to the
+  `staticPaths` list in `src/pages/sitemap.xml.ts` and to the main pages list
+  in `src/lib/llms.ts`.
+- `public/robots.txt` explicitly allows AI crawlers and points to the sitemap.
+- No new npm dependencies for this: the cloud session cannot update
+  `package-lock.json`, so these are hand-written Astro endpoints.
+
 ## Commands
 
 ```bash
