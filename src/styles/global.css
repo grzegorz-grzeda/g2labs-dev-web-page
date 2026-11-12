@@ -27,7 +27,7 @@
     --radius-sm: 6px;
     --max-width: 76rem;
     --gutter: clamp(16px, 4vw, 40px);
-    --section-y: clamp(48px, 7vw, 88px);
+    --section-y: clamp(40px, 6vw, 72px);
 }
 
 :root[data-theme="dark"] {
@@ -37,8 +37,8 @@
     --text: #f4f3f1;
     --muted: #a8a49c;
     --faint: #77736c;
-    --border: #222222;
-    --border-strong: #3a3a3a;
+    --border: #262626;
+    --border-strong: #3d3d3d;
     --accent: #f5c451;
     --on-accent: #191510;
     --accent-text: #f5c451;
@@ -54,8 +54,8 @@
         --text: #f4f3f1;
         --muted: #a8a49c;
         --faint: #77736c;
-        --border: #222222;
-        --border-strong: #3a3a3a;
+        --border: #262626;
+        --border-strong: #3d3d3d;
         --accent-text: #f5c451;
         --focus: #f5c451;
     }
@@ -191,8 +191,7 @@ main > article {
 }
 
 /* Sections are flat bands: legacy "panel" wrappers carry no chrome. */
-.panel,
-.panel-shell {
+:where(.panel, .panel-shell) {
     background: none;
     border: 0;
     box-shadow: none;
@@ -519,6 +518,10 @@ main > section > .eyebrow + * {
 
 main > .hero > * + * {
     margin-top: 0;
+}
+
+.hero:has(.product-hero-side) {
+    align-items: start;
 }
 
 .hero h1 + .lead,
