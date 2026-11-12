@@ -1413,6 +1413,27 @@ input::placeholder {
 
     .site-nav a {
         white-space: nowrap;
+        padding: 6px 8px;
+        font-size: 14px;
+    }
+
+    .site-nav .site-nav-cta {
+        margin-left: 4px;
+    }
+
+    .site-header-shell {
+        position: relative;
+    }
+
+    /* Theme toggle sits on the brand row so the nav gets the full width. */
+    .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: var(--gutter);
+    }
+
+    .hero-portrait {
+        max-width: 260px;
     }
 
     .case-study-row-card,
