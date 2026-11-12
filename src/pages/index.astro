@@ -49,6 +49,8 @@ const homeProducts = products.filter(
     (product) => product.slug in productPreviewMap,
 );
 
+const yearsInEmbedded = new Date().getFullYear() - 2010;
+
 const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
 ---
 
@@ -73,16 +75,30 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 >
                 <a class="button button-secondary" href="/work">See my work</a>
             </div>
+            <div class="hero-stats">
+                <div>
+                    <strong>{yearsInEmbedded}+</strong>
+                    <span>Years in embedded</span>
+                </div>
+                <div>
+                    <strong>{clients.length}</strong>
+                    <span>Product companies</span>
+                </div>
+                <div>
+                    <strong>{products.length}</strong>
+                    <span>Public products</span>
+                </div>
+            </div>
         </div>
-        <div class="hero-card">
-            <p>What I take on</p>
-            <ul>
-                <li>Firmware rescue and stabilization</li>
-                <li>Thread and BLE devices on nRF54 / nRF52 with Zephyr</li>
-                <li>Secure device-to-cloud links and OTA updates</li>
-                <li>MVPs from prototype to production</li>
-            </ul>
-        </div>
+        <figure class="hero-portrait">
+            <img
+                src="/me-1.jpeg"
+                alt="Grzegorz Grzęda"
+                width="896"
+                height="1088"
+                fetchpriority="high"
+            />
+        </figure>
     </section>
 
     <section class="panel panel-shell">

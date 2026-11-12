@@ -27,6 +27,10 @@ Astro 5 static site deployed on Netlify.
 - `src/layouts/BaseLayout.astro`: shared shell, header, footer, theme switch,
   analytics consent banner.
 - `src/styles/global.css`: the whole visual system (light and dark themes).
+  Lean style: Geist + Geist Mono, near-black / off-white background, hairline
+  borders, one amber accent (`--accent`), no shadows, glass or gradients.
+  Sections are flat bands separated by borders; card groups are hairline
+  "cell grids" (`.project-grid` and friends). Keep it that way.
 - `src/content/blog/`: posts in `.md` / `.mdx`. Front matter schema is in
   `src/content.config.ts` (`title`, `excerpt`, `publishDate`, `tags`, `draft`).
   Quote `title` and `excerpt` when they contain a colon.
