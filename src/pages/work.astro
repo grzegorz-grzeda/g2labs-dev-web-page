@@ -71,7 +71,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
     </section>
 
-    <section class="project-grid work-grid">
+    <section>
+        <div class="project-grid work-grid">
         {
             services.map((offering) => (
                 <article class="project-card tall-card">
@@ -87,6 +88,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </article>
             ))
         }
+        </div>
     </section>
 
     <section class="panel panel-shell market-fit-strip">

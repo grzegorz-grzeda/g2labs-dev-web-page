@@ -26,6 +26,14 @@ const jsonLd = toJsonLd([...siteGraph(), ...structuredData]);
 const linkedInLink = links.find((link) => link.label === "LinkedIn")?.href;
 const gitHubLink = links.find((link) => link.label === "GitHub")?.href;
 const facebookLink = links.find((link) => link.label === "Facebook")?.href;
+const navItems = [
+    { href: "/work", label: "Work" },
+    { href: "/products", label: "Products" },
+    { href: "/tech-stack", label: "Tech Stack" },
+    { href: "/blog", label: "Blog" },
+];
+const isCurrent = (href: string) =>
+    Astro.url.pathname === href || Astro.url.pathname.startsWith(`${href}/`);
 ---
 
 <!doctype html>
@@ -104,7 +112,7 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Space+Grotesk:wght@400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
             rel="stylesheet"
         />
         <title>{title}</title>
@@ -118,20 +126,30 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                             class="brand-logo"
                             src="/logo.png"
                             alt="G2Labs logo"
-                            width="52"
-                            height="52"
+                            width="30"
+                            height="30"
                         />
                         <span class="brand-copy">
                             <strong>G2Labs</strong>
-                            <span>Grzegorz Grzęda · embedded engineering</span>
+                            <span>Embedded engineering</span>
                         </span>
                     </a>
                     <div class="header-actions">
                         <nav class="site-nav" aria-label="Primary">
-                            <a href="/work">Work</a>
-                            <a href="/products">Products</a>
-                            <a href="/tech-stack">Tech Stack</a>
-                            <a href="/blog">Blog</a>
+                            {
+                                navItems.map((item) => (
+                                    <a
+                                        href={item.href}
+                                        aria-current={
+                                            isCurrent(item.href)
+                                                ? "page"
+                                                : undefined
+                                        }
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))
+                            }
                             <a class="site-nav-cta" href="/contact">Contact</a>
                         </nav>
                         <button
@@ -191,8 +209,8 @@ const facebookLink = links.find((link) => link.label === "Facebook")?.href;
                         class="footer-logo"
                         src="/logo.png"
                         alt="G2Labs logo"
-                        width="150"
-                        height="58"
+                        width="44"
+                        height="44"
                     />
                 </a>
                 <div>
