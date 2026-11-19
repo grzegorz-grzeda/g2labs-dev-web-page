@@ -84,7 +84,8 @@ report a change as verified until CI is green.
   stated or that are already in `company.ts`. Ask when unsure.
 - Do not publish the hourly rate anywhere on the site.
 - Keep the homepage short (hero, clients, services, 3 case studies, MicrOS +
-  DevToolsForMe, about, latest posts, contact); details belong on /work and
+  DevToolsForMe, the GitHub repo list from `repos` in `company.ts` (nodbeat and
+  g2labs-node first), about, latest posts, contact); details belong on /work and
   /products. Prefer short headings over long abstract sentences.
 - Never show deployment or developer notes (e.g. form backend names) to
   visitors.

@@ -152,6 +152,84 @@ export const projects = [
     }
 ];
 
+// Most important public GitHub repositories, in display order.
+export const githubProfile = 'https://github.com/grzegorz-grzeda';
+
+export const repos = [
+    {
+        name: 'nodbeat',
+        href: 'https://github.com/grzegorz-grzeda/nodbeat',
+        language: 'TypeScript',
+        summary:
+            "A heartbeat for every service and device: a small self-hosted dead-man's switch. Cron jobs, Raspberry Pis, ESP32 sensors, and web services ping a secret URL, and nodbeat alerts when they go quiet. Push-only, so devices behind NAT just work.",
+        tags: ['monitoring', 'self-hosted', 'IoT', 'cron']
+    },
+    {
+        name: 'g2labs-node',
+        href: 'https://github.com/grzegorz-grzeda/g2labs-node',
+        language: 'C · Zephyr',
+        summary:
+            'Zephyr firmware for always-powered home IoT nodes on ESP32-C6 and ESP32-S3: Wi-Fi failover, passive BLE scanning, MQTT, mDNS, and MCUboot updates over SMP. Ships with the TypeScript hub that turns BLE sightings into Home Assistant sensors.',
+        tags: ['Zephyr RTOS', 'MCUboot', 'BLE', 'MQTT']
+    },
+    {
+        name: 'MicrOS',
+        href: 'https://github.com/microsproject/micros',
+        language: 'C',
+        summary:
+            'A lightweight open-source real-time operating system for microcontrollers, inspired by Zephyr and FreeRTOS but kept tiny, transparent, and hackable.',
+        tags: ['RTOS', 'ARM Cortex-M', 'QEMU']
+    },
+    {
+        name: 'HomeCore',
+        href: 'https://github.com/grzegorz-grzeda/home-core',
+        language: 'C',
+        summary:
+            'A tiny personal computer for STM32 microcontrollers in the spirit of 1980s home computers: switch it on and get a shell, files, and BASIC. Runs on real boards and in QEMU.',
+        tags: ['STM32', 'retro computing', 'QEMU']
+    },
+    {
+        name: 'G2Basic',
+        href: 'https://github.com/grzegorz-grzeda/g2basic',
+        language: 'C',
+        summary:
+            'A small BASIC interpreter for microcontrollers and other embedded hosts, fed one line at a time, with custom C functions callable from BASIC.',
+        tags: ['interpreter', 'embedded C']
+    },
+    {
+        name: 'pstryk',
+        href: 'https://github.com/grzegorz-grzeda/pstryk',
+        language: 'JavaScript',
+        summary:
+            'A flick of a switch: a small self-hosted service that turns token-protected webhooks into MQTT messages, for phones, scripts, and Home Assistant.',
+        tags: ['MQTT', 'webhooks', 'self-hosted']
+    },
+    {
+        name: 'g2labs-sensor-bridge',
+        href: 'https://github.com/grzegorz-grzeda/g2labs-sensor-bridge',
+        language: 'Python',
+        summary:
+            'A daemon that collects home sensor readings over BLE and RTL-SDR and publishes them to Home Assistant over MQTT with discovery, so devices appear automatically.',
+        tags: ['BLE', 'RTL-SDR', 'Home Assistant']
+    },
+    {
+        name: 'devtoolsforme',
+        href: 'https://github.com/grzegorz-grzeda/devtoolsforme',
+        language: 'TypeScript',
+        summary:
+            'Browser-first developer utilities, with a strong embedded set: CRC, register and bitmask helpers, UART and timer calculators, Intel HEX and S-record inspectors.',
+        tags: ['developer tools', 'embedded']
+    },
+    {
+        name: 'vt100logging',
+        href: 'https://github.com/g2labs-grzegorz-grzeda/vt100logging',
+        language: 'Python',
+        summary:
+            "Colored console logs on top of Python's standard logging module, published on PyPI.",
+        tags: ['logging', 'PyPI']
+    }
+];
+
 export const products = [
     {
         slug: 'micros',

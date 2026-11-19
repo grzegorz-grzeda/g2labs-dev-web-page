@@ -942,6 +942,94 @@ main > .section-closing-cta > * + * {
     color: var(--muted);
 }
 
+/* ---------- GitHub repository list ---------- */
+
+.repo-list {
+    list-style: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.repo-list li + li {
+    border-top: 1px solid var(--border);
+}
+
+.repo-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 9rem) minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: start;
+    padding: 22px 24px;
+    text-decoration: none;
+    transition: background-color 120ms ease;
+}
+
+.repo-row:hover {
+    background: var(--surface);
+}
+
+.repo-language {
+    padding-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+}
+
+.repo-body {
+    display: grid;
+    gap: 8px;
+}
+
+.repo-name {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.repo-row:hover .repo-name,
+.repo-row:hover .repo-arrow {
+    color: var(--accent-text);
+}
+
+.repo-summary {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 48rem;
+}
+
+.repo-body .tag-row {
+    margin-top: 2px;
+}
+
+.repo-arrow {
+    color: var(--faint);
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* The first two are the flagship projects. */
+.repo-list li:nth-child(-n + 2) .repo-name {
+    font-size: 1.25rem;
+}
+
+@media (max-width: 720px) {
+    .repo-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px 16px;
+        padding: 20px 18px;
+    }
+
+    .repo-language {
+        grid-column: 1 / -1;
+        padding-top: 0;
+    }
+}
+
 /* ---------- Experience ---------- */
 
 .experience-list {

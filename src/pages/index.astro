@@ -7,6 +7,8 @@ import {
     links,
     products,
     services,
+    githubProfile,
+    repos,
     stackAreas,
 } from "../data/company";
 import { herotofuEndpoint, isFormConfigured, thankYouPath } from "../lib/forms";
@@ -222,6 +224,46 @@ const getPostHref = (id: string) => `/blog/${id.replace(/\.(md|mdx)$/, "")}/`;
                 })
             }
         </div>
+    </section>
+
+    <section>
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Open source</p>
+                <h2>On GitHub</h2>
+            </div>
+            <a href={githubProfile} target="_blank" rel="noreferrer"
+                >All repositories</a
+            >
+        </div>
+        <ol class="repo-list">
+            {
+                repos.map((repo) => (
+                    <li>
+                        <a
+                            class="repo-row"
+                            href={repo.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <span class="repo-language">{repo.language}</span>
+                            <span class="repo-body">
+                                <strong class="repo-name">{repo.name}</strong>
+                                <span class="repo-summary">{repo.summary}</span>
+                                <span class="tag-row">
+                                    {repo.tags.map((tag) => (
+                                        <span>{tag}</span>
+                                    ))}
+                                </span>
+                            </span>
+                            <span class="repo-arrow" aria-hidden="true">
+                                ↗
+                            </span>
+                        </a>
+                    </li>
+                ))
+            }
+        </ol>
     </section>
 
     <section class="panel panel-shell about-strip">
