@@ -1,0 +1,168 @@
+---
+import { products } from "../../data/company";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const product = products.find((entry) => entry.slug === "nodbeat");
+
+if (!product) {
+    throw new Error("Product showcase data for nodbeat is missing.");
+}
+
+const heartbeatExample = `curl -fsS -m 10 --retry 3 https://nodbeat.g2labs.pl/hb/<token>`;
+---
+
+<BaseLayout
+    title="nodbeat | Product Showcase | G2Labs"
+    description="nodbeat is a self-hosted heartbeat monitoring service by G2Labs: cron jobs, servers, and IoT devices ping a URL, and nodbeat alerts on Telegram, Webhooks, or ntfy when one goes silent."
+>
+    <section class="hero panel">
+        <div>
+            <p class="eyebrow">{product.label}</p>
+            <h1>{product.name}</h1>
+            <p class="lead">
+                {product.tagline}
+                {product.summary}
+            </p>
+            <p>{product.story}</p>
+            <div class="product-links">
+                <a
+                    class="button button-primary"
+                    href={product.href}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open nodbeat
+                </a>
+                <a
+                    class="button button-secondary"
+                    href={product.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Open the repository
+                </a>
+            </div>
+        </div>
+        <div class="product-hero-side">
+            <figure
+                class="product-screenshot-frame product-screenshot-frame-hero"
+            >
+                <img
+                    src="/nodbeat.png"
+                    alt="nodbeat landing page with the heartbeat monitoring dashboard"
+                    width="1600"
+                    height="1000"
+                    fetchpriority="high"
+                />
+            </figure>
+            <div class="hero-card product-proof-summary">
+                <p>One line to integrate</p>
+                <pre class="code-snippet"><code>{heartbeatExample}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product snapshot</p>
+                <h2>Monitoring that works from behind NAT</h2>
+            </div>
+            <a href={product.repo} target="_blank" rel="noreferrer"
+                >Read the README</a
+            >
+        </div>
+        <div class="product-stat-grid">
+            {
+                product.stats.map((stat) => (
+                    <article class="project-card product-stat">
+                        <strong>{stat.value}</strong>
+                        <p>{stat.label}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell product-highlights">
+        <div>
+            <p class="eyebrow">Who it is for</p>
+            <h2>For anything that should check in and sometimes doesn't</h2>
+            <ul class="stack-examples">
+                {product.audience.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+        <div class="project-card stack-card">
+            <p class="card-kicker">How it works</p>
+            <h2>Create a Monitor, send Heartbeats, get an Alert.</h2>
+            <p>
+                Each Monitor has a secret Heartbeat URL and an expected interval
+                or schedule. When a Heartbeat is late, or a job reports a
+                failure, nodbeat marks the Monitor Down and alerts you, then
+                again when it is back.
+            </p>
+            <div class="tag-row">
+                {product.categories.map((category) => <span>{category}</span>)}
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Product qualities</p>
+                <h2>Small surface, real-world edge cases covered</h2>
+            </div>
+        </div>
+        <div class="product-pillars">
+            {
+                product.pillars.map((pillar) => (
+                    <article class="project-card product-pillar">
+                        <h2>{pillar.title}</h2>
+                        <p>{pillar.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Features</p>
+                <h2>Beyond "is it up?"</h2>
+            </div>
+        </div>
+        <div class="product-detail-list">
+            {
+                product.featuredTools.map((tool) => (
+                    <article class="project-card product-detail-card">
+                        <p class="card-kicker product-detail-label">Feature</p>
+                        <div class="product-detail-copy">
+                            <p>{tool}</p>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <section class="panel panel-shell">
+        <div class="section-heading compact-heading">
+            <div>
+                <p class="eyebrow">Why it matters for clients</p>
+                <h2>The same engineering, applied to a whole product</h2>
+            </div>
+        </div>
+        <div class="product-proof-grid">
+            {
+                product.proof.map((item) => (
+                    <article class="project-card product-proof-card">
+                        <h2>Execution signal</h2>
+                        <p>{item}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+</BaseLayout>

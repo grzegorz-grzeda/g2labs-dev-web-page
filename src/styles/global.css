@@ -443,13 +443,15 @@ main > section > .eyebrow + * {
 
 /* ---------- Tags ---------- */
 
-.tag-row {
+.tag-row,
+.product-categories {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
 
-.tag-row span {
+.tag-row span,
+.product-categories span {
     display: inline-flex;
     align-items: center;
     padding: 3px 8px;
@@ -940,6 +942,21 @@ main > .section-closing-cta > * + * {
     background: var(--bg);
     padding: 18px 20px;
     color: var(--muted);
+}
+
+/* ---------- Code snippet (product pages) ---------- */
+
+.code-snippet {
+    margin: 12px 0 0;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 13px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text);
 }
 
 /* ---------- GitHub repository list ---------- */

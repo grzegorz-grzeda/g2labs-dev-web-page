@@ -232,6 +232,72 @@ export const repos = [
 
 export const products = [
     {
+        slug: 'nodbeat',
+        name: 'nodbeat',
+        label: 'Self-hosted monitoring service',
+        href: 'https://nodbeat.g2labs.pl',
+        repo: 'https://github.com/grzegorz-grzeda/nodbeat',
+        tagline: 'A heartbeat for every service and device.',
+        summary:
+            "A small, self-hosted dead-man's switch: cron jobs, servers, Raspberry Pis, and ESP32 sensors ping a secret Heartbeat URL, and nodbeat alerts on Telegram, a Webhook, or ntfy when one goes silent or fails.",
+        story:
+            'nodbeat came from the same problem on both sides of my work: backups, scripts, home servers, and battery-powered sensors that fail quietly. Heartbeats are push-only, so nodbeat never connects to what it watches and devices behind NAT work without any port forwarding. It runs live at nodbeat.g2labs.pl (invite-only for now), and the code is public under the MIT licence.',
+        audience: [
+            'Developers and operators who need to know when a cron job, backup, or script stopped running',
+            'IoT and embedded builders whose devices sit behind NAT and can only make outgoing HTTP requests',
+            'Small teams and homelabs that want monitoring they can self-host instead of another SaaS account'
+        ],
+        stats: [
+            { value: 'Push-only', label: 'works behind NAT' },
+            { value: '30 s – 7 d', label: 'interval or cron schedule' },
+            { value: '3 channels', label: 'Telegram, Webhook, ntfy' },
+            { value: 'MIT', label: 'open source' }
+        ],
+        pillars: [
+            {
+                title: 'Anything that can make an HTTP request',
+                description:
+                    'A cron job, a systemd timer, a Raspberry Pi, or an ESP32 with Wi-Fi: a GET or POST to the Heartbeat URL is all the integration it takes.'
+            },
+            {
+                title: 'Interval or schedule',
+                description:
+                    'Expect a Heartbeat every few minutes, or at 02:00 on weekdays in a chosen time zone, with a grace period before a Monitor counts as Down.'
+            },
+            {
+                title: 'Alerts that carry context',
+                description:
+                    'Down and recovery alerts include the last message a job sent, such as "battery 3.7V" or a failure reason, with reminders while a Monitor stays Down.'
+            }
+        ],
+        categories: ['TypeScript', 'Fastify', 'MongoDB', 'Monitoring', 'IoT', 'Self-hosted', 'Open source'],
+        featuredTools: [
+            'Start and Fail signals, so a failed run is Down at once and run time is measured',
+            'Max run time: a job that starts but hangs goes Down',
+            'Last message and change alerts, e.g. when "door=open" turns into "door=closed"',
+            'Reminders every 1, 6, or 24 hours while a Monitor stays Down',
+            '7-day uptime and incident history per Monitor, with paused time left out',
+            'JSON API and dashboard data for scripts and integrations'
+        ],
+        miniature: {
+            helperLabel: 'Heartbeat monitoring',
+            nav: ['Dashboard', 'Monitors', 'API'],
+            searchLabel: 'Heartbeat URL',
+            summaryStats: ['push-only', 'MIT', 'self-hosted'],
+            categoryPreview: ['Cron', 'Servers', 'IoT', 'Alerts'],
+            toolPreview: [
+                { category: 'Monitor', name: 'Nightly backup' },
+                { category: 'Monitor', name: 'Greenhouse sensor' },
+                { category: 'Alert', name: 'Telegram' }
+            ]
+        },
+        proof: [
+            'A complete web product built and run end to end: backend, dashboard, alerting, API docs, Docker deployment, and a live instance',
+            'Designed around real device constraints: push-only heartbeats that work from behind NAT and from ESP32-class hardware',
+            'Developed in public with ADRs, a glossary, a changelog, and tests, the same discipline applied to client work'
+        ]
+    },
+    {
         slug: 'micros',
         name: 'MicrOS',
         label: 'Open-source product',
