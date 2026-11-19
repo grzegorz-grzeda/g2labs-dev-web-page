@@ -152,7 +152,151 @@ export const projects = [
     }
 ];
 
+// Most important public GitHub repositories, in display order.
+export const githubProfile = 'https://github.com/grzegorz-grzeda';
+
+export const repos = [
+    {
+        name: 'nodbeat',
+        href: 'https://github.com/grzegorz-grzeda/nodbeat',
+        language: 'TypeScript',
+        summary:
+            "A heartbeat for every service and device: a small self-hosted dead-man's switch. Cron jobs, Raspberry Pis, ESP32 sensors, and web services ping a secret URL, and nodbeat alerts when they go quiet. Push-only, so devices behind NAT just work.",
+        tags: ['monitoring', 'self-hosted', 'IoT', 'cron']
+    },
+    {
+        name: 'g2labs-node',
+        href: 'https://github.com/grzegorz-grzeda/g2labs-node',
+        language: 'C · Zephyr',
+        summary:
+            'Zephyr firmware for always-powered home IoT nodes on ESP32-C6 and ESP32-S3: Wi-Fi failover, passive BLE scanning, MQTT, mDNS, and MCUboot updates over SMP. Ships with the TypeScript hub that turns BLE sightings into Home Assistant sensors.',
+        tags: ['Zephyr RTOS', 'MCUboot', 'BLE', 'MQTT']
+    },
+    {
+        name: 'MicrOS',
+        href: 'https://github.com/microsproject/micros',
+        language: 'C',
+        summary:
+            'A lightweight open-source real-time operating system for microcontrollers, inspired by Zephyr and FreeRTOS but kept tiny, transparent, and hackable.',
+        tags: ['RTOS', 'ARM Cortex-M', 'QEMU']
+    },
+    {
+        name: 'HomeCore',
+        href: 'https://github.com/grzegorz-grzeda/home-core',
+        language: 'C',
+        summary:
+            'A tiny personal computer for STM32 microcontrollers in the spirit of 1980s home computers: switch it on and get a shell, files, and BASIC. Runs on real boards and in QEMU.',
+        tags: ['STM32', 'retro computing', 'QEMU']
+    },
+    {
+        name: 'G2Basic',
+        href: 'https://github.com/grzegorz-grzeda/g2basic',
+        language: 'C',
+        summary:
+            'A small BASIC interpreter for microcontrollers and other embedded hosts, fed one line at a time, with custom C functions callable from BASIC.',
+        tags: ['interpreter', 'embedded C']
+    },
+    {
+        name: 'pstryk',
+        href: 'https://github.com/grzegorz-grzeda/pstryk',
+        language: 'JavaScript',
+        summary:
+            'A flick of a switch: a small self-hosted service that turns token-protected webhooks into MQTT messages, for phones, scripts, and Home Assistant.',
+        tags: ['MQTT', 'webhooks', 'self-hosted']
+    },
+    {
+        name: 'g2labs-sensor-bridge',
+        href: 'https://github.com/grzegorz-grzeda/g2labs-sensor-bridge',
+        language: 'Python',
+        summary:
+            'A daemon that collects home sensor readings over BLE and RTL-SDR and publishes them to Home Assistant over MQTT with discovery, so devices appear automatically.',
+        tags: ['BLE', 'RTL-SDR', 'Home Assistant']
+    },
+    {
+        name: 'devtoolsforme',
+        href: 'https://github.com/grzegorz-grzeda/devtoolsforme',
+        language: 'TypeScript',
+        summary:
+            'Browser-first developer utilities, with a strong embedded set: CRC, register and bitmask helpers, UART and timer calculators, Intel HEX and S-record inspectors.',
+        tags: ['developer tools', 'embedded']
+    },
+    {
+        name: 'vt100logging',
+        href: 'https://github.com/g2labs-grzegorz-grzeda/vt100logging',
+        language: 'Python',
+        summary:
+            "Colored console logs on top of Python's standard logging module, published on PyPI.",
+        tags: ['logging', 'PyPI']
+    }
+];
+
 export const products = [
+    {
+        slug: 'nodbeat',
+        name: 'nodbeat',
+        label: 'Self-hosted monitoring service',
+        href: 'https://nodbeat.g2labs.pl',
+        repo: 'https://github.com/grzegorz-grzeda/nodbeat',
+        tagline: 'A heartbeat for every service and device.',
+        summary:
+            "A small, self-hosted dead-man's switch: cron jobs, servers, Raspberry Pis, and ESP32 sensors ping a secret Heartbeat URL, and nodbeat alerts on Telegram, a Webhook, or ntfy when one goes silent or fails.",
+        story:
+            'nodbeat came from the same problem on both sides of my work: backups, scripts, home servers, and battery-powered sensors that fail quietly. Heartbeats are push-only, so nodbeat never connects to what it watches and devices behind NAT work without any port forwarding. It runs live at nodbeat.g2labs.pl (invite-only for now), and the code is public under the MIT licence.',
+        audience: [
+            'Developers and operators who need to know when a cron job, backup, or script stopped running',
+            'IoT and embedded builders whose devices sit behind NAT and can only make outgoing HTTP requests',
+            'Small teams and homelabs that want monitoring they can self-host instead of another SaaS account'
+        ],
+        stats: [
+            { value: 'Push-only', label: 'works behind NAT' },
+            { value: '30 s – 7 d', label: 'interval or cron schedule' },
+            { value: '3 channels', label: 'Telegram, Webhook, ntfy' },
+            { value: 'MIT', label: 'open source' }
+        ],
+        pillars: [
+            {
+                title: 'Anything that can make an HTTP request',
+                description:
+                    'A cron job, a systemd timer, a Raspberry Pi, or an ESP32 with Wi-Fi: a GET or POST to the Heartbeat URL is all the integration it takes.'
+            },
+            {
+                title: 'Interval or schedule',
+                description:
+                    'Expect a Heartbeat every few minutes, or at 02:00 on weekdays in a chosen time zone, with a grace period before a Monitor counts as Down.'
+            },
+            {
+                title: 'Alerts that carry context',
+                description:
+                    'Down and recovery alerts include the last message a job sent, such as "battery 3.7V" or a failure reason, with reminders while a Monitor stays Down.'
+            }
+        ],
+        categories: ['TypeScript', 'Fastify', 'MongoDB', 'Monitoring', 'IoT', 'Self-hosted', 'Open source'],
+        featuredTools: [
+            'Start and Fail signals, so a failed run is Down at once and run time is measured',
+            'Max run time: a job that starts but hangs goes Down',
+            'Last message and change alerts, e.g. when "door=open" turns into "door=closed"',
+            'Reminders every 1, 6, or 24 hours while a Monitor stays Down',
+            '7-day uptime and incident history per Monitor, with paused time left out',
+            'JSON API and dashboard data for scripts and integrations'
+        ],
+        miniature: {
+            helperLabel: 'Heartbeat monitoring',
+            nav: ['Dashboard', 'Monitors', 'API'],
+            searchLabel: 'Heartbeat URL',
+            summaryStats: ['push-only', 'MIT', 'self-hosted'],
+            categoryPreview: ['Cron', 'Servers', 'IoT', 'Alerts'],
+            toolPreview: [
+                { category: 'Monitor', name: 'Nightly backup' },
+                { category: 'Monitor', name: 'Greenhouse sensor' },
+                { category: 'Alert', name: 'Telegram' }
+            ]
+        },
+        proof: [
+            'A complete web product built and run end to end: backend, dashboard, alerting, API docs, Docker deployment, and a live instance',
+            'Designed around real device constraints: push-only heartbeats that work from behind NAT and from ESP32-class hardware',
+            'Developed in public with ADRs, a glossary, a changelog, and tests, the same discipline applied to client work'
+        ]
+    },
     {
         slug: 'micros',
         name: 'MicrOS',

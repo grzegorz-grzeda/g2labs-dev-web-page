@@ -10,9 +10,11 @@ import {
     clients,
     company,
     experience,
+    githubProfile,
     links,
     packages,
     products,
+    repos,
     services,
     techStack
 } from '../data/company';
@@ -81,6 +83,10 @@ export const buildLlmsTxt = async () => {
             (product) =>
                 `- [${product.name}](${absoluteUrl(`/products/${product.slug}/`)}): ${product.summary}`
         ),
+        '',
+        `## Open-source repositories (${githubProfile})`,
+        '',
+        ...repos.map((repo) => `- [${repo.name}](${repo.href}) (${repo.language}): ${repo.summary}`),
         '',
         '## Blog',
         '',

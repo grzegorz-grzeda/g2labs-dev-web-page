@@ -22,6 +22,9 @@ Astro 5 static site deployed on Netlify.
   (`company.email`) and the short `stackAreas` list used by contact forms.
   Prefer editing data here
   over hardcoding copy in pages.
+- `src/components/ProductList.astro`: the product list shared by the homepage
+  and /products, so both always show the same products, screenshots and
+  buttons. Add a product's screenshot to its map.
 - `src/pages/`: routes. `index.astro` (home), `work.astro`, `tech-stack.astro`,
   `contact.astro`, `products/*`, `blog/*`, legal pages.
 - `src/layouts/BaseLayout.astro`: shared shell, header, footer, theme switch,
@@ -83,8 +86,9 @@ report a change as verified until CI is green.
 - Do not invent clients, numbers, results, or dates. Use only facts the owner
   stated or that are already in `company.ts`. Ask when unsure.
 - Do not publish the hourly rate anywhere on the site.
-- Keep the homepage short (hero, clients, services, 3 case studies, MicrOS +
-  DevToolsForMe, about, latest posts, contact); details belong on /work and
+- Keep the homepage short (hero, clients, services, 3 case studies, the
+  product list, the GitHub repo list from `repos` in `company.ts` (nodbeat and
+  g2labs-node first), about, latest posts, contact); details belong on /work and
   /products. Prefer short headings over long abstract sentences.
 - Never show deployment or developer notes (e.g. form backend names) to
   visitors.
