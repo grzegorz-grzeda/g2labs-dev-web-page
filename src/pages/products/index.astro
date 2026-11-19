@@ -56,9 +56,10 @@ const productScreenshotMap = {
         </p>
     </section>
 
-    <section
-        class="project-grid work-grid product-row-list product-row-list-catalog"
-    >
+    <section>
+        <div
+            class="project-grid work-grid product-row-list product-row-list-catalog"
+        >
         {
             products.map((product) => {
                 const screenshot =
@@ -122,5 +123,6 @@ const productScreenshotMap = {
                 );
             })
         }
+        </div>
     </section>
 </BaseLayout>
